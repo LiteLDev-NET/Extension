@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Minecraft;
 
@@ -218,4 +211,34 @@ public unsafe struct Vec3
         UNIT_Z_ptr = (Vec3*)DlsymRealThrowIfNull<NullReferenceException>($"?{nameof(UNIT_Z)}@Vec3@@2V1@B");
         ZERO_ptr = (Vec3*)DlsymRealThrowIfNull<NullReferenceException>($"?{nameof(ZERO)}@Vec3@@2V1@B");
     }
+
+    public static Vec3 operator *(Vec3 lhs, Vec3 rhs)
+        => new(lhs.X * rhs.X, lhs.Y * rhs.Y, lhs.Z * rhs.Z);
+
+    public static Vec3 operator *(Vec3 vec, float num)
+        => new(vec.X * num, vec.Y * num, vec.Z * num);
+
+    public static Vec3 operator /(Vec3 lhs, Vec3 rhs)
+        => new(lhs.X / rhs.X, lhs.Y / rhs.Y, lhs.Z / rhs.Z);
+
+    public static Vec3 operator /(Vec3 vec, float num)
+        => new(vec.X / num, vec.Y / num, vec.Z / num);
+
+    public static Vec3 operator +(Vec3 lhs, Vec3 rhs)
+        => new(lhs.X + rhs.X, lhs.Y + rhs.Y, lhs.Z + rhs.Z);
+
+    public static Vec3 operator +(Vec3 vec, float num)
+        => new(vec.X + num, vec.Y + num, vec.Z + num);
+
+    public static Vec3 operator -(Vec3 lhs, Vec3 rhs)
+        => new(lhs.X - rhs.X, lhs.Y - rhs.Y, lhs.Z - rhs.Z);
+
+    public static Vec3 operator -(Vec3 vec, float num)
+        => new(vec.X - num, vec.Y - num, vec.Z - num);
+
+    public static implicit operator Vector3(Vec3 vec)
+        => new(vec.X, vec.Y, vec.Z);
+
+    public static implicit operator Vec3(Vector3 vec)
+        => new(vec);
 }

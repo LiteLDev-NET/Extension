@@ -45,15 +45,15 @@ public unsafe struct Vec2
 
     static Vec2()
     {
-        LOWEST_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>("?LOWEST@Vec2@@2V1@B");
-        MAX_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>("?MAX@Vec2@@2V1@B");
-        MIN_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>("?MIN@Vec2@@2V1@B");
-        NEG_UNIT_X_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>("?NEG_UNIT_X@Vec2@@2V1@B");
-        NEG_UNIT_Y_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>("?NEG_UNIT_Y@Vec2@@2V1@B");
-        ONE_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>("?ONE@Vec2@@2V1@B");
-        UNIT_X_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>("?UNIT_X@Vec2@@2V1@B");
-        UNIT_Y_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>("?UNIT_Y@Vec2@@2V1@B");
-        ZERO_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>("?ZERO@Vec2@@2V1@B");
+        LOWEST_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>($"?{nameof(LOWEST)}@Vec2@@2V1@B");
+        MAX_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>($"?{nameof(MAX)}@Vec2@@2V1@B");
+        MIN_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>($"?{nameof(MIN)}@Vec2@@2V1@B");
+        NEG_UNIT_X_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>($"?{nameof(NEG_UNIT_X)}@Vec2@@2V1@B");
+        NEG_UNIT_Y_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>($"?{nameof(NEG_UNIT_Y)}@Vec2@@2V1@B");
+        ONE_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>($"?{nameof(ONE)}@Vec2@@2V1@B");
+        UNIT_X_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>($"?{nameof(UNIT_X)}@Vec2@@2V1@B");
+        UNIT_Y_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>($"?{nameof(UNIT_Y)}@Vec2@@2V1@B");
+        ZERO_ptr = (Vec2*)DlsymRealThrowIfNull<NullReferenceException>($"?{nameof(ZERO)}@Vec2@@2V1@B");
     }
 
     public static Vec2 LOWEST => *LOWEST_ptr;
@@ -66,7 +66,7 @@ public unsafe struct Vec2
     public static Vec2 UNIT_Y => *UNIT_Y_ptr;
     public static Vec2 ZERO => *ZERO_ptr;
 
-    private static Vec2* LOWEST_ptr;
+    private static readonly Vec2* LOWEST_ptr;
     private static Vec2* MAX_ptr;
     private static Vec2* MIN_ptr;
     private static Vec2* NEG_UNIT_X_ptr;
