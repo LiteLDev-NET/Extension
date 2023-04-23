@@ -19,4 +19,7 @@ internal class Global
             throw Activator.CreateInstance<T>();
         return (nint)ptr;
     }
+
+    public const string BDS = "bedrock_server_mod.exe";
+    public const string LiteLoader = "LiteLoader.dll";
 }
