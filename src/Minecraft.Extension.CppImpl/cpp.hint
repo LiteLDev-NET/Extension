@@ -1,0 +1,21 @@
+// 提示文件帮助 Visual Studio IDE 解释 Visual C++ 标识符,
+// 如函数和宏的名称。
+// 有关详细信息，请参见 https://go.microsoft.com/fwlink/?linkid=865984
+#define typeof(type)
+#define __ctor_all(RefClass, NativeClass) __ctor(RefClass, NativeClass); internal: __ctor_copy(RefClass, NativeClass); __ctor_move(RefClass, NativeClass); public:
+#define __ctor_default(RefClass, NativeClass) RefClass() : ClassTemplate((void*)nullptr, false) { }
+#define __ctor(RefClass, NativeClass) RefClass(nint_t p) : ClassTemplate(p) { } RefClass(nint_t p, bool ownsNativeInstance) : ClassTemplate(p, ownsNativeInstance) { } RefClass(NativeClass* p) : ClassTemplate(p) { } RefClass(NativeClass* p, bool ownsNativeInstance) : ClassTemplate(p, ownsNativeInstance) { } RefClass(void* p) : ClassTemplate(p) { } RefClass(void* p, bool ownsNativeInstance) : ClassTemplate(p, ownsNativeInstance) { }
+#define __ctor_copy(RefClass, NativeClass) RefClass(NativeClass& r) : ClassTemplate(r) { }
+#define __ctor_move(RefClass, NativeClass) RefClass(NativeClass&& m) : ClassTemplate(m) { }
+#define LLNET_DEFAULT_EXCEPTION_MESSAGE "Uncaught {0} detected!"
+#define CATCH catch (System::Exception ^ ex) { GlobalClass::logger->error->WriteLine(LLNET_DEFAULT_EXCEPTION_MESSAGE, ex->GetType()->ToString()); GlobalClass::logger->error->WriteLine(ex->ToString()); } catch (...) { GlobalClass::logger->error->WriteLine(LLNET_DEFAULT_EXCEPTION_MESSAGE, "exception"); }
+#define NULL_ARG_CHECK(arg) if (ReferenceEquals(arg, nullptr)) throw gcnew ::System::ArgumentNullException(#arg, "Cannot be null.");
+#define VALUE_TUPLE System::ValueTuple
+#define __ref_class public ref class
+#define __static abstract sealed
+#define __default_param(obj) [DefaultParameterValue(obj)]
+#define __as dynamic_cast
+#define typeof(type) type::typeid
+#define GET_MODULE(asm) GlobalClass::GetCurrentModule(asm)
+#define CALLING_MODULE GET_MODULE(Assembly::GetCallingAssembly())#define DEFAULT_IMPL(_class, _nativeClass) internal: _class(_nativeClass* ptr) { NativePointer = nint_t(ptr); OwnsNativeInstance = false; } _class(_nativeClass* ptr, bool ownsinstance) { NativePointer = nint_t(ptr); OwnsNativeInstance = ownsinstance; } operator _nativeClass* () { return reinterpret_cast<_nativeClass*>((void*)NativePointer); } static operator _class ^ (_nativeClass* ptr) { return gcnew _class(ptr); } public: _class() {} _class(nint_t ptr, bool ownInstance) { NativePointer = ptr; OwnsNativeInstance = OwnsNativeInstance; }
+#define DEFAULT_DEF(_class, _nativeClass) internal: _class(_nativeClass* ptr) :SafeHandle(nint_t::Zero, true) { NativePointer = nint_t(ptr); OwnsNativeInstance = false; } _class(_nativeClass* ptr, bool ownsinstance) :SafeHandle(nint_t::Zero, true) { NativePointer = nint_t(ptr); OwnsNativeInstance = ownsinstance; } operator _nativeClass* () { return reinterpret_cast<_nativeClass*>((void*)NativePointer); } static operator _class ^ (_nativeClass* ptr) { return gcnew _class(ptr); } property _nativeClass* NativePtr { _nativeClass* get() { return reinterpret_cast<_nativeClass*>((void*)NativePointer); } void set(_nativeClass* value){NativePointer = static_cast<nint_t>((void*)value); } } static size_t classSize = 0;public: static void SetClassSize(size_t size) { classSize = size; } _class() :SafeHandle(nint_t::Zero, true) {} _class(nint_t ptr, bool ownInstance) :SafeHandle(nint_t::Zero, true) { NativePointer = ptr; OwnsNativeInstance = OwnsNativeInstance; } virtual property nint_t NativePointer{ nint_t get() { return handle; } void set(nint_t value) { handle = value; } }; virtual property bool OwnsNativeInstance; virtual void Destruct() { ReleaseHandle(); } virtual size_t GetClassSize() { return classSize; } virtual bool ReleaseHandle() override { if(OwnsNativeInstance) __dtor<_nativeClass>::destruct(NativePtr); return true; } property bool IsInvalid{ virtual bool get() override { return false; } }

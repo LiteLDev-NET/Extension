@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{abeb5558-c92f-473e-8bdf-90f58bd3811c}</ProjectGuid>
+    <Keyword>NetCoreCProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <TargetFramework>net7.0</TargetFramework>
+    <ProjectName>Minecraft.Extension.CppImpl</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CLRSupport>NetCore</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)..\;$(SolutionDir)..\sdk-cpp\include;$(SolutionDir)..\sdk-cpp\include\llapi;$(IncludePath);$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)</IncludePath>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>NDEBUG;LITELOADERNET_EXPORTS;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_WINDOWS;_USRDLL;_AMD64_;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalOptions>/utf-8 /bigobj</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(SolutionDir)SDK\include;$(SolutionDir)SDK\include\llapi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DiagnosticsFormat>Column</DiagnosticsFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <DisableSpecificWarnings>4635;4793</DisableSpecificWarnings>
+      <AdditionalUsingDirectories>$(SolutionDir)\x64;$(SolutionDir)..\modules;%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <DelayLoadDLLs>bedrock_server.dll</DelayLoadDLLs>
+      <AdditionalOptions>/IGNORE:4199 %(AdditionalOptions)</AdditionalOptions>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Tools\clix.hpp" />
+    <ClInclude Include="Tools\CallbackConverter.hpp" />
+    <ClInclude Include="Tools\Global.hpp" />
+    <ClInclude Include="Tools\mutex.hpp" />
+    <ClInclude Include="Tools\type_traits.hpp" />
+    <ClInclude Include="Types\Actor.hpp" />
+    <ClInclude Include="Types\ActorDamageSource.hpp" />
+    <ClInclude Include="Types\ActorDefinitionIdentifier.hpp" />
+    <ClInclude Include="Types\ArmorStand.hpp" />
+    <ClInclude Include="Types\Attribute.hpp" />
+    <ClInclude Include="Types\AttributeInstance.hpp" />
+    <ClInclude Include="Types\AttributeModifier.hpp" />
+    <ClInclude Include="Types\BinaryStream.hpp" />
+    <ClInclude Include="Types\Biome.hpp" />
+    <ClInclude Include="Types\Block.hpp" />
+    <ClInclude Include="Types\BlockActor.hpp" />
+    <ClInclude Include="Types\BlockInstance.hpp" />
+    <ClInclude Include="Types\BlockPalette.hpp" />
+    <ClInclude Include="Types\BlockSource.hpp" />
+    <ClInclude Include="Types\BoundingBox.hpp" />
+    <ClInclude Include="Types\ByteArrayTag.hpp" />
+    <ClInclude Include="Types\ByteTag.hpp" />
+    <ClInclude Include="Types\Certificate.hpp" />
+    <ClInclude Include="Types\ColorFormat.hpp" />
+    <ClInclude Include="Types\CompoundTag.hpp" />
+    <ClInclude Include="Types\CompoundTagVariant.hpp" />
+    <ClInclude Include="Types\Container.hpp" />
+    <ClInclude Include="Types\Dimension.hpp" />
+    <ClInclude Include="Types\DoubleTag.hpp" />
+    <ClInclude Include="Types\EndTag.hpp" />
+    <ClInclude Include="Types\FloatTag.hpp" />
+    <ClInclude Include="Types\HashedString.hpp" />
+    <ClInclude Include="Types\HitResult.hpp" />
+    <ClInclude Include="Types\IdentityDefinition.hpp" />
+    <ClInclude Include="Types\Int64Tag.hpp" />
+    <ClInclude Include="Types\IntArrayTag.hpp" />
+    <ClInclude Include="Types\IntTag.hpp" />
+    <ClInclude Include="Types\ItemInstance.hpp" />
+    <ClInclude Include="Types\ItemStack.hpp" />
+    <ClInclude Include="Types\ItemStackBase.hpp" />
+    <ClInclude Include="Types\Level.hpp" />
+    <ClInclude Include="Types\ListTag.hpp" />
+    <ClInclude Include="Types\MapItemSavedData.hpp" />
+    <ClInclude Include="Types\Mce.hpp" />
+    <ClInclude Include="Types\MCRESULT.hpp" />
+    <ClInclude Include="Types\MinecraftPackets.hpp" />
+    <ClInclude Include="Types\Mob.hpp" />
+    <ClInclude Include="Types\MobEffect.hpp" />
+    <ClInclude Include="Types\MobEffectInstance.hpp" />
+    <ClInclude Include="Types\Monster.hpp" />
+    <ClInclude Include="Types\NetworkIdentifier.hpp" />
+    <ClInclude Include="Types\Objective.hpp" />
+    <ClInclude Include="Types\Packet.hpp" />
+    <ClInclude Include="Types\Player.hpp" />
+    <ClInclude Include="Types\ReadOnlyBinaryStream.hpp" />
+    <ClInclude Include="Types\ScoreboardId.hpp" />
+    <ClInclude Include="Types\ScorePacketInfo.hpp" />
+    <ClInclude Include="Types\SerializedSkin.hpp" />
+    <ClInclude Include="Types\ServerPlayer.hpp" />
+    <ClInclude Include="Types\SharedAttributes.hpp" />
+    <ClInclude Include="Types\ShortTag.hpp" />
+    <ClInclude Include="Types\SimulatedPlayer.hpp" />
+    <ClInclude Include="Types\StringTag.hpp" />
+    <ClInclude Include="Types\Tag.hpp" />
+    <ClInclude Include="Types\TagMemoryChunk.hpp" />
+    <ClInclude Include="Types\Tick.hpp" />
+    <ClInclude Include="Types\Types.hpp" />
+    <ClInclude Include="Types\UserEntityIdentifierComponent.hpp" />
+    <ClInclude Include="Types\WitherBoss.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Types\Actor.cpp" />
+    <ClCompile Include="Types\ActorDamageSource.cpp" />
+    <ClCompile Include="Types\ActorDefinitionIdentifier.cpp" />
+    <ClCompile Include="Types\ArmorStand.cpp" />
+    <ClCompile Include="Types\Attribute.cpp" />
+    <ClCompile Include="Types\AttributeInstance.cpp" />
+    <ClCompile Include="Types\AttributeModifier.cpp" />
+    <ClCompile Include="Types\BinaryStream.cpp" />
+    <ClCompile Include="Types\Biome.cpp" />
+    <ClCompile Include="Types\Block.cpp" />
+    <ClCompile Include="Types\BlockActor.cpp" />
+    <ClCompile Include="Types\BlockInstance.cpp" />
+    <ClCompile Include="Types\BlockPalette.cpp" />
+    <ClCompile Include="Types\BlockSource.cpp" />
+    <ClCompile Include="Types\BoundingBox.cpp" />
+    <ClCompile Include="Types\ByteArrayTag.cpp" />
+    <ClCompile Include="Types\ByteTag.cpp" />
+    <ClCompile Include="Types\Certificate.cpp" />
+    <ClCompile Include="Types\ColorFormat.cpp" />
+    <ClCompile Include="Types\CompoundTag.cpp" />
+    <ClCompile Include="Types\CompoundTagVariant.cpp" />
+    <ClCompile Include="Types\Container.cpp" />
+    <ClCompile Include="Types\Dimension.cpp" />
+    <ClCompile Include="Types\DoubleTag.cpp" />
+    <ClCompile Include="Types\EndTag.cpp" />
+    <ClCompile Include="Types\FloatTag.cpp" />
+    <ClCompile Include="Types\HashedString.cpp" />
+    <ClCompile Include="Types\HitResult.cpp" />
+    <ClCompile Include="Types\IdentityDefinition.cpp" />
+    <ClCompile Include="Types\Int64Tag.cpp" />
+    <ClCompile Include="Types\IntArrayTag.cpp" />
+    <ClCompile Include="Types\IntTag.cpp" />
+    <ClCompile Include="Types\ItemInstance.cpp" />
+    <ClCompile Include="Types\ItemStack.cpp" />
+    <ClCompile Include="Types\ItemStackBase.cpp" />
+    <ClCompile Include="Types\Level.cpp" />
+    <ClCompile Include="Types\ListTag.cpp" />
+    <ClCompile Include="Types\MapItemSavedData.cpp" />
+    <ClCompile Include="Types\Mce.cpp" />
+    <ClCompile Include="Types\MCRESULT.cpp" />
+    <ClCompile Include="Types\MinecraftPackets.cpp" />
+    <ClCompile Include="Types\Mob.cpp" />
+    <ClCompile Include="Types\MobEffect.cpp" />
+    <ClCompile Include="Types\MobEffectInstance.cpp" />
+    <ClCompile Include="Types\Monster.cpp" />
+    <ClCompile Include="Types\NetworkIdentifier.cpp" />
+    <ClCompile Include="Types\Objective.cpp" />
+    <ClCompile Include="Types\Packet.cpp" />
+    <ClCompile Include="Types\Player.cpp" />
+    <ClCompile Include="Types\ReadOnlyBinaryStream.cpp" />
+    <ClCompile Include="Types\ScoreboardId.cpp" />
+    <ClCompile Include="Types\ScorePacketInfo.cpp" />
+    <ClCompile Include="Types\SerializedSkin.cpp" />
+    <ClCompile Include="Types\ServerPlayer.cpp" />
+    <ClCompile Include="Types\SharedAttributes.cpp" />
+    <ClCompile Include="Types\ShortTag.cpp" />
+    <ClCompile Include="Types\SimulatedPlayer.cpp" />
+    <ClCompile Include="Types\StringTag.cpp" />
+    <ClCompile Include="Types\Tag.cpp" />
+    <ClCompile Include="Types\TagMemoryChunk.cpp" />
+    <ClCompile Include="Types\Types.cpp" />
+    <ClCompile Include="Types\UserEntityIdentifierComponent.cpp" />
+    <ClCompile Include="Types\WitherBoss.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{4dfac303-ac2b-4f2b-b888-54eedd9c814d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Types">
+      <UniqueIdentifier>{d9d2f6a5-fbd0-4d33-ac3a-e1f124015cdd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Tools\clix.hpp">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\CallbackConverter.hpp">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\type_traits.hpp">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\Global.hpp">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Actor.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ActorDamageSource.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ActorDefinitionIdentifier.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ArmorStand.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Attribute.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\AttributeInstance.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\AttributeModifier.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\BinaryStream.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Biome.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Block.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\BlockActor.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\BlockInstance.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\BlockPalette.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\BlockSource.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\BoundingBox.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ByteArrayTag.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ByteTag.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Certificate.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ColorFormat.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\CompoundTag.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\CompoundTagVariant.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Container.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Dimension.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\DoubleTag.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\EndTag.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\FloatTag.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\HashedString.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\HitResult.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\IdentityDefinition.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Int64Tag.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\IntArrayTag.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\IntTag.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ItemInstance.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ItemStack.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ItemStackBase.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Level.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ListTag.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\MapItemSavedData.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\MCRESULT.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\MinecraftPackets.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Mob.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\MobEffect.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\MobEffectInstance.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Monster.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\NetworkIdentifier.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Objective.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Packet.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Player.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ReadOnlyBinaryStream.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ScoreboardId.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ScorePacketInfo.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\SerializedSkin.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ServerPlayer.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\SharedAttributes.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\ShortTag.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\SimulatedPlayer.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\StringTag.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Tag.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\TagMemoryChunk.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Tick.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Types.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\UserEntityIdentifierComponent.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\WitherBoss.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\mutex.hpp">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Types\Mce.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Types\Actor.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ActorDamageSource.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ActorDefinitionIdentifier.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ArmorStand.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Attribute.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\AttributeInstance.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\AttributeModifier.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\BinaryStream.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Biome.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Block.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\BlockActor.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\BlockInstance.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\BlockPalette.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\BlockSource.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\BoundingBox.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ByteArrayTag.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ByteTag.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Certificate.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ColorFormat.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\CompoundTag.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\CompoundTagVariant.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Container.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Dimension.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\DoubleTag.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\EndTag.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\FloatTag.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\HashedString.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\HitResult.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\IdentityDefinition.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Int64Tag.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\IntArrayTag.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\IntTag.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ItemInstance.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ItemStack.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ItemStackBase.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Level.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ListTag.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\MapItemSavedData.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\MCRESULT.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\MinecraftPackets.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Mob.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\MobEffect.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\MobEffectInstance.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Monster.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\NetworkIdentifier.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Objective.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Packet.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Player.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ReadOnlyBinaryStream.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ScoreboardId.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ScorePacketInfo.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\SerializedSkin.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ServerPlayer.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\SharedAttributes.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\ShortTag.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\SimulatedPlayer.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\StringTag.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Tag.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\TagMemoryChunk.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Types.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\UserEntityIdentifierComponent.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\WitherBoss.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Types\Mce.cpp">
+      <Filter>Types</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+</Project>

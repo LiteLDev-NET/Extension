@@ -1,0 +1,1 @@
+#include "MapItemSavedData.hpp"
