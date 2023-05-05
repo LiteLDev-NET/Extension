@@ -3,30 +3,30 @@
 
 #include <Tools\Global.hpp>
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class UserEntityIdentifierComponent;
-    ref class CompoundTag;
-    ref class BlockSource;
-    ref struct Tick;
-    ref class ItemStack;
-    ref class MobEffectInstance;
-    ref class Level;
-    ref class Mob;
-    ref class Player;
-    ref class AttributeInstance;
-    ref class Attribute;
-} // namespace BedrockServer::Extension
+    ref class UserEntityIdentifierComponentHandle;
+    ref class CompoundTagHandle;
+    ref class BlockSourceHandle;
+    ref struct TickHandle;
+    ref class ItemStackHandle;
+    ref class MobEffectInstanceHandle;
+    ref class LevelHandle;
+    ref class MobHandle;
+    ref class PlayerHandle;
+    ref class AttributeInstanceHandle;
+    ref class AttributeHandle;
+} // namespace BedrockServer::Extension::Handle
 
 #include "BlockInstance.hpp"
 #include "MobEffect.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
     public
-    ref class Actor : SafeHandle, ICppClass
+    ref class ActorHandle : SafeHandle, ICppClass
     {
-        DEFAULT_DEF(Actor, ::Actor)
+        DEFAULT_DEF(ActorHandle, ::Actor)
     public:
         inline array<String^>^ GetAllTags();
         inline BlockInstance GetBlockFromViewVector(
@@ -42,34 +42,34 @@ namespace BedrockServer::Extension
             __default(5.25f) float maxDistance,
             __default(true) bool ignoreBorderBlocks,
             __default(false) bool fullOnly);
-        inline Actor^ GetActorFromViewVector(float maxDistance);
+        inline ActorHandle^ GetActorFromViewVector(float maxDistance);
         inline bool SetOnFire(int time, bool isEffect);
         inline bool StopFire();
         inline bool HasTag(String^ tag);
         inline bool HurtEntity(float damage);
         inline bool Teleport(Vec3 pos, int dimid);
         inline bool RefreshActorData();
-        inline bool AddEffect(MobEffect::EffectType type, int tick, int level, bool ambient, bool showParticles, bool showAnimation);
-        inline bool AddEffect(MobEffect::EffectType type, int tick, int level, bool ambient, bool showParticles);
-        inline bool AddEffect(MobEffect::EffectType type, int tick, int level, bool ambient);
-        inline bool AddEffect(MobEffect::EffectType type, int tick, int level);
+        inline bool AddEffect(MobEffectHandle::EffectType type, int tick, int level, bool ambient, bool showParticles, bool showAnimation);
+        inline bool AddEffect(MobEffectHandle::EffectType type, int tick, int level, bool ambient, bool showParticles);
+        inline bool AddEffect(MobEffectHandle::EffectType type, int tick, int level, bool ambient);
+        inline bool AddEffect(MobEffectHandle::EffectType type, int tick, int level);
         inline bool Rename(String^ name);
         inline float QuickEvalMolangScript(String^ expression);
 
-        property UserEntityIdentifierComponent^ UserEntityIdentifierComponent { BedrockServer::Extension::UserEntityIdentifierComponent^ get(); };
-        property CompoundTag^ Nbt {CompoundTag^ get(); void set(CompoundTag^); };
+        property UserEntityIdentifierComponentHandle^ UserEntityIdentifierComponentHandle { BedrockServer::Extension::Handle::UserEntityIdentifierComponentHandle^ get(); };
+        property CompoundTagHandle^ Nbt {CompoundTagHandle^ get(); void set(CompoundTagHandle^); };
         property BedrockServer::BlockPos BlockPos { BedrockServer::BlockPos get(); };
         property BlockInstance BlockStandingOn { BlockInstance get(); };
         property String^ TypeName { String^ get(); };
         property Vec3 Position { Vec3 get(); };
-        property BlockSource^ Blocksource { BlockSource^ get(); };
+        property BlockSourceHandle^ Blocksource { BlockSourceHandle^ get(); };
         property Vec2% Direction { Vec2% get(); };
         property ActorUniqueID ActorUniqueId { ActorUniqueID get(); };
         property Vec3 CameraPos { Vec3 get(); };
-        property Tick^ LastTick { Tick^ get(); };
-        property ItemStack^ HandSlot { ItemStack^ get(); void set(ItemStack^); };
-        property ItemStack^ OffhandSlot { ItemStack^ get(); void set(ItemStack^); };
-        property BedrockServer::Extension::Level^ Level { BedrockServer::Extension::Level^ get(); };
+        property TickHandle^ LastTick { TickHandle^ get(); };
+        property ItemStackHandle^ HandSlot { ItemStackHandle^ get(); void set(ItemStackHandle^); };
+        property ItemStackHandle^ OffhandSlot { ItemStackHandle^ get(); void set(ItemStackHandle^); };
+        property BedrockServer::Extension::Handle::LevelHandle^ LevelHandle { BedrockServer::Extension::Handle::LevelHandle^ get(); };
 
         property bool IsSimulatedPlayer
         {
@@ -92,4 +92,4 @@ namespace BedrockServer::Extension
             int get();
         }
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

@@ -3,21 +3,21 @@
 #include "Actor.hpp"
 
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class Player;
+    ref class PlayerHandle;
 
-    public ref class Mob : Actor
+    public ref class MobHandle : ActorHandle
     {
-        DEFAULT_DEF_OVERRIDE(Mob, ::Mob, Actor)
+        DEFAULT_DEF_OVERRIDE(MobHandle, ::Mob, ActorHandle)
     public:
 
         inline bool RefreshInventory();
 
-        ref class JumpPreventionResult : SafeHandle, ICppClass
+        ref class JumpPreventionResultHandle : SafeHandle, ICppClass
         {
-            DEFAULT_DEF(JumpPreventionResult, ::Mob::JumpPreventionResult)
+            DEFAULT_DEF(JumpPreventionResultHandle, ::Mob::JumpPreventionResult)
         public:
         };
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

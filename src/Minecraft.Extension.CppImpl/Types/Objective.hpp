@@ -2,16 +2,16 @@
 #include <mc/Objective.hpp>
 #include "Types.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class ScoreboardId;
+    ref class ScoreboardIdHandle;
 }
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class Objective : SafeHandle, ICppClass
+    public ref class ObjectiveHandle : SafeHandle, ICppClass
     {
-        DEFAULT_DEF(Objective, ::Objective)
+        DEFAULT_DEF(ObjectiveHandle, ::Objective)
     public:
         inline bool SetDisplay(String^ slotName, ObjectiveSortOrder sort);
 
@@ -25,10 +25,10 @@ namespace BedrockServer::Extension
             ::String^ get();
         }
 
-        property ::System::Collections::Generic::List<BedrockServer::Extension::ScoreboardId^>^
+        property ::System::Collections::Generic::List<BedrockServer::Extension::Handle::ScoreboardId^>^
             Players {
-            ::System::Collections::Generic::List<BedrockServer::Extension::ScoreboardId^>^ get();
+            ::System::Collections::Generic::List<BedrockServer::Extension::Handle::ScoreboardId^>^ get();
         }
 #endif // INCLUDE_MCAPI
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

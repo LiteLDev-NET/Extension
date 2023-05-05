@@ -1,109 +1,109 @@
 #include "ListTag.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    inline ListTag^ ListTag::Create()
+    inline ListTagHandle^ ListTagHandle::Create()
     {
-        return gcnew ListTag(::ListTag::create().release(), true);
+        return gcnew ListTagHandle(::ListTag::create().release(), true);
     }
 
-    array<Tag^>^ ListTag::Value()
+    array<TagHandle^>^ ListTagHandle::Value()
     {
         std::vector<::Tag*>& stdvector = NativePtr->value();
         auto len = int(stdvector.size());
-        auto list = gcnew array<Tag^>(len);
+        auto list = gcnew array<TagHandle^>(len);
         for (int i = 0; i < len; i++)
-            list[i] = gcnew Tag(stdvector[i]);
+            list[i] = gcnew TagHandle(stdvector[i]);
         return list;
     }
 
-    inline Tag::Type const ListTag::GetElementType()
+    inline TagHandle::Type const ListTagHandle::GetElementType()
     {
-        return Tag::Type(NativePtr->getElementType());
+        return TagHandle::Type(NativePtr->getElementType());
     }
 
-    inline size_t ListTag::getSize()
+    inline size_t ListTagHandle::getSize()
     {
         return NativePtr->getSize();
     }
 
-    array<Tag^>^ ListTag::Get()
+    array<TagHandle^>^ ListTagHandle::Get()
     {
         std::vector<::Tag*>& stdvector = NativePtr->get();
         auto len = int(stdvector.size());
-        auto list = gcnew array<Tag^>(len);
+        auto list = gcnew array<TagHandle^>(len);
         for (int i = 0; i < len; i++)
-            list[i] = gcnew Tag(stdvector[i]);
+            list[i] = gcnew TagHandle(stdvector[i]);
         return list;
     }
 
-    inline unsigned char ListTag::GetByte(int i)
+    inline unsigned char ListTagHandle::GetByte(int i)
     {
         return NativePtr->getByte(i);
     }
 
-    inline short ListTag::GetShort(int i)
+    inline short ListTagHandle::GetShort(int i)
     {
         return NativePtr->getShort(i);
     }
 
-    inline int64_t ListTag::GetInt64(int i)
+    inline int64_t ListTagHandle::GetInt64(int i)
     {
         return NativePtr->getInt64(i);
     }
 
-    inline TagMemoryChunk^ ListTag::GetByteArray(int i)
+    inline TagMemoryChunkHandle^ ListTagHandle::GetByteArray(int i)
     {
-        return gcnew TagMemoryChunk(&NativePtr->getByteArray(i));
+        return gcnew TagMemoryChunkHandle(&NativePtr->getByteArray(i));
     }
 
-    inline void ListTag::AddEnd()
+    inline void ListTagHandle::AddEnd()
     {
         NativePtr->addEnd();
     }
-    inline void ListTag::AddByte(unsigned char v)
+    inline void ListTagHandle::AddByte(unsigned char v)
     {
         NativePtr->addByte(v);
     }
-    inline void ListTag::AddShort(short v)
+    inline void ListTagHandle::AddShort(short v)
     {
         NativePtr->addShort(v);
     }
-    inline void ListTag::AddInt(int v)
+    inline void ListTagHandle::AddInt(int v)
     {
         NativePtr->addInt(v);
     }
-    inline void ListTag::AddInt64(__int64 v)
+    inline void ListTagHandle::AddInt64(__int64 v)
     {
         NativePtr->addInt64(v);
     }
-    inline void ListTag::AddFloat(float v)
+    inline void ListTagHandle::AddFloat(float v)
     {
         NativePtr->addFloat(v);
     }
-    inline void ListTag::AddDouble(double v)
+    inline void ListTagHandle::AddDouble(double v)
     {
         NativePtr->addDouble(v);
     }
-    inline void ListTag::AddString(String^ v)
+    inline void ListTagHandle::AddString(String^ v)
     {
         NativePtr->addString(marshalString(v));
     }
-    inline void ListTag::AddByteArray(TagMemoryChunk^ byteArr)
+    inline void ListTagHandle::AddByteArray(TagMemoryChunkHandle^ byteArr)
     {
         NativePtr->addByteArray(*byteArr->NativePtr);
     }
-    inline void ListTag::AddByteArray(array<char>^ data /*, size_t size*/)
+    inline void ListTagHandle::AddByteArray(array<char>^ data /*, size_t size*/)
     {
         pin_ptr<char> p_ptr = &data[0];
         NativePtr->addByteArray((char*)p_ptr, data->Length);
     }
-    inline void ListTag::AddIntArray(TagMemoryChunk^ intArr)
+    inline void ListTagHandle::AddIntArray(TagMemoryChunkHandle^ intArr)
     {
         NativePtr->addByteArray(*intArr->NativePtr);
     }
-    inline void ListTag::AddIntArray(array<int>^ data /*, size_t size*/)
+    inline void ListTagHandle::AddIntArray(array<int>^ data /*, size_t size*/)
     {
         pin_ptr<int> p_ptr = &data[0];
         NativePtr->addIntArray((int*)p_ptr, data->Length);
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

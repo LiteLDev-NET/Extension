@@ -2,11 +2,11 @@
 #include "Types.hpp"
 #include <mc/TagMemoryChunk.hpp>
 #include <memory>
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref struct TagMemoryChunk : SafeHandle, ICppClass
+    public ref struct TagMemoryChunkHandle : SafeHandle, ICppClass
     {
-        DEFAULT_DEF(TagMemoryChunk, ::TagMemoryChunk)
+        DEFAULT_DEF(TagMemoryChunkHandle, ::TagMemoryChunk)
     public:
 
         property size_t Capacity
@@ -35,14 +35,14 @@ namespace BedrockServer::Extension
             inline char^ operator[](int index);
         };
         property Data^ data {Data^ get(); void set(Data^ d); };
-        static TagMemoryChunk^ Create(array<char>^ data /*, size_t size*/);
-        static TagMemoryChunk^ Create(TagMemoryChunk^ a1);
-        inline void operator=(TagMemoryChunk^ a1);
+        static TagMemoryChunkHandle^ Create(array<char>^ data /*, size_t size*/);
+        static TagMemoryChunkHandle^ Create(TagMemoryChunkHandle^ a1);
+        inline void operator=(TagMemoryChunkHandle^ a1);
 
-        property TagMemoryChunk^ Copy {
-            TagMemoryChunk^ get();
+        property TagMemoryChunkHandle^ Copy {
+            TagMemoryChunkHandle^ get();
         };
 
-        static bool operator!=(TagMemoryChunk^ __op, TagMemoryChunk^ _0);
+        static bool operator!=(TagMemoryChunkHandle^ __op, TagMemoryChunkHandle^ _0);
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

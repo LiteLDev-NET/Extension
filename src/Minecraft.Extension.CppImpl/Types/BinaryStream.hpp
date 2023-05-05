@@ -3,25 +3,25 @@
 #include "ReadOnlyBinaryStream.hpp"
 #include <mc/BinaryStream.hpp>
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class BinaryStream : ReadOnlyBinaryStream
+    public ref class BinaryStreamHandle : ReadOnlyBinaryStreamHandle
     {
-    internal: BinaryStream(::BinaryStream* ptr) :ReadOnlyBinaryStream(nint_t::Zero, true) {
+    internal: BinaryStreamHandle(::BinaryStream* ptr) :ReadOnlyBinaryStreamHandle(nint_t::Zero, true) {
         NativePointer = nint_t(ptr); OwnsNativeInstance = false;
-    } BinaryStream(::BinaryStream* ptr, bool ownsinstance) :ReadOnlyBinaryStream(nint_t::Zero, true) {
+    } BinaryStreamHandle(::BinaryStream* ptr, bool ownsinstance) :ReadOnlyBinaryStreamHandle(nint_t::Zero, true) {
         NativePointer = nint_t(ptr); OwnsNativeInstance = ownsinstance;
     } operator ::BinaryStream* () {
         return reinterpret_cast<::BinaryStream*>((void*)NativePointer);
-    } static operator BinaryStream ^ (::BinaryStream* ptr) {
-        return gcnew BinaryStream(ptr);
+    } static operator BinaryStreamHandle ^ (::BinaryStream* ptr) {
+        return gcnew BinaryStreamHandle(ptr);
     } property ::BinaryStream* NativePtr { ::BinaryStream* get() {
         return reinterpret_cast<::BinaryStream*>((void*)NativePointer);
     } void set(::BinaryStream* value) {
         NativePointer = static_cast<nint_t>((void*)value);
     } } static size_t classSize = 0; public: static void SetClassSize(size_t size) {
         classSize = size;
-    } BinaryStream(nint_t ptr, bool ownInstance) :ReadOnlyBinaryStream(nint_t::Zero, true) {
+    } BinaryStreamHandle(nint_t ptr, bool ownInstance) :ReadOnlyBinaryStreamHandle(nint_t::Zero, true) {
         NativePointer = ptr; OwnsNativeInstance = OwnsNativeInstance;
     } virtual void Destruct() override {
         ReleaseHandle();
@@ -53,8 +53,8 @@ namespace BedrockServer::Extension
             }
         }
 
-        BinaryStream(String^ str, bool b);
-        BinaryStream();
+        BinaryStreamHandle(String^ str, bool b);
+        BinaryStreamHandle();
         String^ GetAndReleaseData();
         ref_std_string^ GetAndReleaseData_Native();
         void Reset();

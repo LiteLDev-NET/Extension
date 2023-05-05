@@ -1,34 +1,34 @@
 #include "FloatTag.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    inline float^ FloatTag::Value()
+    inline float^ FloatTagHandle::Value()
     {
         return NativePtr->value();
     }
 
-    inline FloatTag^ FloatTag::operator=(float val)
+    inline FloatTagHandle^ FloatTagHandle::operator=(float val)
     {
         *NativePtr = val;
         return this;
     }
 
-    inline FloatTag^ FloatTag::Create()
+    inline FloatTagHandle^ FloatTagHandle::Create()
     {
-        return gcnew FloatTag(::FloatTag::create().release(), true);
+        return gcnew FloatTagHandle(::FloatTag::create().release(), true);
     }
 
-    inline FloatTag^ FloatTag::Create(float val)
+    inline FloatTagHandle^ FloatTagHandle::Create(float val)
     {
-        return gcnew FloatTag(::FloatTag::create(val).release(), true);
+        return gcnew FloatTagHandle(::FloatTag::create(val).release(), true);
     }
 
-    inline bool FloatTag::Set(float val)
+    inline bool FloatTagHandle::Set(float val)
     {
         return NativePtr->set(val);
     }
 
-    inline float FloatTag::Get()
+    inline float FloatTagHandle::Get()
     {
         return NativePtr->get();
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

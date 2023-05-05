@@ -1,34 +1,34 @@
 #include "ShortTag.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    inline short^ ShortTag::Value()
+    inline short^ ShortTagHandle::Value()
     {
         return NativePtr->value();
     }
 
-    inline ShortTag^ ShortTag::operator=(short val)
+    inline ShortTagHandle^ ShortTagHandle::operator=(short val)
     {
         *NativePtr = val;
         return this;
     }
 
-    inline ShortTag^ ShortTag::Create()
+    inline ShortTagHandle^ ShortTagHandle::Create()
     {
-        return gcnew ShortTag(::ShortTag::create().release(), true);
+        return gcnew ShortTagHandle(::ShortTag::create().release(), true);
     }
 
-    inline ShortTag^ ShortTag::Create(short val)
+    inline ShortTagHandle^ ShortTagHandle::Create(short val)
     {
-        return gcnew ShortTag(::ShortTag::create(val).release(), true);
+        return gcnew ShortTagHandle(::ShortTag::create(val).release(), true);
     }
 
-    inline bool ShortTag::Set(short val)
+    inline bool ShortTagHandle::Set(short val)
     {
         return NativePtr->set(val);
     }
 
-    inline short ShortTag::Get()
+    inline short ShortTagHandle::Get()
     {
         return NativePtr->get();
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

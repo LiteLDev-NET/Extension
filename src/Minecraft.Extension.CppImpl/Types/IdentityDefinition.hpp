@@ -2,18 +2,17 @@
 #include <mc/IdentityDefinition.hpp>
 #include "Types.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public
-    ref class IdentityDefinition : SafeHandle , ICppClass
+    public ref class IdentityDefinitionHandle : SafeHandle , ICppClass
     {
-        DEFAULT_DEF(IdentityDefinition, ::IdentityDefinition)
+        DEFAULT_DEF(IdentityDefinitionHandle, ::IdentityDefinition)
     public:
         enum class Type : char
         {
             Invalid = 0,
-            Player = 1,
-            Actor = 2,
+            PlayerHandle = 1,
+            ActorHandle = 2,
             Fake = 3
         };
 
@@ -26,9 +25,9 @@ namespace BedrockServer::Extension
             ::String^ get();
         }
 
-        property IdentityDefinition::Type IdentityType
+        property IdentityDefinitionHandle::Type IdentityType
         {
-            IdentityDefinition::Type get();
+            IdentityDefinitionHandle::Type get();
         }
 
         property bool IsEntityType
@@ -46,8 +45,8 @@ namespace BedrockServer::Extension
             bool get();
         }
 
-        static property IdentityDefinition^ Invalid {
-            IdentityDefinition^ get();
+        static property IdentityDefinitionHandle^ Invalid {
+            IdentityDefinitionHandle^ get();
         }
 
 #ifdef INCLUDE_MCAPI
@@ -55,4 +54,4 @@ namespace BedrockServer::Extension
 
 #endif // INCLUDE_MCAPI
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

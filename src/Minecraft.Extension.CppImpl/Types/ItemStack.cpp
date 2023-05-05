@@ -1,65 +1,65 @@
 #include "../Tools/mutex.hpp"
 #include "ItemStack.hpp"
 #include <memory>
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
 
-    inline ItemStack^ ItemStack::Create()
+    inline ItemStackHandle^ ItemStackHandle::Create()
     {
-        return gcnew ItemStack(::ItemStack::create());
+        return gcnew ItemStackHandle(::ItemStack::create());
     }
 
-    inline ItemStack^ ItemStack::Create(String^ type, int count)
+    inline ItemStackHandle^ ItemStackHandle::Create(String^ type, int count)
     {
-        return gcnew ItemStack(::ItemStack::create(marshalString(type), count), true);
+        return gcnew ItemStackHandle(::ItemStack::create(marshalString(type), count), true);
     }
 
-    inline ItemStack^ ItemStack::Create(CompoundTag^ tag)
+    inline ItemStackHandle^ ItemStackHandle::Create(CompoundTagHandle^ tag)
     {
-        return gcnew ItemStack(::ItemStack::create(((::CompoundTag*)tag)->clone()), true);
+        return gcnew ItemStackHandle(::ItemStack::create(tag->NativePtr->clone()), true);
     }
 
-    inline ItemStack^ ItemStack::Create(short itemId, int aux)
+    inline ItemStackHandle^ ItemStackHandle::Create(short itemId, int aux)
     {
-        return gcnew ItemStack(::ItemStack::create(itemId, aux), true);
+        return gcnew ItemStackHandle(::ItemStack::create(itemId, aux), true);
     }
 
-    inline ItemStack^ ItemStack::Create(short itemId, int aux, int count)
+    inline ItemStackHandle^ ItemStackHandle::Create(short itemId, int aux, int count)
     {
-        return gcnew ItemStack(::ItemStack::create(itemId, aux, count), true);
+        return gcnew ItemStackHandle(::ItemStack::create(itemId, aux, count), true);
     }
 
-    inline ItemStack^ ItemStack::FromItemInstance(ItemInstance^ ins)
+    inline ItemStackHandle^ ItemStackHandle::FromItemInstance(ItemInstanceHandle^ ins)
     {
-        return gcnew ItemStack(&::ItemStack::fromItemInstance(*ins->NativePtr), true);
+        return gcnew ItemStackHandle(&::ItemStack::fromItemInstance(*ins->NativePtr), true);
     }
 
-    inline ItemStack^ ItemStack::Clone_s()
+    inline ItemStackHandle^ ItemStackHandle::Clone_s()
     {
-        return gcnew ItemStack(NativePtr->clone_s());
+        return gcnew ItemStackHandle(NativePtr->clone_s());
     }
 
-    inline String^ ItemStack::TypeName::get()
+    inline String^ ItemStackHandle::TypeName::get()
     {
         return marshalString(NativePtr->getTypeName());
     }
 
-    inline int ItemStack::Aux::get()
+    inline int ItemStackHandle::Aux::get()
     {
         return NativePtr->getAux();
     }
 
-    inline int ItemStack::Count::get()
+    inline int ItemStackHandle::Count::get()
     {
         return NativePtr->getCount();
     }
 
-    inline bool ItemStack::SetItem(ItemStack^ newItem)
+    inline bool ItemStackHandle::SetItem(ItemStackHandle^ newItem)
     {
         return NativePtr->setItem(newItem->NativePtr);
     }
 
-    bool ItemStack::SetLore(array<String^>^ lores)
+    bool ItemStackHandle::SetLore(array<String^>^ lores)
     {
         std::vector<std::string> stdlores;
         for (int i = 0; i < lores->Length; ++i)
@@ -70,13 +70,13 @@ namespace BedrockServer::Extension
         return NativePtr->setLore(stdlores);
     }
 
-    inline CompoundTag^ ItemStack::GetNbt()
+    inline CompoundTagHandle^ ItemStackHandle::GetNbt()
     {
-        return gcnew CompoundTag(NativePtr->getNbt().release(), true);
+        return gcnew CompoundTagHandle(NativePtr->getNbt().release(), true);
     }
 
-    inline bool ItemStack::SetNbt(CompoundTag^ nbt)
+    inline bool ItemStackHandle::SetNbt(CompoundTagHandle^ nbt)
     {
         return NativePtr->setNbt(nbt->NativePtr);
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

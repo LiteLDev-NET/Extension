@@ -1,30 +1,30 @@
 #include "StringTag.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
 
-    inline String^ StringTag::Value()
+    inline String^ StringTagHandle::Value()
     {
         return marshalString(NativePtr->value());
     }
 
-    inline StringTag^ StringTag::operator=(std::string val)
+    inline StringTagHandle^ StringTagHandle::operator=(std::string val)
     {
         *NativePtr = val;
         return this;
     }
 
-    inline StringTag^ StringTag::Create()
+    inline StringTagHandle^ StringTagHandle::Create()
     {
-        return gcnew StringTag(::StringTag::create().release(), true);
+        return gcnew StringTagHandle(::StringTag::create().release(), true);
     }
 
-    inline bool StringTag::Set(String^ val)
+    inline bool StringTagHandle::Set(String^ val)
     {
         return NativePtr->set(marshalString(val));
     }
 
-    inline String^ StringTag::Get()
+    inline String^ StringTagHandle::Get()
     {
         return marshalString(NativePtr->get());
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

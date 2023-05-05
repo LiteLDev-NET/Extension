@@ -1,55 +1,55 @@
 #include "ReadOnlyBinaryStream.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    inline void ReadOnlyBinaryStream::Read(void* buffer, unsigned __int64 size) { NativePtr->read(buffer, size); }
+    inline void ReadOnlyBinaryStreamHandle::Read(void* buffer, unsigned __int64 size) { NativePtr->read(buffer, size); }
 
-    inline void ReadOnlyBinaryStream::Read(array<System::Byte>^ buffer)
+    inline void ReadOnlyBinaryStreamHandle::Read(array<System::Byte>^ buffer)
     {
         pin_ptr<System::Byte> p = &buffer[0];
         NativePtr->read(p, buffer->Length);
     }
 
-    inline ReadOnlyBinaryStream::ReadOnlyBinaryStream(String^ str)
+    inline ReadOnlyBinaryStreamHandle::ReadOnlyBinaryStreamHandle(String^ str)
         :SafeHandle(nint_t::Zero, true)
     {
         NativePtr = new ::ReadOnlyBinaryStream(marshalString(str));
         OwnsNativeInstance = true;
     }
 
-    inline ReadOnlyBinaryStream::ReadOnlyBinaryStream(String^ str, bool b)
+    inline ReadOnlyBinaryStreamHandle::ReadOnlyBinaryStreamHandle(String^ str, bool b)
         :SafeHandle(nint_t::Zero, true)
     {
         NativePtr = new ::ReadOnlyBinaryStream(marshalString(str), b);
         OwnsNativeInstance = true;
     }
 
-    inline bool ReadOnlyBinaryStream::CanReadBool() { return NativePtr->canReadBool(); }
+    inline bool ReadOnlyBinaryStreamHandle::CanReadBool() { return NativePtr->canReadBool(); }
 
-    inline bool ReadOnlyBinaryStream::GetBool() { return NativePtr->getBool(); }
+    inline bool ReadOnlyBinaryStreamHandle::GetBool() { return NativePtr->getBool(); }
 
-    inline System::Byte ReadOnlyBinaryStream::GetByte() { return NativePtr->getByte(); }
+    inline System::Byte ReadOnlyBinaryStreamHandle::GetByte() { return NativePtr->getByte(); }
 
-    inline double ReadOnlyBinaryStream::GetDouble() { return NativePtr->getDouble(); }
+    inline double ReadOnlyBinaryStreamHandle::GetDouble() { return NativePtr->getDouble(); }
 
-    inline float ReadOnlyBinaryStream::GetFloat() { return NativePtr->getFloat(); }
+    inline float ReadOnlyBinaryStreamHandle::GetFloat() { return NativePtr->getFloat(); }
 
-    inline StreamReadResult ReadOnlyBinaryStream::GetReadCompleteResult()
+    inline StreamReadResult ReadOnlyBinaryStreamHandle::GetReadCompleteResult()
     {
         return static_cast<StreamReadResult>(NativePtr->getReadCompleteResult());
     }
 
-    inline int ReadOnlyBinaryStream::GetSignedBigEndianInt() { return NativePtr->getSignedBigEndianInt(); }
+    inline int ReadOnlyBinaryStreamHandle::GetSignedBigEndianInt() { return NativePtr->getSignedBigEndianInt(); }
 
-    inline int ReadOnlyBinaryStream::GetSignedInt() { return NativePtr->getSignedInt(); }
+    inline int ReadOnlyBinaryStreamHandle::GetSignedInt() { return NativePtr->getSignedInt(); }
 
-    inline __int64 ReadOnlyBinaryStream::GetSignedInt64() { return NativePtr->getSignedInt64(); }
+    inline __int64 ReadOnlyBinaryStreamHandle::GetSignedInt64() { return NativePtr->getSignedInt64(); }
 
-    inline short ReadOnlyBinaryStream::GetSignedShort() { return NativePtr->getSignedShort(); }
+    inline short ReadOnlyBinaryStreamHandle::GetSignedShort() { return NativePtr->getSignedShort(); }
 
-    inline String^ ReadOnlyBinaryStream::GetString() { return marshalString(NativePtr->getString()); }
+    inline String^ ReadOnlyBinaryStreamHandle::GetString() { return marshalString(NativePtr->getString()); }
 
-    inline bool ReadOnlyBinaryStream::GetString([Out] String^% str)
+    inline bool ReadOnlyBinaryStreamHandle::GetString([Out] String^% str)
     {
         str = nullptr;
         std::string __str;
@@ -60,21 +60,21 @@ namespace BedrockServer::Extension
         return true;
     }
 
-    inline unsigned int ReadOnlyBinaryStream::GetUnsignedInt() { return NativePtr->getUnsignedInt(); }
+    inline unsigned int ReadOnlyBinaryStreamHandle::GetUnsignedInt() { return NativePtr->getUnsignedInt(); }
 
-    inline unsigned __int64 ReadOnlyBinaryStream::GetUnsignedInt64() { return NativePtr->getUnsignedInt64(); }
+    inline unsigned __int64 ReadOnlyBinaryStreamHandle::GetUnsignedInt64() { return NativePtr->getUnsignedInt64(); }
 
-    inline unsigned short ReadOnlyBinaryStream::GetUnsignedShort() { return NativePtr->getUnsignedShort(); }
+    inline unsigned short ReadOnlyBinaryStreamHandle::GetUnsignedShort() { return NativePtr->getUnsignedShort(); }
 
-    inline unsigned int ReadOnlyBinaryStream::GetUnsignedVarInt() { return NativePtr->getUnsignedVarInt(); }
+    inline unsigned int ReadOnlyBinaryStreamHandle::GetUnsignedVarInt() { return NativePtr->getUnsignedVarInt(); }
 
-    inline unsigned __int64 ReadOnlyBinaryStream::GetUnsignedVarInt64() { return NativePtr->getUnsignedVarInt64(); }
+    inline unsigned __int64 ReadOnlyBinaryStreamHandle::GetUnsignedVarInt64() { return NativePtr->getUnsignedVarInt64(); }
 
-    inline int ReadOnlyBinaryStream::GetVarInt() { return NativePtr->getVarInt(); }
+    inline int ReadOnlyBinaryStreamHandle::GetVarInt() { return NativePtr->getVarInt(); }
 
-    inline __int64 ReadOnlyBinaryStream::GetVarInt64() { return NativePtr->getVarInt64(); }
+    inline __int64 ReadOnlyBinaryStreamHandle::GetVarInt64() { return NativePtr->getVarInt64(); }
 
-    Mce::UUID ReadOnlyBinaryStream::GetUUID()
+    Mce::UUID ReadOnlyBinaryStreamHandle::GetUUID()
     {
         mce::UUID uuid;
         NativePtr->readType(uuid);

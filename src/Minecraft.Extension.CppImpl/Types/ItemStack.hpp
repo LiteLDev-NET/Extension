@@ -7,31 +7,31 @@
 #include "Types.hpp"
 #include "CompoundTag.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class ItemStackBase;
-    ref class ItemInstance;
+    ref class ItemStackBaseHandle;
+    ref class ItemInstanceHandle;
 }
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class ItemStack : ItemStackBase
+    public ref class ItemStackHandle : ItemStackBaseHandle
     {
-        DEFAULT_DEF_OVERRIDE(ItemStack, ::ItemStack, ItemStackBase)
+        DEFAULT_DEF_OVERRIDE(ItemStackHandle, ::ItemStack, ItemStackBaseHandle)
     public:
 
-        inline static ItemStack^ Create();
-        inline static ItemStack^ Create(String^ type, int count);
-        inline static ItemStack^ Create(CompoundTag^ tag);
-        inline static ItemStack^ Create(short itemId, int aux);
-        inline static ItemStack^ Create(short itemId, int aux, int count);
-        inline static ItemStack^ FromItemInstance(ItemInstance^ ins);
+        inline static ItemStackHandle^ Create();
+        inline static ItemStackHandle^ Create(String^ type, int count);
+        inline static ItemStackHandle^ Create(CompoundTagHandle^ tag);
+        inline static ItemStackHandle^ Create(short itemId, int aux);
+        inline static ItemStackHandle^ Create(short itemId, int aux, int count);
+        inline static ItemStackHandle^ FromItemInstance(ItemInstanceHandle^ ins);
 
-        inline ItemStack^ Clone_s();
-        inline bool SetItem(ItemStack^ newItem);
+        inline ItemStackHandle^ Clone_s();
+        inline bool SetItem(ItemStackHandle^ newItem);
         bool SetLore(array<String^>^ lores);
-        inline CompoundTag^ GetNbt();
-        inline bool SetNbt(CompoundTag^ nbt);
+        inline CompoundTagHandle^ GetNbt();
+        inline bool SetNbt(CompoundTagHandle^ nbt);
 
         property String^ TypeName { String^ get(); };
 
@@ -46,8 +46,8 @@ namespace BedrockServer::Extension
 
 #ifdef MANUAL_MAINTENANCE
 
-        // property BedrockServer::Extension::ItemStackNetIdVariant ^ ItemStackNetIdVariant {
-        //     BedrockServer::Extension::ItemStackNetIdVariant ^ get();
+        // property BedrockServer::Extension::Handle::ItemStackNetIdVariant ^ ItemStackNetIdVariant {
+        //     BedrockServer::Extension::Handle::ItemStackNetIdVariant ^ get();
         // }
 
         property int MaxUseDuration
@@ -55,8 +55,8 @@ namespace BedrockServer::Extension
             int get();
         }
 
-        property BedrockServer::Extension::ItemStack^ StrippedNetworkItem {
-            BedrockServer::Extension::ItemStack^ get();
+        property BedrockServer::Extension::Handle::ItemStack^ StrippedNetworkItem {
+            BedrockServer::Extension::Handle::ItemStack^ get();
         }
 
         property bool HasItemStackNetId
@@ -72,23 +72,23 @@ namespace BedrockServer::Extension
 
         // void Autoclassinit2(unsigned long long _0);
 
-        void AssignNetIdVariant(BedrockServer::Extension::ItemStack^ _0);
+        void AssignNetIdVariant(BedrockServer::Extension::Handle::ItemStack^ _0);
 
-        BedrockServer::Extension::ItemStack^ Clone();
+        BedrockServer::Extension::Handle::ItemStack^ Clone();
 
-        bool MatchesAndNetIdVariantMatches(BedrockServer::Extension::ItemStack^ _0);
+        bool MatchesAndNetIdVariantMatches(BedrockServer::Extension::Handle::ItemStack^ _0);
 
-        bool MatchesNetIdVariant(BedrockServer::Extension::ItemStack^ _0);
+        bool MatchesNetIdVariant(BedrockServer::Extension::Handle::ItemStack^ _0);
 
-        bool SameItemAndAuxAndBlockData(BedrockServer::Extension::ItemStack^ _0);
+        bool SameItemAndAuxAndBlockData(BedrockServer::Extension::Handle::ItemStack^ _0);
 
         void ServerInitNetId();
 
         void UseAsFuel();
 
-        static property BedrockServer::Extension::ItemStack^ EMPTY_ITEM {
-            BedrockServer::Extension::ItemStack^ get();
+        static property BedrockServer::Extension::Handle::ItemStack^ EMPTY_ITEM {
+            BedrockServer::Extension::Handle::ItemStack^ get();
         }
 #endif // INCLUDE_MCAPI
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

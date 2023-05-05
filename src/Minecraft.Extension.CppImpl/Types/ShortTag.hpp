@@ -2,17 +2,17 @@
 #include "Tag.hpp"
 #include <mc/ShortTag.hpp>
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class ShortTag : public Tag
+    public ref class ShortTagHandle : public TagHandle
     {
-        DEFAULT_DEF_OVERRIDE(ShortTag, ::ShortTag, Tag)
+        DEFAULT_DEF_OVERRIDE(ShortTagHandle, ::ShortTag, TagHandle)
     public:
         inline short^ Value();
-        inline ShortTag^ operator=(short val);
-        inline static ShortTag^ Create(short val);
-        inline static ShortTag^ Create();
+        inline ShortTagHandle^ operator=(short val);
+        inline static ShortTagHandle^ Create(short val);
+        inline static ShortTagHandle^ Create();
         inline bool Set(short val);
         inline short Get();
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

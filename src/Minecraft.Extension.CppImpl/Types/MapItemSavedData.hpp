@@ -1,11 +1,11 @@
 #pragma once
 #include <mc/MapItemSavedData.hpp>
 #include "Types.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class MapItemSavedData :SafeHandle, ICppClass
+    public ref class MapItemSavedDataHandle :SafeHandle, ICppClass
     {
-        DEFAULT_DEF(MapItemSavedData, ::MapItemSavedData)
+        DEFAULT_DEF(MapItemSavedDataHandle, ::MapItemSavedData)
     public:
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

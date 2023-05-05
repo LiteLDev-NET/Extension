@@ -4,15 +4,15 @@
 #include <mc/RakNet.hpp>
 #include "Types.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
     public enum class StreamReadResult
     {
     };
 
-    public ref class ReadOnlyBinaryStream :SafeHandle, ICppClass
+    public ref class ReadOnlyBinaryStreamHandle :SafeHandle, ICppClass
     {
-        DEFAULT_DEF(ReadOnlyBinaryStream, ::ReadOnlyBinaryStream)
+        DEFAULT_DEF(ReadOnlyBinaryStreamHandle, ::ReadOnlyBinaryStream)
     public:
 
         property unsigned __int64 ReadPointer
@@ -57,8 +57,8 @@ namespace BedrockServer::Extension
         void Read(void* buffer, unsigned __int64 size);
         void Read(array<System::Byte>^ buffer);
 
-        ReadOnlyBinaryStream(String^ str);
-        ReadOnlyBinaryStream(String^ str, bool b);
+        ReadOnlyBinaryStreamHandle(String^ str);
+        ReadOnlyBinaryStreamHandle(String^ str, bool b);
 
         bool CanReadBool();
         bool GetBool();

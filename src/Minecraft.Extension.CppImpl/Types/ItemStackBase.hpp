@@ -3,16 +3,16 @@
 
 #include "Types.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class HashedString;
+    ref class HashedStringHandle;
 }
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class ItemStackBase : SafeHandle , ICppClass
+    public ref class ItemStackBaseHandle : SafeHandle , ICppClass
     {
-        DEFAULT_DEF(ItemStackBase, ::ItemStackBase)
+        DEFAULT_DEF(ItemStackBaseHandle, ::ItemStackBase)
     public:
 
         property int Count
@@ -25,4 +25,4 @@ namespace BedrockServer::Extension
             short get();
         };
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

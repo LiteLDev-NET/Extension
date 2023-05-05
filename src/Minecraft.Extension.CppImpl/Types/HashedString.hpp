@@ -1,20 +1,20 @@
 #pragma once
 #include <mc/HashedString.hpp>
 #include "Types.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class HashedString :SafeHandle, ICppClass
+    public ref class HashedStringHandle :SafeHandle, ICppClass
     {
-        DEFAULT_DEF(HashedString, ::HashedString)
+        DEFAULT_DEF(HashedStringHandle, ::HashedString)
     public:
 
         //#ifdef INCLUDE_MCAPI
 
-        HashedString(HashedString^ _0);
+        HashedStringHandle(HashedStringHandle^ _0);
 
-        HashedString(::String^ _0);
+        HashedStringHandle(::String^ _0);
 
-        HashedString(unsigned long long _0, ::String^ _1);
+        HashedStringHandle(unsigned long long _0, ::String^ _1);
 
         property ::String^ CStr {
             ::String^ get();
@@ -34,16 +34,16 @@ namespace BedrockServer::Extension
             bool get();
         }
 
-        static property HashedString^ EmptyString {
-            HashedString^ get();
+        static property HashedStringHandle^ EmptyString {
+            HashedStringHandle^ get();
         };
 
         void Clear();
 
-        static bool operator!=(HashedString^ __op, HashedString^ _0);
+        static bool operator!=(HashedStringHandle^ __op, HashedStringHandle^ _0);
 
 
-        static bool operator==(HashedString^ __op, HashedString^ _0);
+        static bool operator==(HashedStringHandle^ __op, HashedStringHandle^ _0);
 
         virtual bool Equals(::System::Object^ obj) override;
 
@@ -51,11 +51,11 @@ namespace BedrockServer::Extension
 
         static unsigned long long ComputeHash(::String^ _0);
 
-        static property HashedString^ DefaultErrorValue {
-            HashedString^ get();
-            void set(HashedString^);
+        static property HashedStringHandle^ DefaultErrorValue {
+            HashedStringHandle^ get();
+            void set(HashedStringHandle^);
         }
 
         //#endif // INCLUDE_MCAPI
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

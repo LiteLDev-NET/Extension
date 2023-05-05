@@ -2,28 +2,28 @@
 #include "Types.hpp"
 #include <mc/Tag.hpp>
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class EndTag;
-    ref class ByteTag;
-    ref class ShortTag;
-    ref class IntTag;
-    ref class Int64Tag;
-    ref class FloatTag;
-    ref class DoubleTag;
-    ref class StringTag;
-    ref class ListTag;
-    ref class ByteArrayTag;
-    ref class EndTag;
-    ref class IntArrayTag;
-    ref class CompoundTag;
-} // namespace BedrockServer::Extension
+    ref class EndTagHandle;
+    ref class ByteTagHandle;
+    ref class ShortTagHandle;
+    ref class IntTagHandle;
+    ref class Int64TagHandle;
+    ref class FloatTagHandle;
+    ref class DoubleTagHandle;
+    ref class StringTagHandle;
+    ref class ListTagHandle;
+    ref class ByteArrayTagHandle;
+    ref class EndTagHandle;
+    ref class IntArrayTagHandle;
+    ref class CompoundTagHandle;
+} // namespace BedrockServer::Extension::Handle
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class Tag : SafeHandle , ICppClass
+    public ref class TagHandle : SafeHandle , ICppClass
     {
-        DEFAULT_DEF(Tag, ::Tag)
+        DEFAULT_DEF(TagHandle, ::Tag)
     public:
         enum class Type : uint8_t
         {
@@ -45,19 +45,19 @@ namespace BedrockServer::Extension
             Type get();
         };
 
-        inline EndTag^ AsEndTag();
-        inline ByteTag^ AsByteTag();
-        inline ShortTag^ AsShortTag();
-        inline IntTag^ AsIntTag();
-        inline Int64Tag^ AsInt64Tag();
-        inline FloatTag^ AsFloatTag();
-        inline DoubleTag^ AsDoubleTag();
-        inline StringTag^ AsStringTag();
-        inline ListTag^ AsListTag();
-        inline ByteArrayTag^ AsByteArrayTag();
-        inline IntArrayTag^ AsIntArrayTag();
-        inline CompoundTag^ AsCompoundTag();
+        inline EndTagHandle^ AsEndTag();
+        inline ByteTagHandle^ AsByteTag();
+        inline ShortTagHandle^ AsShortTag();
+        inline IntTagHandle^ AsIntTag();
+        inline Int64TagHandle^ AsInt64Tag();
+        inline FloatTagHandle^ AsFloatTag();
+        inline DoubleTagHandle^ AsDoubleTag();
+        inline StringTagHandle^ AsStringTag();
+        inline ListTagHandle^ AsListTag();
+        inline ByteArrayTagHandle^ AsByteArrayTag();
+        inline IntArrayTagHandle^ AsIntArrayTag();
+        inline CompoundTagHandle^ AsCompoundTag();
 
         inline String^ ToJson(int formatIndent);
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

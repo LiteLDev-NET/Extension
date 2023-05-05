@@ -1,10 +1,10 @@
 #pragma once
 #include <mc/Attribute.hpp>
 #include "Types.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class Attribute : SafeHandle , ICppClass
+    public ref class AttributeHandle : SafeHandle , ICppClass
     {
-        DEFAULT_DEF(Attribute, ::Attribute)
+        DEFAULT_DEF(AttributeHandle, ::Attribute)
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

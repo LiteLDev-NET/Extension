@@ -1,15 +1,15 @@
 ﻿#include "AttributeModifier.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    AttributeModifier::AttributeModifier()
+    AttributeModifierHandle::AttributeModifierHandle()
         :SafeHandle(nint_t::Zero, true)
     {
         NativePtr = new ::AttributeModifier();
         OwnsNativeInstance = true;
     }
 
-    AttributeModifier::AttributeModifier(Mce::UUID id, String^ name, float amount, AttributeModifierOperation operation,
+    AttributeModifierHandle::AttributeModifierHandle(Mce::UUID id, String^ name, float amount, AttributeModifierOperation operation,
         AttributeOperands operand, bool isSerializable)
         :SafeHandle(nint_t::Zero, true)
     {
@@ -19,74 +19,74 @@ namespace BedrockServer::Extension
         OwnsNativeInstance = true;
     }
 
-    Mce::UUID AttributeModifier::Id::get()
+    Mce::UUID AttributeModifierHandle::Id::get()
     {
         return *(Mce::UUID*)&NativePtr->mId;
     }
 
-    void AttributeModifier::Id::set(Mce::UUID value)
+    void AttributeModifierHandle::Id::set(Mce::UUID value)
     {
         NativePtr->mId = *(::mce::UUID*)&value;
     }
 
-    String^ AttributeModifier::Name::get()
+    String^ AttributeModifierHandle::Name::get()
     {
         return marshalString(NativePtr->mName);
     }
 
-    void AttributeModifier::Name::set(String^ value)
+    void AttributeModifierHandle::Name::set(String^ value)
     {
         NativePtr->mName = marshalString(value);
     }
 
-    float AttributeModifier::Amount::get()
+    float AttributeModifierHandle::Amount::get()
     {
         return NativePtr->mAmount;
     }
 
-    void AttributeModifier::Amount::set(float value)
+    void AttributeModifierHandle::Amount::set(float value)
     {
         NativePtr->mAmount = value;
     }
 
-    AttributeModifierOperation AttributeModifier::Operation::get()
+    AttributeModifierOperation AttributeModifierHandle::Operation::get()
     {
         return static_cast<AttributeModifierOperation>(NativePtr->mOperation);
     }
 
-    void AttributeModifier::Operation::set(AttributeModifierOperation value)
+    void AttributeModifierHandle::Operation::set(AttributeModifierOperation value)
     {
         NativePtr->mOperation = static_cast<::AttributeModifierOperation>(value);
     }
 
-    AttributeOperands AttributeModifier::Operand::get()
+    AttributeOperands AttributeModifierHandle::Operand::get()
     {
         return static_cast<AttributeOperands>(NativePtr->mOperation);
     }
 
-    void AttributeModifier::Operand::set(AttributeOperands value)
+    void AttributeModifierHandle::Operand::set(AttributeOperands value)
     {
         NativePtr->mOperand = static_cast<::AttributeOperands>(value);
     }
 
-    bool AttributeModifier::IsSerializable::get()
+    bool AttributeModifierHandle::IsSerializable::get()
     {
         return NativePtr->mSerialize;
     }
 
-    void AttributeModifier::IsSerializable::set(bool value)
+    void AttributeModifierHandle::IsSerializable::set(bool value)
     {
         NativePtr->mSerialize = value;
     }
 
-    bool AttributeModifier::Equals(AttributeModifier^ other)
+    bool AttributeModifierHandle::Equals(AttributeModifierHandle^ other)
     {
         return NativePtr == other->NativePtr;
     }
 
-    bool AttributeModifier::Equals(Object^ other)
+    bool AttributeModifierHandle::Equals(Object^ other)
     {
-        AttributeModifier^ otherModifier = dynamic_cast<AttributeModifier^>(other);
+        AttributeModifierHandle^ otherModifier = dynamic_cast<AttributeModifierHandle^>(other);
         return otherModifier != nullptr && Equals(otherModifier);
     }
 }

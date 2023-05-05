@@ -5,13 +5,13 @@
 #include "BlockActor.hpp"
 #include "Container.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class BlockSource;
-    ref class ItemStack;
-    ref class Container;
-    ref class BlockActor;
-    ref class Block;
+    ref class BlockSourceHandle;
+    ref class ItemStackHandle;
+    ref class ContainerHandle;
+    ref class BlockActorHandle;
+    ref class BlockHandle;
 }
 
 namespace BedrockServer
@@ -25,7 +25,7 @@ namespace BedrockServer
         int dim;
     public:
 
-        inline static BlockInstance CreateBlockinstance(BedrockServer::Extension::Block^ block, BlockPos pos, int dimId);
+        inline static BlockInstance CreateBlockinstance(BedrockServer::Extension::Handle::BlockHandle^ block, BlockPos pos, int dimId);
 
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace BedrockServer
         /// <para>　　2 : The End</para>
         /// </param>
         /// <returns>A instance of the MC.BlockInstance</returns>
-        static BlockInstance Create(BedrockServer::Extension::Block^ block, BedrockServer::BlockPos pos, int dimid);
+        static BlockInstance Create(BedrockServer::Extension::Handle::BlockHandle^ block, BedrockServer::BlockPos pos, int dimid);
 
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace BedrockServer
         /// <param name="block">-Block</param>
         /// <param name="pos">-Block Position</param>
         /// <returns>A instance of the MC.BlockInstance</returns>
-        static BlockInstance Create(BedrockServer::Extension::Block^ block, BedrockServer::BlockPos pos);
+        static BlockInstance Create(BedrockServer::Extension::Handle::BlockHandle^ block, BedrockServer::BlockPos pos);
 
 
         /// <summary>
@@ -77,20 +77,20 @@ namespace BedrockServer
         /// Break this block naturally with tool.
         /// </summary>
         /// <param name="tool">-The item of tool</param>
-        inline bool BreakNaturally(BedrockServer::Extension::ItemStack^ tool, bool isCreativeMode);
+        inline bool BreakNaturally(BedrockServer::Extension::Handle::ItemStackHandle^ tool, bool isCreativeMode);
 
 
         /// <summary>
         /// Break this block naturally with tool.
         /// </summary>
         /// <param name="tool">-The item of tool</param>
-        inline bool BreakNaturally(BedrockServer::Extension::ItemStack^ tool);
+        inline bool BreakNaturally(BedrockServer::Extension::Handle::ItemStackHandle^ tool);
 
 
         /// <summary>
         /// Get the block in the current MC.BlockInstance object.
         /// </summary>
-        property BedrockServer::Extension::Block^ Block { BedrockServer::Extension::Block^ get(); };
+        property BedrockServer::Extension::Handle::BlockHandle^ BlockHandle { BedrockServer::Extension::Handle::BlockHandle^ get(); };
 
 
         /// <summary>
@@ -102,25 +102,25 @@ namespace BedrockServer
         /// <summary>
         /// Get the block source in the current MC.BlockInstance object.
         /// </summary>
-        property BedrockServer::Extension::BlockSource^ BlockSource { BedrockServer::Extension::BlockSource^ get(); };
+        property BedrockServer::Extension::Handle::BlockSourceHandle^ BlockSourceHandle { BedrockServer::Extension::Handle::BlockSourceHandle^ get(); };
 
 
         /// <summary>
         /// Get the block entity owned by the current MC.BlockInstance object.
         /// </summary>
-        property BedrockServer::Extension::BlockActor^ BlockEntity { BedrockServer::Extension::BlockActor^ get(); };
+        property BedrockServer::Extension::Handle::BlockActorHandle^ BlockEntity { BedrockServer::Extension::Handle::BlockActorHandle^ get(); };
 
 
         /// <summary>
         /// Get the container owned by the current MC.BlockInstance object.
         /// </summary>
-        property BedrockServer::Extension::Container^ Container { BedrockServer::Extension::Container^ get(); };
+        property BedrockServer::Extension::Handle::ContainerHandle^ ContainerHandle { BedrockServer::Extension::Handle::ContainerHandle^ get(); };
 
 
         /// <summary>
         /// Get the drop item in the current MC.BlockInstance object.
         /// </summary>
-        property BedrockServer::Extension::ItemStack^ BlockDrops { BedrockServer::Extension::ItemStack^ get(); };
+        property BedrockServer::Extension::Handle::ItemStackHandle^ BlockDrops { BedrockServer::Extension::Handle::ItemStackHandle^ get(); };
 
 
         /// <summary>
@@ -170,4 +170,4 @@ namespace BedrockServer
         static bool operator==(BlockInstance a, BlockInstance b);
 
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

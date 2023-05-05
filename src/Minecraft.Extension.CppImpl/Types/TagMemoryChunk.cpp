@@ -1,41 +1,41 @@
 #include "TagMemoryChunk.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    size_t TagMemoryChunk::Capacity::get()
+    size_t TagMemoryChunkHandle::Capacity::get()
     {
         return NativePtr->capacity;
     }
-    void TagMemoryChunk::Capacity::set(size_t val)
+    void TagMemoryChunkHandle::Capacity::set(size_t val)
     {
         NativePtr->capacity = val;
     }
-    size_t TagMemoryChunk::Size::get()
+    size_t TagMemoryChunkHandle::Size::get()
     {
         return NativePtr->size;
     }
-    void TagMemoryChunk::Size::set(size_t val)
+    void TagMemoryChunkHandle::Size::set(size_t val)
     {
         NativePtr->size = val;
     }
 
-    inline size_t TagMemoryChunk::Data::Size()
+    inline size_t TagMemoryChunkHandle::Data::Size()
     {
         return size;
     }
-    inline std::unique_ptr<char[]>* TagMemoryChunk::Data::get()
+    inline std::unique_ptr<char[]>* TagMemoryChunkHandle::Data::get()
     {
         return u_ptr;
     }
-    inline TagMemoryChunk::Data::Data(std::unique_ptr<char[]>& p, size_t len)
+    inline TagMemoryChunkHandle::Data::Data(std::unique_ptr<char[]>& p, size_t len)
         : size(len)
     {
         u_ptr = new std::unique_ptr<char[]>(std::move(p));
     }
-    inline TagMemoryChunk::Data::~Data()
+    inline TagMemoryChunkHandle::Data::~Data()
     {
         delete u_ptr;
     }
-    inline char^ TagMemoryChunk::Data::operator[](int index)
+    inline char^ TagMemoryChunkHandle::Data::operator[](int index)
     {
         if (index < size)
             return (*u_ptr)[index];
@@ -44,34 +44,34 @@ namespace BedrockServer::Extension
     }
 
 
-    TagMemoryChunk::Data^ TagMemoryChunk::data::get()
+    TagMemoryChunkHandle::Data^ TagMemoryChunkHandle::data::get()
     {
         return gcnew Data(NativePtr->data, NativePtr->size);
     }
-    void TagMemoryChunk::data::set(Data^ d)
+    void TagMemoryChunkHandle::data::set(Data^ d)
     {
         NativePtr->data = std::move(*d->get());
         Size = d->Size();
     }
 
-    TagMemoryChunk^ TagMemoryChunk::Create(array<char>^ data)
+    TagMemoryChunkHandle^ TagMemoryChunkHandle::Create(array<char>^ data)
     {
         pin_ptr<char> p_ptr = &data[0];
-        return gcnew TagMemoryChunk(new ::TagMemoryChunk(p_ptr, data->Length), true);
+        return gcnew TagMemoryChunkHandle(new ::TagMemoryChunk(p_ptr, data->Length), true);
     }
 
-    TagMemoryChunk^ TagMemoryChunk::Create(TagMemoryChunk^ a1)
+    TagMemoryChunkHandle^ TagMemoryChunkHandle::Create(TagMemoryChunkHandle^ a1)
     {
-        return gcnew TagMemoryChunk(new ::TagMemoryChunk(*a1->NativePtr), true);
+        return gcnew TagMemoryChunkHandle(new ::TagMemoryChunk(*a1->NativePtr), true);
     }
 
-    inline void TagMemoryChunk::operator=(TagMemoryChunk^ a1)
+    inline void TagMemoryChunkHandle::operator=(TagMemoryChunkHandle^ a1)
     {
         *NativePtr = *a1->NativePtr;
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle
 
-bool BedrockServer::Extension::TagMemoryChunk::operator!=(BedrockServer::Extension::TagMemoryChunk^ __op, BedrockServer::Extension::TagMemoryChunk^ _0)
+bool BedrockServer::Extension::Handle::TagMemoryChunkHandle::operator!=(BedrockServer::Extension::Handle::TagMemoryChunkHandle^ __op, BedrockServer::Extension::Handle::TagMemoryChunkHandle^ _0)
 {
     bool __opNull = ReferenceEquals(__op, nullptr);
     bool _0Null = ReferenceEquals(_0, nullptr);
@@ -83,9 +83,9 @@ bool BedrockServer::Extension::TagMemoryChunk::operator!=(BedrockServer::Extensi
     return __ret;
 }
 
-BedrockServer::Extension::TagMemoryChunk^ BedrockServer::Extension::TagMemoryChunk::Copy::get()
+BedrockServer::Extension::Handle::TagMemoryChunkHandle^ BedrockServer::Extension::Handle::TagMemoryChunkHandle::Copy::get()
 {
     auto __ret = ((struct ::TagMemoryChunk*)NativePtr)->copy();
     auto ____ret = new struct ::TagMemoryChunk(__ret);
-    return (____ret == nullptr) ? nullptr : gcnew ::BedrockServer::Extension::TagMemoryChunk((struct ::TagMemoryChunk*)____ret, true);
+    return (____ret == nullptr) ? nullptr : gcnew ::BedrockServer::Extension::Handle::TagMemoryChunkHandle((struct ::TagMemoryChunk*)____ret, true);
 }

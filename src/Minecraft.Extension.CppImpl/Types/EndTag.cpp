@@ -1,24 +1,24 @@
 #include "EndTag.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    inline const nullptr_t EndTag::Value()
+    inline const nullptr_t EndTagHandle::Value()
     {
         return NativePtr->value();
     }
 
-    inline EndTag^ EndTag::Create()
+    inline EndTagHandle^ EndTagHandle::Create()
     {
-        return gcnew EndTag(::EndTag::create().release(), true);
+        return gcnew EndTagHandle(::EndTag::create().release(), true);
     }
 
-    inline bool EndTag::Set()
+    inline bool EndTagHandle::Set()
     {
         return NativePtr->set();
     }
 
-    inline const nullptr_t EndTag::Get()
+    inline const nullptr_t EndTagHandle::Get()
     {
         return NativePtr->get();
     }
 
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

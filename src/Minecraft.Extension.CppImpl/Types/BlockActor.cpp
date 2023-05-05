@@ -5,27 +5,27 @@
 
 enum class BlockActorType;
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
 
-inline bool BlockActor::RefreshData()
+inline bool BlockActorHandle::RefreshData()
 {
     return NativePtr->refreshData();
 }
 
-inline CompoundTag ^ BlockActor::GetNbt()
+inline CompoundTagHandle ^ BlockActorHandle::GetNbt()
 {
-    return gcnew CompoundTag(NativePtr->getNbt().release(), true);
+    return gcnew CompoundTagHandle(NativePtr->getNbt().release(), true);
 }
 
-inline bool BlockActor::SetNbt(CompoundTag ^ nbt)
+inline bool BlockActorHandle::SetNbt(CompoundTagHandle ^ nbt)
 {
     return NativePtr->setNbt(nbt->NativePtr);
 }
 
-inline int BlockActor::getBlockEntityType(Block ^ block)
+inline int BlockActorHandle::getBlockEntityType(BlockHandle ^ block)
 {
     return (int)block->NativePtr->getBlockEntityType();
 }
 
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

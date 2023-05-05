@@ -3,7 +3,7 @@
 #include "Types.hpp"
 #include "BinaryStream.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
     public enum class PacketReliability
     {
@@ -11,9 +11,9 @@ namespace BedrockServer::Extension
         RelibleOrdered
     };
 
-    public ref class Packet : SafeHandle , ICppClass
+    public ref class PacketHandle : SafeHandle , ICppClass
     {
-        DEFAULT_DEF(Packet, ::Packet)
+        DEFAULT_DEF(PacketHandle, ::Packet)
     public:
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

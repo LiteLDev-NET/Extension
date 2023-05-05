@@ -9,7 +9,7 @@
 namespace BedrockServer
 {
 
-    inline BlockInstance BlockInstance::CreateBlockinstance(BedrockServer::Extension::Block^ block, BlockPos pos, int dimId)
+    inline BlockInstance BlockInstance::CreateBlockinstance(BedrockServer::Extension::Handle::BlockHandle^ block, BlockPos pos, int dimId)
     {
         /*return BlockInstance(
             ::BlockInstance::createBlockInstance(block, *(::BlockPos*)&pos, dimId));*/
@@ -18,12 +18,12 @@ namespace BedrockServer
         return ret;
     }
 
-    BlockInstance BlockInstance::Create(BedrockServer::Extension::Block^ block, BedrockServer::BlockPos pos, int dimid)
+    BlockInstance BlockInstance::Create(BedrockServer::Extension::Handle::BlockHandle^ block, BedrockServer::BlockPos pos, int dimid)
     {
         return *(BlockInstance*)&::BlockInstance::createBlockInstance(block->NativePtr, *(::BlockPos*)&pos, dimid);
     }
 
-    BlockInstance BlockInstance::Create(BedrockServer::Extension::Block^ block, BedrockServer::BlockPos pos)
+    BlockInstance BlockInstance::Create(BedrockServer::Extension::Handle::BlockHandle^ block, BedrockServer::BlockPos pos)
     {
         return *(BlockInstance*)&::BlockInstance::createBlockInstance(block->NativePtr, *(::BlockPos*)&pos, 0);
     }
@@ -33,10 +33,10 @@ namespace BedrockServer
         return *(BlockInstance*)&::BlockInstance();
     }
 
-    inline BedrockServer::Extension::Block^ BlockInstance::Block::get()
+    inline BedrockServer::Extension::Handle::BlockHandle^ BlockInstance::BlockHandle::get()
     {
         pin_ptr<BlockInstance> p = this;
-        return gcnew BedrockServer::Extension::Block(((BlockInstance*)p)->block, false);
+        return gcnew BedrockServer::Extension::Handle::BlockHandle(((BlockInstance*)p)->block, false);
     }
 
     inline BlockPos BlockInstance::Position::get()
@@ -45,10 +45,10 @@ namespace BedrockServer
         return *(BlockPos*)&((::BlockInstance*)p)->getPosition();
     }
 
-    inline BedrockServer::Extension::BlockSource^ BlockInstance::BlockSource::get()
+    inline BedrockServer::Extension::Handle::BlockSourceHandle^ BlockInstance::BlockSourceHandle::get()
     {
         pin_ptr<BlockInstance> p = this;
-        return gcnew BedrockServer::Extension::BlockSource(((::BlockInstance*)p)->getBlockSource());
+        return gcnew BedrockServer::Extension::Handle::BlockSourceHandle(((::BlockInstance*)p)->getBlockSource());
     }
 
     inline int BlockInstance::DimensionId::get()
@@ -63,13 +63,13 @@ namespace BedrockServer
         return ((::BlockInstance*)p)->hasBlockEntity();
     }
 
-    inline BedrockServer::Extension::BlockActor^ BlockInstance::BlockEntity::get()
+    inline BedrockServer::Extension::Handle::BlockActorHandle^ BlockInstance::BlockEntity::get()
     {
         if (!HasBlockEntity)
             return nullptr;
 
         pin_ptr<BlockInstance> p = this;
-        return gcnew BedrockServer::Extension::BlockActor(((::BlockInstance*)p)->getBlockEntity());
+        return gcnew BedrockServer::Extension::Handle::BlockActorHandle(((::BlockInstance*)p)->getBlockEntity());
     }
 
     inline bool BlockInstance::HasContainer::get()
@@ -78,13 +78,13 @@ namespace BedrockServer
         return ((::BlockInstance*)p)->hasContainer();
     }
 
-    inline BedrockServer::Extension::Container^ BlockInstance::Container::get()
+    inline BedrockServer::Extension::Handle::ContainerHandle^ BlockInstance::ContainerHandle::get()
     {
         if (!HasContainer)
             return nullptr;
 
         pin_ptr<BlockInstance> p = this;
-        return gcnew BedrockServer::Extension::Container(((::BlockInstance*)p)->getContainer());
+        return gcnew BedrockServer::Extension::Handle::ContainerHandle(((::BlockInstance*)p)->getContainer());
     }
 
     inline bool BlockInstance::BreakNaturally(bool isCreativeMode)
@@ -99,22 +99,22 @@ namespace BedrockServer
         return ((::BlockInstance*)p)->breakNaturally(false);
     }
 
-    inline bool BlockInstance::BreakNaturally(BedrockServer::Extension::ItemStack^ tool, bool isCreativeMode)
+    inline bool BlockInstance::BreakNaturally(BedrockServer::Extension::Handle::ItemStackHandle^ tool, bool isCreativeMode)
     {
         pin_ptr<BlockInstance> p = this;
         return ((::BlockInstance*)p)->breakNaturally(tool->NativePtr, isCreativeMode);
     }
 
-    inline bool BlockInstance::BreakNaturally(BedrockServer::Extension::ItemStack^ tool)
+    inline bool BlockInstance::BreakNaturally(BedrockServer::Extension::Handle::ItemStackHandle^ tool)
     {
         pin_ptr<BlockInstance> p = this;
         return ((::BlockInstance*)p)->breakNaturally(tool->NativePtr, false);
     }
 
-    inline BedrockServer::Extension::ItemStack^ BlockInstance::BlockDrops::get()
+    inline BedrockServer::Extension::Handle::ItemStackHandle^ BlockInstance::BlockDrops::get()
     {
         pin_ptr<BlockInstance> p = this;
-        return gcnew BedrockServer::Extension::ItemStack(new ::ItemStack(((::BlockInstance*)p)->getBlockDrops()), true);
+        return gcnew BedrockServer::Extension::Handle::ItemStackHandle(new ::ItemStack(((::BlockInstance*)p)->getBlockDrops()), true);
     }
 
     inline bool BlockInstance::IsNull::get()
@@ -135,4 +135,4 @@ namespace BedrockServer
 
         return *(::BlockInstance*)pa == *(::BlockInstance*)pb;
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

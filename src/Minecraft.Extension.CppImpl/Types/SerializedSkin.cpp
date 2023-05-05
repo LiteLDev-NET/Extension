@@ -1,52 +1,52 @@
 ﻿#include "SerializedSkin.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    SerializedSkin::SerializedSkin()
+    SerializedSkinHandle::SerializedSkinHandle()
         : SafeHandle(nint_t::Zero, true)
     {
         NativePtr = new ::SerializedSkin();
         OwnsNativeInstance = true;
     }
 
-    SerializedSkin::SerializedSkin(SerializedSkin^ skin)
+    SerializedSkinHandle::SerializedSkinHandle(SerializedSkinHandle^ skin)
         :SafeHandle(nint_t::Zero, true)
     {
         NativePtr = new::SerializedSkin(*skin->NativePtr);
         OwnsNativeInstance = true;
     }
 
-    String^ SerializedSkin::Name::get()
+    String^ SerializedSkinHandle::Name::get()
     {
         return marshalString(NativePtr->getName());
     }
 
-    bool SerializedSkin::IsTrustedSkin::get()
+    bool SerializedSkinHandle::IsTrustedSkin::get()
     {
         return NativePtr->isTrustedSkin();
     }
 
-    void SerializedSkin::IsTrustedSkin::set(bool value)
+    void SerializedSkinHandle::IsTrustedSkin::set(bool value)
     {
         NativePtr->setIsTrustedSkin(value);
     }
 
-    bool SerializedSkin::UseBlinkingAnimation::get()
+    bool SerializedSkinHandle::UseBlinkingAnimation::get()
     {
         return NativePtr->useBlinkingAnimation();
     }
 
-    void SerializedSkin::UpdateGeometryName()
+    void SerializedSkinHandle::UpdateGeometryName()
     {
         NativePtr->updateGeometryName();
     }
 
-    bool SerializedSkin::Read(ReadOnlyBinaryStream^ stream)
+    bool SerializedSkinHandle::Read(ReadOnlyBinaryStreamHandle^ stream)
     {
         return NativePtr->read(*stream->NativePtr);
     }
 
-    void SerializedSkin::Write(BinaryStream^ stream)
+    void SerializedSkinHandle::Write(BinaryStreamHandle^ stream)
     {
         NativePtr->write(*stream->NativePtr);
     }

@@ -1,4 +1,4 @@
 #include "Packet.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

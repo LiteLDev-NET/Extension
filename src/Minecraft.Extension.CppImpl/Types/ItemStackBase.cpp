@@ -1,12 +1,12 @@
 #include "ItemStackBase.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-int ItemStackBase::Count::get()
+int ItemStackBaseHandle::Count::get()
 {
     return NativePtr->getCount();
 }
 #ifndef INCLUDE_MCAPI
-short BedrockServer::Extension::ItemStackBase::Id::get()
+short BedrockServer::Extension::Handle::ItemStackBaseHandle::Id::get()
 {
     auto __ret = NativePtr->getId();
     return __ret;
@@ -14,4 +14,4 @@ short BedrockServer::Extension::ItemStackBase::Id::get()
 #endif // INCLUDE_MCAPI
 
 
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

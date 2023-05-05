@@ -2,17 +2,17 @@
 #include "Tag.hpp"
 #include <mc/ByteTag.hpp>
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class ByteTag : public Tag
+    public ref class ByteTagHandle : public TagHandle
     {
-        DEFAULT_DEF_OVERRIDE(ByteTag, ::ByteTag, Tag)
+        DEFAULT_DEF_OVERRIDE(ByteTagHandle, ::ByteTag, TagHandle)
     public:
 
         inline unsigned char Value();
-        inline ByteTag^ operator=(unsigned char val);
-        inline static ByteTag^ Create();
+        inline ByteTagHandle^ operator=(unsigned char val);
+        inline static ByteTagHandle^ Create();
         inline bool Set(unsigned char val);
         inline unsigned char Get();
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

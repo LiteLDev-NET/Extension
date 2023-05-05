@@ -2,12 +2,12 @@
 #include <mc/ItemInstance.hpp>
 #include "Types.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
     public
-    ref class ItemInstance : SafeHandle , ICppClass
+    ref class ItemInstanceHandle : SafeHandle , ICppClass
     {
-        DEFAULT_DEF(ItemInstance, ::ItemInstance)
+        DEFAULT_DEF(ItemInstanceHandle, ::ItemInstance)
     public:
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

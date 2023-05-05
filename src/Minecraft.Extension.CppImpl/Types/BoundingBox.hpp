@@ -3,7 +3,8 @@
 #include "Types.hpp"
 
 
-namespace BedrockServer::Extension {
+namespace BedrockServer
+{
     [StructLayout(LayoutKind::Sequential, Size = sizeof(::BoundingBox))]
     public value class BoundingBox {
     internal:
@@ -63,11 +64,8 @@ namespace BedrockServer::Extension {
 
         void ForEachBlockInBox(LiteLoader::NET::CppStd::function<ForEachBlockInBoxHandler^>^ todo);
 
-        /// <summary>
-        /// More Faster
-        /// </summary>
-        /// <param name="pfunc">��Function Pointer</param>
-        void ForEachBlockInBox_pFunc(void(*pfunc)(const BlockPos%)) {
+
+        void ForEachBlockInBoxWithFuncPointer(void(*pfunc)(const BlockPos%)) {
             pin_ptr<BoundingBox> p = this;
             ((::BoundingBox*)p)->forEachBlockInBox((void(*)(const ::BlockPos&))(pfunc));
         }

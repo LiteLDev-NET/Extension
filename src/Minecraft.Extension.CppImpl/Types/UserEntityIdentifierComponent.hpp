@@ -4,19 +4,19 @@
 #include "Certificate.hpp"
 #include "Types.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
     public
-    ref class UserEntityIdentifierComponent : SafeHandle, ICppClass
+    ref class UserEntityIdentifierComponentHandle : SafeHandle, ICppClass
     {
-        DEFAULT_DEF(UserEntityIdentifierComponent, ::UserEntityIdentifierComponent)
+        DEFAULT_DEF(UserEntityIdentifierComponentHandle, ::UserEntityIdentifierComponent)
     public:
 
-        property NetworkIdentifier^ NetworkId { NetworkIdentifier^ get(); }
+        property NetworkIdentifierHandle^ NetworkId { NetworkIdentifierHandle^ get(); }
         property System::Byte ClientSubId { System::Byte get(); }
         property Mce::UUID Uuid { Mce::UUID get(); }
         property String^ PlayFabId { String^ get(); }
-        property Certificate^ Certificate { BedrockServer::Extension::Certificate^ get(); }
+        property CertificateHandle^ CertificateHandle { BedrockServer::Extension::Handle::CertificateHandle^ get(); }
         property bool IsPrimaryClient { bool get(); }
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

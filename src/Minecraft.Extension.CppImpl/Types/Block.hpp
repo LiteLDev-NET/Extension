@@ -2,24 +2,24 @@
 #include <mc/Block.hpp>
 #include "Types.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class CompoundTag;
-    ref class HashedString;
+    ref class CompoundTagHandle;
+    ref class HashedStringHandle;
 }
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class Block :SafeHandle, ICppClass
+    public ref class BlockHandle :SafeHandle, ICppClass
     {
-        DEFAULT_DEF(Block, ::Block)
+        DEFAULT_DEF(BlockHandle, ::Block)
     public:
 
-        inline static Block^ Create(const String^ str, unsigned short tileData);
-        inline static Block^ Create(CompoundTag^ nbt);
+        inline static BlockHandle^ Create(const String^ str, unsigned short tileData);
+        inline static BlockHandle^ Create(CompoundTagHandle^ nbt);
 
-        property HashedString^ Name { HashedString^ get(); };
-        property CompoundTag^ Nbt { CompoundTag^ get(); void set(CompoundTag^ value); };
+        property HashedStringHandle^ Name { HashedStringHandle^ get(); };
+        property CompoundTagHandle^ Nbt { CompoundTagHandle^ get(); void set(CompoundTagHandle^ value); };
 
         property int Id
         {
@@ -30,4 +30,4 @@ namespace BedrockServer::Extension
             unsigned short get();
         }
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

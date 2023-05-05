@@ -1,42 +1,42 @@
 #include "ByteArrayTag.hpp"
 #include "TagMemoryChunk.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
 
-    inline TagMemoryChunk^ ByteArrayTag::Value()
+    inline TagMemoryChunkHandle^ ByteArrayTagHandle::Value()
     {
-        return gcnew TagMemoryChunk(&NativePtr->value());
+        return gcnew TagMemoryChunkHandle(&NativePtr->value());
     }
 
-    inline ByteArrayTag^ ByteArrayTag::operator=(TagMemoryChunk^ val)
+    inline ByteArrayTagHandle^ ByteArrayTagHandle::operator=(TagMemoryChunkHandle^ val)
     {
         *NativePtr = *val->NativePtr;
         return this;
     }
 
-    inline ByteArrayTag^ ByteArrayTag::Create()
+    inline ByteArrayTagHandle^ ByteArrayTagHandle::Create()
     {
-        return gcnew ByteArrayTag(::ByteArrayTag::create().release(), true);
+        return gcnew ByteArrayTagHandle(::ByteArrayTag::create().release(), true);
     }
 
-    inline ByteArrayTag^ ByteArrayTag::Create(TagMemoryChunk^ val)
+    inline ByteArrayTagHandle^ ByteArrayTagHandle::Create(TagMemoryChunkHandle^ val)
     {
-        return gcnew ByteArrayTag(::ByteArrayTag::create(*val->NativePtr).release(), true);
+        return gcnew ByteArrayTagHandle(::ByteArrayTag::create(*val->NativePtr).release(), true);
     }
 
-    inline ByteArrayTag^ ByteArrayTag::Create(array<char>^ data /*, size_t size*/)
+    inline ByteArrayTagHandle^ ByteArrayTagHandle::Create(array<char>^ data /*, size_t size*/)
     {
         pin_ptr<char> p_ptr = &data[0];
-        return gcnew ByteArrayTag(::ByteArrayTag::create((char*)p_ptr, data->Length).release(), true);
+        return gcnew ByteArrayTagHandle(::ByteArrayTag::create((char*)p_ptr, data->Length).release(), true);
     }
 
-    inline bool ByteArrayTag::Set(TagMemoryChunk^ val)
+    inline bool ByteArrayTagHandle::Set(TagMemoryChunkHandle^ val)
     {
         return NativePtr->set(*val->NativePtr);
     }
 
-    inline TagMemoryChunk^ ByteArrayTag::Get()
+    inline TagMemoryChunkHandle^ ByteArrayTagHandle::Get()
     {
-        return gcnew TagMemoryChunk(new ::TagMemoryChunk(NativePtr->get()), true);
+        return gcnew TagMemoryChunkHandle(new ::TagMemoryChunk(NativePtr->get()), true);
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

@@ -1,5 +1,5 @@
 #include "MobEffect.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
 }

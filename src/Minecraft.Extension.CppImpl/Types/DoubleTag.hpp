@@ -2,32 +2,18 @@
 #include "Tag.hpp"
 #include <mc/DoubleTag.hpp>
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class DoubleTag : public Tag
+    public ref class DoubleTagHandle : public TagHandle
     {
-        DEFAULT_DEF_OVERRIDE(DoubleTag, ::DoubleTag, Tag)
+        DEFAULT_DEF_OVERRIDE(DoubleTagHandle, ::DoubleTag, TagHandle)
     public:
 
         inline double^ Value();
-        inline DoubleTag^ operator=(double val);
-        inline static DoubleTag^ Create();
-        inline static DoubleTag^ Create(double val);
+        inline DoubleTagHandle^ operator=(double val);
+        inline static DoubleTagHandle^ Create();
+        inline static DoubleTagHandle^ Create(double val);
         inline bool Set(double val);
         inline double Get();
-
-#ifdef INCLUDE_MCAPI
-
-        virtual void DeleteChildren() override;
-
-        virtual ::String^ ToString() override;
-
-        virtual BedrockServer::Extension::Tag::Type GetId();
-
-        virtual bool Equals(BedrockServer::Extension::Tag^ _0) override;
-
-        virtual unsigned long long hash();
-
-#endif // INCLUDE_MCAPI
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

@@ -1,11 +1,11 @@
 #pragma once
 #include <mc/BlockPalette.hpp>
 #include "Types.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class BlockPalette : SafeHandle, ICppClass
+    public ref class BlockPaletteHandle : SafeHandle, ICppClass
     {
-        DEFAULT_DEF(BlockPalette, ::BlockPalette)
+        DEFAULT_DEF(BlockPaletteHandle, ::BlockPalette)
     public:
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

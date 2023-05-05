@@ -3,25 +3,25 @@
 #include "Mob.hpp"
 #include <mc/MobEffect.hpp>
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class Attribute;
-    ref class NetworkIdentifier;
-    ref class Certificate;
-    ref struct ScorePacketInfo;
-    ref class Mob;
-    ref class Container;
-    ref class ItemStack;
-    ref class CompoundTag;
-    ref class Packet;
-    ref class SerializedSkin;
-} // namespace BedrockServer::Extension
+    ref class AttributeHandle;
+    ref class NetworkIdentifierHandle;
+    ref class CertificateHandle;
+    ref struct ScorePacketInfoHandle;
+    ref class MobHandle;
+    ref class ContainerHandle;
+    ref class ItemStackHandle;
+    ref class CompoundTagHandle;
+    ref class PacketHandle;
+    ref class SerializedSkinHandle;
+} // namespace BedrockServer::Extension::Handle
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class Player : Mob
+    public ref class PlayerHandle : MobHandle
     {
-        DEFAULT_DEF_OVERRIDE(Player, ::Player, Mob)
+        DEFAULT_DEF_OVERRIDE(PlayerHandle, ::Player, MobHandle)
     public:
 
         enum class PositionMode : char
@@ -39,10 +39,10 @@ namespace BedrockServer::Extension
         property String^ IP { String^ get(); };
         property String^ LanguageCode { String^ get(); };
         property String^ ServerAddress { String^ get(); };
-        property NetworkIdentifier^ NetworkIdentifier { BedrockServer::Extension::NetworkIdentifier^ get(); };
-        property Certificate^ Certificate { BedrockServer::Extension::Certificate^ get(); };
-        property Container^ EnderChestContainer { Container^ get(); };
-        property SerializedSkin^ Skin { SerializedSkin^ get(); }
+        property NetworkIdentifierHandle^ NetworkIdentifierHandle { BedrockServer::Extension::Handle::NetworkIdentifierHandle^ get(); };
+        property CertificateHandle^ CertificateHandle { BedrockServer::Extension::Handle::CertificateHandle^ get(); };
+        property ContainerHandle^ EnderChestContainer { ContainerHandle^ get(); };
+        property SerializedSkinHandle^ Skin { SerializedSkinHandle^ get(); }
 
         property unsigned char ClientSubId
         {
@@ -106,16 +106,16 @@ namespace BedrockServer::Extension
         inline bool SendText(String^ text);
 
         inline bool TalkAs(String^ msg);
-        inline bool GiveItem(ItemStack^ item);
+        inline bool GiveItem(ItemStackHandle^ item);
         inline int ClearItem(String^ typeName, unsigned int clearCount);
         inline bool Runcmd(String^ cmd);
         inline bool TransferServer(String^ address, unsigned short port);
         inline bool SetSidebar(String^ title, System::Collections::Generic::IList<System::ValueTuple<String^, int>>^ data, ObjectiveSortOrder sortOrder);
         inline bool RemoveSidebar();
-        inline CompoundTag^ GetNbt();
-        inline bool SetNbt(CompoundTag^ nbt);
-        inline bool RefreshAttribute(BedrockServer::Extension::Attribute^ attribute);
-        inline bool RefreshAttributes(System::Collections::Generic::IList<BedrockServer::Extension::Attribute^>^ attributes);
+        inline CompoundTagHandle^ GetNbt();
+        inline bool SetNbt(CompoundTagHandle^ nbt);
+        inline bool RefreshAttribute(BedrockServer::Extension::Handle::AttributeHandle^ attribute);
+        inline bool RefreshAttributes(System::Collections::Generic::IList<BedrockServer::Extension::Handle::AttributeHandle^>^ attributes);
 
         inline int GetScore(String^ key);
         inline bool SetScore(String^ key, int value);
@@ -123,7 +123,7 @@ namespace BedrockServer::Extension
         inline bool ReduceScore(String^ key, int value);
         inline bool DeleteScore(String^ key);
         // PacketEX
-        inline void SendNetworkPacket(Packet^ packet);
+        inline void SendNetworkPacket(PacketHandle^ packet);
         /// <param name="Type">:default = TextType::RAW</param>
         inline bool SendTextPacket(String^ text, TextType Type);
         inline bool SendTitlePacket(String^ text, TitleType Type, int FadeInDuration, int RemainDuration,
@@ -138,7 +138,7 @@ namespace BedrockServer::Extension
 
         inline bool SendTransferPacket(String^ address, short port);
         inline bool SendSetDisplayObjectivePacket(String^ title, String^ name, char sortOrder);
-        inline bool SendSetScorePacket(char type, System::Collections::Generic::IList<ScorePacketInfo^>^ data);
+        inline bool SendSetScorePacket(char type, System::Collections::Generic::IList<ScorePacketInfoHandle^>^ data);
         /// <param name="overlay">:default = 0</param>
         inline bool SendBossEventPacket(BossEvent type, String^ name, float percent, BossEventColour colour,
             int overlay);
@@ -158,7 +158,7 @@ namespace BedrockServer::Extension
             String^ data,
             callBackFunc_String^ callback);
 
-        inline static bool IsValid(Player^ player);
+        inline static bool IsValid(PlayerHandle^ player);
         delegate void ModalForm_callback(bool);
         delegate void SimpleForm_callback(int);
         delegate void CustomForm_callback(String^);
@@ -199,4 +199,4 @@ namespace BedrockServer::Extension
             void set(GameType);
         }
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

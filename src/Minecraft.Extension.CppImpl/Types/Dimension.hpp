@@ -3,11 +3,11 @@
 #include "Types.hpp"
 
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class Dimension : SafeHandle , ICppClass
+    public ref class DimensionHandle : SafeHandle , ICppClass
     {
-        DEFAULT_DEF(Dimension, ::Dimension)
+        DEFAULT_DEF(DimensionHandle, ::Dimension)
     public:
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

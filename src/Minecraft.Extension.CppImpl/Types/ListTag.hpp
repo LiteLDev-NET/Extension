@@ -4,34 +4,34 @@
 
 #include <mc/ListTag.hpp>
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class Tag;
-    ref struct TagMemoryChunk;
+    ref class TagHandle;
+    ref struct TagMemoryChunkHandle;
 }
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
 
-    public ref class ListTag : public Tag
+    public ref class ListTagHandle : public TagHandle
     {
-        DEFAULT_DEF_OVERRIDE(ListTag, ::ListTag, Tag)
+        DEFAULT_DEF_OVERRIDE(ListTagHandle, ::ListTag, TagHandle)
     public:
 
-        inline static ListTag^ Create();
-        array<Tag^>^ Value();
-        property Tag^ default[int] {
-            Tag^ get(int index) {
-                return gcnew Tag(((::Tag*)((*NativePtr)[index])));
+        inline static ListTagHandle^ Create();
+        array<TagHandle^>^ Value();
+        property TagHandle^ default[int] {
+            TagHandle^ get(int index) {
+                return gcnew TagHandle(((::Tag*)((*NativePtr)[index])));
             }
         };
-        inline Tag::Type const GetElementType();
+        inline TagHandle::Type const GetElementType();
         inline size_t getSize();
-        array<Tag^>^ Get();
+        array<TagHandle^>^ Get();
         inline unsigned char GetByte(int i);
         inline short GetShort(int i);
         inline int64_t GetInt64(int i);
-        inline TagMemoryChunk^ GetByteArray(int i);
+        inline TagMemoryChunkHandle^ GetByteArray(int i);
         inline void AddEnd();
         inline void AddByte(unsigned char v);
         inline void AddShort(short v);
@@ -40,10 +40,10 @@ namespace BedrockServer::Extension
         inline void AddFloat(float v);
         inline void AddDouble(double v);
         inline void AddString(String^ v);
-        inline void AddByteArray(TagMemoryChunk^ byteArr);
+        inline void AddByteArray(TagMemoryChunkHandle^ byteArr);
         inline void AddByteArray(array<char>^ data /*, size_t size*/);
-        inline void AddIntArray(TagMemoryChunk^ intArr);
+        inline void AddIntArray(TagMemoryChunkHandle^ intArr);
         inline void AddIntArray(array<int>^ data /*, size_t size*/);
     };
 
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

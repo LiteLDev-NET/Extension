@@ -1,17 +1,17 @@
 #pragma once
 #include "Tag.hpp"
 #include <mc/StringTag.hpp>
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class StringTag : public Tag
+    public ref class StringTagHandle : public TagHandle
     {
-        DEFAULT_DEF_OVERRIDE(StringTag, ::StringTag, Tag)
+        DEFAULT_DEF_OVERRIDE(StringTagHandle, ::StringTag, TagHandle)
     public:
 
         inline String^ Value();
-        inline StringTag^ operator=(std::string val);
-        inline static StringTag^ Create();
+        inline StringTagHandle^ operator=(std::string val);
+        inline static StringTagHandle^ Create();
         inline bool Set(String^ val);
         inline String^ Get();
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

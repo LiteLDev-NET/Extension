@@ -2,12 +2,12 @@
 #include <mc/Monster.hpp>
 #include "Types.hpp"
 #include "Mob.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
     public
-    ref class Monster : public Mob
+    ref class MonsterHandle : public MobHandle
     {
-        DEFAULT_DEF_OVERRIDE(Monster, ::Monster, Mob)
+        DEFAULT_DEF_OVERRIDE(MonsterHandle, ::Monster, MobHandle)
     public:
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

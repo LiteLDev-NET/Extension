@@ -1,4 +1,4 @@
 #include "Certificate.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
 }

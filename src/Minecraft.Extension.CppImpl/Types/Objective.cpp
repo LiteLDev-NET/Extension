@@ -1,10 +1,10 @@
 #include "Objective.hpp"
 #include "ScoreboardId.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
 
-    inline bool Objective::SetDisplay(String^ slotName, ObjectiveSortOrder sort)
+    inline bool ObjectiveHandle::SetDisplay(String^ slotName, ObjectiveSortOrder sort)
     {
         return NativePtr->setDisplay(marshalString(slotName), ::ObjectiveSortOrder(sort));
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

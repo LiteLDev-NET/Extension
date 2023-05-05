@@ -1,10 +1,10 @@
 #include "HashedString.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
 
 
-    BedrockServer::Extension::HashedString::HashedString(BedrockServer::Extension::HashedString^ _0)
+    BedrockServer::Extension::Handle::HashedStringHandle::HashedStringHandle(BedrockServer::Extension::Handle::HashedStringHandle^ _0)
         :SafeHandle(nint_t::Zero, true)
     {
         OwnsNativeInstance = true;
@@ -14,7 +14,7 @@ namespace BedrockServer::Extension
         NativePtr = new class ::HashedString(__arg0);
     }
 
-    BedrockServer::Extension::HashedString::HashedString(::String^ _0)
+    BedrockServer::Extension::Handle::HashedStringHandle::HashedStringHandle(::String^ _0)
         :SafeHandle(nint_t::Zero, true)
     {
         OwnsNativeInstance = true;
@@ -23,7 +23,7 @@ namespace BedrockServer::Extension
         NativePtr = new class ::HashedString(__arg0);
     }
 
-    BedrockServer::Extension::HashedString::HashedString(unsigned long long _0, ::String^ _1)
+    BedrockServer::Extension::Handle::HashedStringHandle::HashedStringHandle(unsigned long long _0, ::String^ _1)
         :SafeHandle(nint_t::Zero, true)
     {
         OwnsNativeInstance = true;
@@ -32,12 +32,12 @@ namespace BedrockServer::Extension
         NativePtr = new class ::HashedString(_0, __arg1);
     }
 
-    void BedrockServer::Extension::HashedString::Clear()
+    void BedrockServer::Extension::Handle::HashedStringHandle::Clear()
     {
         ((class ::HashedString*)NativePtr)->clear();
     }
 
-    bool BedrockServer::Extension::HashedString::operator!=(BedrockServer::Extension::HashedString^ __op, BedrockServer::Extension::HashedString^ _0)
+    bool BedrockServer::Extension::Handle::HashedStringHandle::operator!=(BedrockServer::Extension::Handle::HashedStringHandle^ __op, BedrockServer::Extension::Handle::HashedStringHandle^ _0)
     {
         bool __opNull = ReferenceEquals(__op, nullptr);
         bool _0Null = ReferenceEquals(_0, nullptr);
@@ -49,7 +49,7 @@ namespace BedrockServer::Extension
         return __ret;
     }
 
-    bool BedrockServer::Extension::HashedString::operator==(BedrockServer::Extension::HashedString^ __op, BedrockServer::Extension::HashedString^ _0)
+    bool BedrockServer::Extension::Handle::HashedStringHandle::operator==(BedrockServer::Extension::Handle::HashedStringHandle^ __op, BedrockServer::Extension::Handle::HashedStringHandle^ _0)
     {
         bool __opNull = ReferenceEquals(__op, nullptr);
         bool _0Null = ReferenceEquals(_0, nullptr);
@@ -61,17 +61,17 @@ namespace BedrockServer::Extension
         return __ret;
     }
 
-    bool BedrockServer::Extension::HashedString::Equals(::System::Object^ obj)
+    bool BedrockServer::Extension::Handle::HashedStringHandle::Equals(::System::Object^ obj)
     {
-        return this == safe_cast<BedrockServer::Extension::HashedString^>(obj);
+        return this == safe_cast<BedrockServer::Extension::Handle::HashedStringHandle^>(obj);
     }
 
-    //void BedrockServer::Extension::HashedString::BindType()
+    //void BedrockServer::Extension::Handle::HashedString::BindType()
     //{
     //    ::HashedString::bindType();
     //}
 
-    unsigned long long BedrockServer::Extension::HashedString::ComputeHash(::String^ _0)
+    unsigned long long BedrockServer::Extension::Handle::HashedStringHandle::ComputeHash(::String^ _0)
     {
         auto ___arg0 = clix::marshalString<clix::E_UTF8>(_0);
         auto __arg0 = ___arg0.c_str();
@@ -79,43 +79,43 @@ namespace BedrockServer::Extension
         return __ret;
     }
 
-    ::String^ BedrockServer::Extension::HashedString::CStr::get()
+    ::String^ BedrockServer::Extension::Handle::HashedStringHandle::CStr::get()
     {
         auto __ret = ((class ::HashedString*)NativePtr)->c_str();
         if (__ret == nullptr) return nullptr;
         return (__ret == 0 ? nullptr : clix::marshalString<clix::E_UTF8>(__ret));
     }
 
-    unsigned long long BedrockServer::Extension::HashedString::Hash::get()
+    unsigned long long BedrockServer::Extension::Handle::HashedStringHandle::Hash::get()
     {
         auto __ret = ((class ::HashedString*)NativePtr)->getHash();
         return __ret;
     }
 
-    ::String^ BedrockServer::Extension::HashedString::String::get()
+    ::String^ BedrockServer::Extension::Handle::HashedStringHandle::String::get()
     {
         auto& __ret = ((class ::HashedString*)NativePtr)->getString();
         return (::String^)(clix::marshalString<clix::E_UTF8>(__ret));
     }
 
-    bool BedrockServer::Extension::HashedString::IsEmpty::get()
+    bool BedrockServer::Extension::Handle::HashedStringHandle::IsEmpty::get()
     {
         auto __ret = ((class ::HashedString*)NativePtr)->isEmpty();
         return __ret;
     }
 
-    BedrockServer::Extension::HashedString^ BedrockServer::Extension::HashedString::EmptyString::get()
+    BedrockServer::Extension::Handle::HashedStringHandle^ BedrockServer::Extension::Handle::HashedStringHandle::EmptyString::get()
     {
         auto& __ret = ::HashedString::getEmptyString();
-        return (BedrockServer::Extension::HashedString^)((&__ret == nullptr) ? nullptr : gcnew ::BedrockServer::Extension::HashedString((class ::HashedString*) & __ret));
+        return (BedrockServer::Extension::Handle::HashedStringHandle^)((&__ret == nullptr) ? nullptr : gcnew ::BedrockServer::Extension::Handle::HashedStringHandle((class ::HashedString*) & __ret));
     }
 
-    BedrockServer::Extension::HashedString^ BedrockServer::Extension::HashedString::DefaultErrorValue::get()
+    BedrockServer::Extension::Handle::HashedStringHandle^ BedrockServer::Extension::Handle::HashedStringHandle::DefaultErrorValue::get()
     {
-        return (&::HashedString::defaultErrorValue == nullptr) ? nullptr : gcnew ::BedrockServer::Extension::HashedString((class ::HashedString*) & ::HashedString::defaultErrorValue);
+        return (&::HashedString::defaultErrorValue == nullptr) ? nullptr : gcnew ::BedrockServer::Extension::Handle::HashedStringHandle((class ::HashedString*) & ::HashedString::defaultErrorValue);
     }
 
-    void BedrockServer::Extension::HashedString::DefaultErrorValue::set(BedrockServer::Extension::HashedString^ value)
+    void BedrockServer::Extension::Handle::HashedStringHandle::DefaultErrorValue::set(BedrockServer::Extension::Handle::HashedStringHandle^ value)
     {
         if (ReferenceEquals(value, nullptr))
             throw gcnew ::System::ArgumentNullException("value", "Cannot be null because it is passed by value.");

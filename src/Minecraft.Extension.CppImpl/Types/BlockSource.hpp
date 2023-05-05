@@ -3,23 +3,23 @@
 #include "Types.hpp"
 #include "BlockInstance.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class Dimension;
-    ref class BlockActor;
-} // namespace BedrockServer::Extension
+    ref class DimensionHandle;
+    ref class BlockActorHandle;
+} // namespace BedrockServer::Extension::Handle
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class BlockSource :SafeHandle, ICppClass
+    public ref class BlockSourceHandle :SafeHandle, ICppClass
     {
-        DEFAULT_DEF(BlockSource, ::BlockSource)
+        DEFAULT_DEF(BlockSourceHandle, ::BlockSource)
     public:
 
         BedrockServer::BlockInstance GetBlockInstance(BedrockServer::BlockPos pos);
-        property AutomaticID<Dimension^, int> DimensionId
+        property AutomaticID<DimensionHandle^, int> DimensionId
         {
-            AutomaticID<Dimension^, int> get();
+            AutomaticID<DimensionHandle^, int> get();
         }
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

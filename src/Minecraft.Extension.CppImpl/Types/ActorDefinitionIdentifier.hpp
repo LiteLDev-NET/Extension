@@ -2,26 +2,26 @@
 #include <mc/ActorDefinitionIdentifier.hpp>
 #include "Types.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class HashedString;
+    ref class HashedStringHandle;
 }
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
     public
-    ref struct ActorDefinitionIdentifier :SafeHandle, ICppClass
+    ref struct ActorDefinitionIdentifierHandle :SafeHandle, ICppClass
     {
-        DEFAULT_DEF(ActorDefinitionIdentifier, ::ActorDefinitionIdentifier)
+        DEFAULT_DEF(ActorDefinitionIdentifierHandle, ::ActorDefinitionIdentifier)
     public:
 
-        static ActorDefinitionIdentifier^ Create();
-        static ActorDefinitionIdentifier^ Create(String^ ns, String^ identifier, String^ event, String^ fullname, HashedString^ canonicalHash);
+        static ActorDefinitionIdentifierHandle^ Create();
+        static ActorDefinitionIdentifierHandle^ Create(String^ ns, String^ identifier, String^ event, String^ fullname, HashedStringHandle^ canonicalHash);
 
         property String^ Namespace {System::String^ get(); void set(System::String^ ns); };
         property String^ Identifier {System::String^ get(); void set(System::String^ identifier); };
         property String^ InitEvent {System::String^ get(); void set(System::String^ event); };
         property String^ Fullname {System::String^ get(); void set(System::String^ fullname); };
-        property HashedString^ CanonicalName {HashedString^ get(); void set(HashedString^ canonicalHash); };
+        property HashedStringHandle^ CanonicalName {HashedStringHandle^ get(); void set(HashedStringHandle^ canonicalHash); };
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

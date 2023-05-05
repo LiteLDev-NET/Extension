@@ -2,11 +2,11 @@
 #include <mc/MobEffectInstance.hpp>
 #include "Types.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class MobEffectInstance : SafeHandle, ICppClass
+    public ref class MobEffectInstanceHandle : SafeHandle, ICppClass
     {
-        DEFAULT_DEF(MobEffectInstance, ::MobEffectInstance)
+        DEFAULT_DEF(MobEffectInstanceHandle, ::MobEffectInstance)
     public:
 
         property array<char>^ Filler {
@@ -14,4 +14,4 @@ namespace BedrockServer::Extension
             void set(array<char>^ filler);
         };
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

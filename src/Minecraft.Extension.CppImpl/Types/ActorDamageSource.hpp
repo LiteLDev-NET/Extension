@@ -40,19 +40,19 @@ namespace BedrockServer
     };
 }
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class Actor;
+    ref class ActorHandle;
 }
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class ActorDamageSource : SafeHandle , ICppClass
+    public ref class ActorDamageSourceHandle : SafeHandle , ICppClass
     {
-        DEFAULT_DEF(ActorDamageSource, ::ActorDamageSource)
+        DEFAULT_DEF(ActorDamageSourceHandle, ::ActorDamageSource)
     public:
 
-        property Actor^ Entity { Actor^ get(); };
+        property ActorHandle^ Entity { ActorHandle^ get(); };
 
         property bool IsEntitySource
         {
@@ -112,4 +112,4 @@ namespace BedrockServer::Extension
 
         static String^ LookupCauseName(BedrockServer::ActorDamageCause _0);
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

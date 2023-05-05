@@ -1,34 +1,34 @@
 #include "Int64Tag.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    inline int64_t^ Int64Tag::Value()
+    inline int64_t^ Int64TagHandle::Value()
     {
         return NativePtr->value();
     }
 
-    inline Int64Tag^ Int64Tag::operator=(int64_t val)
+    inline Int64TagHandle^ Int64TagHandle::operator=(int64_t val)
     {
         *NativePtr = val;
         return this;
     }
 
-    inline Int64Tag^ Int64Tag::Create()
+    inline Int64TagHandle^ Int64TagHandle::Create()
     {
-        return gcnew Int64Tag(::Int64Tag::create().release(), true);
+        return gcnew Int64TagHandle(::Int64Tag::create().release(), true);
     }
 
-    inline Int64Tag^ Int64Tag::Create(int64_t val)
+    inline Int64TagHandle^ Int64TagHandle::Create(int64_t val)
     {
-        return gcnew Int64Tag(::Int64Tag::create(val).release(), true);
+        return gcnew Int64TagHandle(::Int64Tag::create(val).release(), true);
     }
 
-    inline bool Int64Tag::Set(int64_t val)
+    inline bool Int64TagHandle::Set(int64_t val)
     {
         return NativePtr->set(val);
     }
 
-    inline int64_t Int64Tag::Get()
+    inline int64_t Int64TagHandle::Get()
     {
         return NativePtr->get();
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

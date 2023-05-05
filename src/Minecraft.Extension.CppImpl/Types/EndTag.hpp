@@ -2,16 +2,16 @@
 #include "Tag.hpp"
 #include <mc/EndTag.hpp>
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class EndTag : public Tag
+    public ref class EndTagHandle : public TagHandle
     {
-        DEFAULT_DEF_OVERRIDE(EndTag, ::EndTag, Tag)
+        DEFAULT_DEF_OVERRIDE(EndTagHandle, ::EndTag, TagHandle)
     public:
 
         inline const nullptr_t Value();
-        inline static EndTag^ Create();
+        inline static EndTagHandle^ Create();
         inline bool Set();
         inline const nullptr_t Get();
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

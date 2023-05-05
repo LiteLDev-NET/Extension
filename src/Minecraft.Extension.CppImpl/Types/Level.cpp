@@ -13,13 +13,13 @@
 #include "ActorDamageSource.hpp"
 #include "Packet.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    inline bool Level::CallbackFn(::Player& p)
+    inline bool LevelHandle::CallbackFn(::Player& p)
     {
-        return _callback(gcnew Player(&p));
+        return _callback(gcnew PlayerHandle(&p));
     }
-    inline void Level::ForEachPlayer(Callback^ callback)
+    inline void LevelHandle::ForEachPlayer(Callback^ callback)
     {
         if (callback == nullptr)
             throw gcnew System::ArgumentNullException;
@@ -28,7 +28,7 @@ namespace BedrockServer::Extension
 
         _callback = callback;
 
-        auto deFn = gcnew NativeCallback(&Level::CallbackFn);
+        auto deFn = gcnew NativeCallback(&LevelHandle::CallbackFn);
 
         gchList->Add(GCHandle::Alloc(deFn));
 
@@ -37,16 +37,16 @@ namespace BedrockServer::Extension
 
         NativePtr->forEachPlayer(pFn);
     }
-    inline array<Player^>^ Level::GetAllPlayers()
+    inline array<PlayerHandle^>^ LevelHandle::GetAllPlayers()
     {
         auto& stdvector = ::Level::getAllPlayers();
-        auto ret = gcnew array<Player^>(int(stdvector.size()));
+        auto ret = gcnew array<PlayerHandle^>(int(stdvector.size()));
         for (int i = 0; i < stdvector.size(); i++)
-            ret[i] = gcnew Player(stdvector[i]);
+            ret[i] = gcnew PlayerHandle(stdvector[i]);
         return ret;
     }
 
-    inline void* Level::__GetAllPlayers()
+    inline void* LevelHandle::__GetAllPlayers()
     {
         auto ret = new std::vector<::Player*>(std::move(::Level::getAllPlayers()));
         Console::WriteLine((uintptr_t)static_cast<void*>((*ret)[0]));
@@ -54,126 +54,126 @@ namespace BedrockServer::Extension
         Console::WriteLine(marshalString(((*ret)[0])->getRealName()));
         return ret;
     }
-    inline Player^ Level::GetPlayer(String^ info)
+    inline PlayerHandle^ LevelHandle::GetPlayer(String^ info)
     {
-        return gcnew Player(NativePtr->getPlayer(marshalString(info)));
+        return gcnew PlayerHandle(NativePtr->getPlayer(marshalString(info)));
     }
-    inline Player^ Level::GetPlayer(ActorUniqueID id)
+    inline PlayerHandle^ LevelHandle::GetPlayer(ActorUniqueID id)
     {
         const auto player = NativePtr->getPlayer(*(::ActorUniqueID*)&id);
-        return player != nullptr ? gcnew Player(player) : nullptr;
+        return player != nullptr ? gcnew PlayerHandle(player) : nullptr;
     }
-    inline Actor^ Level::GetEntity(ActorUniqueID id)
+    inline ActorHandle^ LevelHandle::GetEntity(ActorUniqueID id)
     {
         const auto entity = ::Level::getEntity(*(::ActorUniqueID*)&id);
-        return entity != nullptr ? gcnew Actor(entity) : nullptr;
+        return entity != nullptr ? gcnew ActorHandle(entity) : nullptr;
     }
-    inline Actor^ Level::GetRuntimeEntity(ActorRuntimeID id, bool _)
+    inline ActorHandle^ LevelHandle::GetRuntimeEntity(ActorRuntimeID id, bool _)
     {
         const auto entity = NativePtr->getRuntimeEntity(*(::ActorRuntimeID*)&id, _);
-        return entity != nullptr ? gcnew Actor(entity) : nullptr;
+        return entity != nullptr ? gcnew ActorHandle(entity) : nullptr;
     }
-    inline Player^ Level::GetRuntimePlayer(ActorRuntimeID id)
+    inline PlayerHandle^ LevelHandle::GetRuntimePlayer(ActorRuntimeID id)
     {
         const auto player = NativePtr->getRuntimePlayer(*(::ActorRuntimeID*)&id);
-        return player != nullptr ? gcnew Player(player) : nullptr;
+        return player != nullptr ? gcnew PlayerHandle(player) : nullptr;
     }
-    inline array<Actor^>^ Level::GetAllEntities(int dimId)
+    inline array<ActorHandle^>^ LevelHandle::GetAllEntities(int dimId)
     {
         auto& stdvector = ::Level::getAllEntities(dimId);
-        auto ret = gcnew array<Actor^>(int(stdvector.size()));
+        auto ret = gcnew array<ActorHandle^>(int(stdvector.size()));
         for (int i = 0; i < stdvector.size(); i++)
-            ret[i] = gcnew Actor(stdvector[i]);
+            ret[i] = gcnew ActorHandle(stdvector[i]);
         return ret;
     }
-    inline array<Actor^>^ Level::GetAllEntities()
+    inline array<ActorHandle^>^ LevelHandle::GetAllEntities()
     {
         auto& stdvector = ::Level::getAllEntities();
-        auto ret = gcnew array<Actor^>(int(stdvector.size()));
+        auto ret = gcnew array<ActorHandle^>(int(stdvector.size()));
         for (int i = 0; i < stdvector.size(); i++)
-            ret[i] = gcnew Actor(stdvector[i]);
+            ret[i] = gcnew ActorHandle(stdvector[i]);
         return ret;
     }
-    inline Actor^ Level::SpawnMob(Vec3 pos, int dimId, String^ typeName)
+    inline ActorHandle^ LevelHandle::SpawnMob(Vec3 pos, int dimId, String^ typeName)
     {
-        return gcnew Actor(::Level::spawnMob(
+        return gcnew ActorHandle(::Level::spawnMob(
             *(::Vec3*)&pos, dimId, marshalString(typeName)));
     }
-    inline Actor^ Level::SpawnItem(Vec3 pos, int dimId, ItemStack^ item)
+    inline ActorHandle^ LevelHandle::SpawnItem(Vec3 pos, int dimId, ItemStackHandle^ item)
     {
-        return gcnew Actor(::Level::spawnItem(
+        return gcnew ActorHandle(::Level::spawnItem(
             *(::Vec3*)&pos, dimId, item->NativePtr));
     }
-    inline bool Level::CreateExplosion(Vec3 pos, int dimId, Actor^ source, float radius, bool createFire, bool canBreak, float maxResistance)
+    inline bool LevelHandle::CreateExplosion(Vec3 pos, int dimId, ActorHandle^ source, float radius, bool createFire, bool canBreak, float maxResistance)
     {
         return ::Level::createExplosion(*(::Vec3*)&pos, dimId, source, radius, createFire, canBreak, maxResistance);
     }
-    inline bool Level::CreateExplosion(Vec3 pos, int dimId, Actor^ source, float radius, bool createFire, bool canBreak)
+    inline bool LevelHandle::CreateExplosion(Vec3 pos, int dimId, ActorHandle^ source, float radius, bool createFire, bool canBreak)
     {
         return ::Level::createExplosion(*(::Vec3*)&pos, dimId, source, radius, createFire, canBreak);
     }
-    inline MapItemSavedData^ Level::GetMapSavedData(ActorUniqueID^ id)
+    inline MapItemSavedDataHandle^ LevelHandle::GetMapSavedData(ActorUniqueID^ id)
     {
         const auto data = NativePtr->getMapSavedData(*id);
-        return data != nullptr ? gcnew MapItemSavedData(data) : nullptr;
+        return data != nullptr ? gcnew MapItemSavedDataHandle(data) : nullptr;
     }
-    inline Actor^ Level::CloneMob(Vec3 pos, int dimid, Actor^ ac)
+    inline ActorHandle^ LevelHandle::CloneMob(Vec3 pos, int dimid, ActorHandle^ ac)
     {
-        return gcnew Actor(::Level::cloneMob(*(::Vec3*)&pos, dimid, ac->NativePtr));
+        return gcnew ActorHandle(::Level::cloneMob(*(::Vec3*)&pos, dimid, ac->NativePtr));
     }
-    inline Block^ Level::GetBlock(BlockPos pos, int dimId)
+    inline BlockHandle^ LevelHandle::GetBlock(BlockPos pos, int dimId)
     {
-        return gcnew Block(::Level::getBlock(*(::Vec3*)&pos, dimId));
+        return gcnew BlockHandle(::Level::getBlock(*(::Vec3*)&pos, dimId));
     }
-    inline Block^ Level::GetBlock(BlockPos pos, BlockSource^ blockSource)
+    inline BlockHandle^ LevelHandle::GetBlock(BlockPos pos, BlockSourceHandle^ blockSource)
     {
-        return gcnew Block(::Level::getBlock(*(::Vec3*)&pos, blockSource));
+        return gcnew BlockHandle(::Level::getBlock(*(::Vec3*)&pos, blockSource));
     }
-    inline Block^ Level::GetBlockEx(BlockPos pos, int dimId)
+    inline BlockHandle^ LevelHandle::GetBlockEx(BlockPos pos, int dimId)
     {
-        return gcnew Block(::Level::getBlockEx(*(::BlockPos*)&pos, dimId));
+        return gcnew BlockHandle(::Level::getBlockEx(*(::BlockPos*)&pos, dimId));
     }
-    inline BedrockServer::BlockInstance Level::GetBlockInstance(BedrockServer::BlockPos pos, int dimId)
+    inline BedrockServer::BlockInstance LevelHandle::GetBlockInstance(BedrockServer::BlockPos pos, int dimId)
     {
         return *(BlockInstance*)&::Level::getBlockInstance(*(::BlockPos*)&pos, dimId);
     }
-    inline BedrockServer::BlockInstance Level::GetBlockInstance(BedrockServer::BlockPos pos, BlockSource^ blockSource)
+    inline BedrockServer::BlockInstance LevelHandle::GetBlockInstance(BedrockServer::BlockPos pos, BlockSourceHandle^ blockSource)
     {
         return *(BlockInstance*)&::Level::getBlockInstance(*(::BlockPos*)&pos, blockSource);
     }
-    inline BlockActor^ Level::GetBlockEntity(BlockPos pos, int dimId)
+    inline BlockActorHandle^ LevelHandle::GetBlockEntity(BlockPos pos, int dimId)
     {
-        return gcnew BlockActor(::Level::getBlockEntity(*(::BlockPos*)&pos, dimId));
+        return gcnew BlockActorHandle(::Level::getBlockEntity(*(::BlockPos*)&pos, dimId));
     }
-    inline BlockActor^ Level::GetBlockEntity(BlockPos pos, BlockSource^ blockSource)
+    inline BlockActorHandle^ LevelHandle::GetBlockEntity(BlockPos pos, BlockSourceHandle^ blockSource)
     {
-        return gcnew BlockActor(::Level::getBlockEntity(*(::BlockPos*)&pos, blockSource));
+        return gcnew BlockActorHandle(::Level::getBlockEntity(*(::BlockPos*)&pos, blockSource));
     }
-    inline bool Level::SetBlock(BlockPos pos, int dim, Block^ block)
+    inline bool LevelHandle::SetBlock(BlockPos pos, int dim, BlockHandle^ block)
     {
         return ::Level::setBlock(*(::BlockPos*)&pos, dim, block);
     }
-    inline bool Level::SetBlock(BlockPos pos, int dim, String^ name, unsigned short tileData)
+    inline bool LevelHandle::SetBlock(BlockPos pos, int dim, String^ name, unsigned short tileData)
     {
         return ::Level::setBlock(*(::BlockPos*)&pos, dim, marshalString(name), tileData);
     }
-    inline bool Level::SetBlock(BlockPos pos, int dim, CompoundTag^ nbt)
+    inline bool LevelHandle::SetBlock(BlockPos pos, int dim, CompoundTagHandle^ nbt)
     {
         return ::Level::setBlock(*(::BlockPos*)&pos, dim, nbt->NativePtr);
     }
-    inline bool Level::BreakBlockNaturally(BlockSource^ bs, BlockPos pos)
+    inline bool LevelHandle::BreakBlockNaturally(BlockSourceHandle^ bs, BlockPos pos)
     {
         return ::Level::breakBlockNaturally(bs, *(::BlockPos*)&pos);
     }
-    inline bool Level::BreakBlockNaturally(BlockSource^ bs, BlockPos pos, ItemStack^ tool)
+    inline bool LevelHandle::BreakBlockNaturally(BlockSourceHandle^ bs, BlockPos pos, ItemStackHandle^ tool)
     {
         return ::Level::breakBlockNaturally(bs->NativePtr, *(::BlockPos*)&pos, tool->NativePtr);
     }
-    inline bool Level::DestroyBlock(BlockSource^ bs, BlockPos pos, bool a2)
+    inline bool LevelHandle::DestroyBlock(BlockSourceHandle^ bs, BlockPos pos, bool a2)
     {
         return NativePtr->destroyBlock(*bs->NativePtr, *(::BlockPos*)&pos, a2);
     }
-    inline void Level::SpawnParticleEffect(String^ type, Vec3 pos, Dimension^ a2)
+    inline void LevelHandle::SpawnParticleEffect(String^ type, Vec3 pos, DimensionHandle^ a2)
     {
         NativePtr->spawnParticleEffect(marshalString(type), *(::Vec3*)&pos, a2->NativePtr);
     }
@@ -181,65 +181,65 @@ namespace BedrockServer::Extension
     //{
     //    ::Level::spawnParticleEffect(marshalString(type), *a1->NativePtr, a2);
     //}
-    inline bool Level::HasContainer(Vec3 pos, int dim)
+    inline bool LevelHandle::HasContainer(Vec3 pos, int dim)
     {
         return ::Level::hasContainer(*(::Vec3*)&pos, dim);
     }
-    inline Container^ Level::GetContainer(Vec3 pos, int dim)
+    inline ContainerHandle^ LevelHandle::GetContainer(Vec3 pos, int dim)
     {
-        return gcnew Container(::Level::getContainer(*(::Vec3*)&pos, dim));
+        return gcnew ContainerHandle(::Level::getContainer(*(::Vec3*)&pos, dim));
     }
-    inline ItemStack^ Level::GetItemStackFromId(short itemId, int aux)
+    inline ItemStackHandle^ LevelHandle::GetItemStackFromId(short itemId, int aux)
     {
-        return gcnew ItemStack(::Level::getItemStackFromId(itemId, aux));
+        return gcnew ItemStackHandle(::Level::getItemStackFromId(itemId, aux));
     }
-    inline ItemStack^ Level::GetItemStackFromId(short itemId)
+    inline ItemStackHandle^ LevelHandle::GetItemStackFromId(short itemId)
     {
-        return gcnew ItemStack(::Level::getItemStackFromId(itemId));
+        return gcnew ItemStackHandle(::Level::getItemStackFromId(itemId));
     }
-    inline BlockSource^ Level::GetBlockSource(int dimid)
+    inline BlockSourceHandle^ LevelHandle::GetBlockSource(int dimid)
     {
-        return gcnew BlockSource(::Level::getBlockSource(dimid));
+        return gcnew BlockSourceHandle(::Level::getBlockSource(dimid));
     }
-    inline BlockSource^ Level::GetBlockSource(Actor^ actor)
+    inline BlockSourceHandle^ LevelHandle::GetBlockSource(ActorHandle^ actor)
     {
-        return gcnew BlockSource(::Level::getBlockSource(actor));
+        return gcnew BlockSourceHandle(::Level::getBlockSource(actor));
     }
-    inline BlockPalette^ Level::GetBlockPalette()
+    inline BlockPaletteHandle^ LevelHandle::GetBlockPalette()
     {
-        return gcnew BlockPalette(&NativePtr->getBlockPalette());
+        return gcnew BlockPaletteHandle(&NativePtr->getBlockPalette());
     }
     /*inline Dimension^ Level::GetDimension(AutomaticID<Dimension^, int>^ a0)
     {
         return gcnew Dimension(NativePtr->getDimension((int)a0));
     }*/
-    inline Actor^ Level::GetDamageSourceEntity(ActorDamageSource^ ads)
+    inline ActorHandle^ LevelHandle::GetDamageSourceEntity(ActorDamageSourceHandle^ ads)
     {
-        return gcnew Actor(::Level::getDamageSourceEntity(ads));
+        return gcnew ActorHandle(::Level::getDamageSourceEntity(ads));
     }
-    inline void Level::BroadcastText(String^ text, TextType type)
+    inline void LevelHandle::BroadcastText(String^ text, TextType type)
     {
         ::Level::broadcastText(marshalString(text), ::TextType(type));
     }
-    inline void Level::BroadcastTitle(String^ text, TitleType Type, int FadeInDuration, int RemainDuration, int FadeOutDuration)
+    inline void LevelHandle::BroadcastTitle(String^ text, TitleType Type, int FadeInDuration, int RemainDuration, int FadeOutDuration)
     {
         ::Level::broadcastTitle(marshalString(text), ::TitleType(Type), FadeInDuration, RemainDuration, FadeOutDuration);
     }
-    inline void Level::SendPacketForAllPlayers(Packet^ pkt)
+    inline void LevelHandle::SendPacketForAllPlayers(PacketHandle^ pkt)
     {
         ::Level::sendPacketForAllPlayers(*pkt->NativePtr);
     }
-    inline bool Level::RuncmdAs(Player^ pl, String^ cmd)
+    inline bool LevelHandle::RuncmdAs(PlayerHandle^ pl, String^ cmd)
     {
         return ::Level::runcmdAs(pl->NativePtr, marshalString(cmd));
     }
-    inline System::ValueTuple<bool, String^> Level::RuncmdEx(String^ cmd)
+    inline System::ValueTuple<bool, String^> LevelHandle::RuncmdEx(String^ cmd)
     {
         auto& kvpair = ::Level::runcmdEx(marshalString(cmd));
         return System::ValueTuple<bool, String^>(kvpair.first, marshalString(kvpair.second));
     }
-    inline bool Level::Runcmd(String^ cmd)
+    inline bool LevelHandle::Runcmd(String^ cmd)
     {
         return ::Level::runcmd(marshalString(cmd));
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

@@ -3,32 +3,19 @@
 #include "TagMemoryChunk.hpp"
 #include <mc/IntArrayTag.hpp>
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class IntArrayTag : public Tag
+    public ref class IntArrayTagHandle : public TagHandle
     {
-        DEFAULT_DEF_OVERRIDE(IntArrayTag, ::IntArrayTag, Tag)
+        DEFAULT_DEF_OVERRIDE(IntArrayTagHandle, ::IntArrayTag, TagHandle)
     public:
 
-        inline TagMemoryChunk^ Value();
-        inline IntArrayTag^ operator=(TagMemoryChunk^ val);
-        inline static IntArrayTag^ Create();
-        inline static IntArrayTag^ Create(TagMemoryChunk^ val);
-        inline static IntArrayTag^ Create(array<int>^ data /*, size_t size*/);
-        inline bool Set(TagMemoryChunk^ val);
-        inline TagMemoryChunk^ Get();
-
-#ifdef INCLUDE_MCAPI
-
-        virtual void DeleteChildren() override;
-
-        virtual ::String^ ToString() override;
-
-        virtual BedrockServer::Extension::Tag::Type GetId();
-
-        virtual bool Equals(BedrockServer::Extension::Tag^ _0) override;
-
-        virtual unsigned long long hash();
-#endif // INCLUDE_MCAPI
+        inline TagMemoryChunkHandle^ Value();
+        inline IntArrayTagHandle^ operator=(TagMemoryChunkHandle^ val);
+        inline static IntArrayTagHandle^ Create();
+        inline static IntArrayTagHandle^ Create(TagMemoryChunkHandle^ val);
+        inline static IntArrayTagHandle^ Create(array<int>^ data /*, size_t size*/);
+        inline bool Set(TagMemoryChunkHandle^ val);
+        inline TagMemoryChunkHandle^ Get();
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

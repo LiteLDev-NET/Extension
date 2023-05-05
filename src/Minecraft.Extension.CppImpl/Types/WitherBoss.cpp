@@ -1,6 +1,6 @@
 #include "WitherBoss.hpp"
 #include "MobEffectInstance.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
 }

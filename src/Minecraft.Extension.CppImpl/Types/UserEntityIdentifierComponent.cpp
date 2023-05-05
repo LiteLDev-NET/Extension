@@ -2,34 +2,34 @@
 
 #include "NetworkIdentifier.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    inline NetworkIdentifier^ UserEntityIdentifierComponent::NetworkId::get()
+    inline NetworkIdentifierHandle^ UserEntityIdentifierComponentHandle::NetworkId::get()
     {
-        return gcnew NetworkIdentifier(&NativePtr->mNetworkId);
+        return gcnew NetworkIdentifierHandle(&NativePtr->mNetworkId);
     }
 
-    inline System::Byte UserEntityIdentifierComponent::ClientSubId::get()
+    inline System::Byte UserEntityIdentifierComponentHandle::ClientSubId::get()
     {
         return NativePtr->mClientSubId;
     }
 
-    inline Mce::UUID UserEntityIdentifierComponent::Uuid::get()
+    inline Mce::UUID UserEntityIdentifierComponentHandle::Uuid::get()
     {
         return *(Mce::UUID*)&NativePtr->mUUID;
     }
 
-    inline String^ UserEntityIdentifierComponent::PlayFabId::get()
+    inline String^ UserEntityIdentifierComponentHandle::PlayFabId::get()
     {
         return marshalString(NativePtr->mPlayFabId);
     }
 
-    inline Certificate^ UserEntityIdentifierComponent::Certificate::get()
+    inline CertificateHandle^ UserEntityIdentifierComponentHandle::CertificateHandle::get()
     {
-        return gcnew BedrockServer::Extension::Certificate(NativePtr->mCertificate.get());
+        return gcnew BedrockServer::Extension::Handle::CertificateHandle(NativePtr->mCertificate.get());
     }
 
-    inline bool UserEntityIdentifierComponent::IsPrimaryClient::get()
+    inline bool UserEntityIdentifierComponentHandle::IsPrimaryClient::get()
     {
         return NativePtr->isPrimaryClient();
     }

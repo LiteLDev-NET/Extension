@@ -2,11 +2,11 @@
 #include <mc/ServerPlayer.hpp>
 #include "Player.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class ServerPlayer : Player
+    public ref class ServerPlayerHandle : PlayerHandle
     {
-        DEFAULT_DEF_OVERRIDE(ServerPlayer, ::ServerPlayer, Player)
+        DEFAULT_DEF_OVERRIDE(ServerPlayerHandle, ::ServerPlayer, PlayerHandle)
     public:
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

@@ -2,18 +2,18 @@
 #include "Tag.hpp"
 #include <mc/FloatTag.hpp>
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class FloatTag : public Tag
+    public ref class FloatTagHandle : public TagHandle
     {
-        DEFAULT_DEF_OVERRIDE(FloatTag, ::FloatTag, Tag)
+        DEFAULT_DEF_OVERRIDE(FloatTagHandle, ::FloatTag, TagHandle)
     public:
 
         inline float^ Value();
-        inline FloatTag^ operator=(float val);
-        inline static FloatTag^ Create();
-        inline static FloatTag^ Create(float val);
+        inline FloatTagHandle^ operator=(float val);
+        inline static FloatTagHandle^ Create();
+        inline static FloatTagHandle^ Create(float val);
         inline bool Set(float val);
         inline float Get();
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

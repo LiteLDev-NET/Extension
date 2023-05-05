@@ -1,31 +1,31 @@
 #include "ScoreboardId.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ScoreboardId::ScoreboardId()
+    ScoreboardIdHandle::ScoreboardIdHandle()
         :SafeHandle(nint_t::Zero, true)
     {
         OwnsNativeInstance = true;
         NativePtr = new ::ScoreboardId;
     }
-    inline __int64 ScoreboardId::Id::get()
+    inline __int64 ScoreboardIdHandle::Id::get()
     {
         return NativePtr->id;
     }
-    inline void ScoreboardId::Id::set(__int64 id)
+    inline void ScoreboardIdHandle::Id::set(__int64 id)
     {
         NativePtr->id = id;
     }
-    inline nint_t ScoreboardId::Null::get()
+    inline nint_t ScoreboardIdHandle::Null::get()
     {
         return nint_t(NativePtr->null);
     }
-    inline void ScoreboardId::Null::set(nint_t p)
+    inline void ScoreboardIdHandle::Null::set(nint_t p)
     {
         NativePtr->null = p.ToPointer();
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle
 
-BedrockServer::Extension::ScoreboardId::ScoreboardId(BedrockServer::Extension::ScoreboardId^ _0)
+BedrockServer::Extension::Handle::ScoreboardIdHandle::ScoreboardIdHandle(BedrockServer::Extension::Handle::ScoreboardIdHandle^ _0)
     :SafeHandle(nint_t::Zero, true)
 {
     OwnsNativeInstance = true;
@@ -35,19 +35,19 @@ BedrockServer::Extension::ScoreboardId::ScoreboardId(BedrockServer::Extension::S
     NativePtr = new struct ::ScoreboardId(__arg0);
 }
 
-int BedrockServer::Extension::ScoreboardId::GetHashCode()
+int BedrockServer::Extension::Handle::ScoreboardIdHandle::GetHashCode()
 {
     return (int)Hash;
 }
 
-BedrockServer::Extension::ScoreboardId::ScoreboardId(long long _0)
+BedrockServer::Extension::Handle::ScoreboardIdHandle::ScoreboardIdHandle(long long _0)
     :SafeHandle(nint_t::Zero, true)
 {
     OwnsNativeInstance = true;
     NativePtr = new struct ::ScoreboardId(_0);
 }
 
-bool BedrockServer::Extension::ScoreboardId::operator!=(BedrockServer::Extension::ScoreboardId^ __op, BedrockServer::Extension::ScoreboardId^ _0)
+bool BedrockServer::Extension::Handle::ScoreboardIdHandle::operator!=(BedrockServer::Extension::Handle::ScoreboardIdHandle^ __op, BedrockServer::Extension::Handle::ScoreboardIdHandle^ _0)
 {
     bool __opNull = ReferenceEquals(__op, nullptr);
     bool _0Null = ReferenceEquals(_0, nullptr);
@@ -59,7 +59,7 @@ bool BedrockServer::Extension::ScoreboardId::operator!=(BedrockServer::Extension
     return __ret;
 }
 
-bool BedrockServer::Extension::ScoreboardId::operator==(BedrockServer::Extension::ScoreboardId^ __op, BedrockServer::Extension::ScoreboardId^ _0)
+bool BedrockServer::Extension::Handle::ScoreboardIdHandle::operator==(BedrockServer::Extension::Handle::ScoreboardIdHandle^ __op, BedrockServer::Extension::Handle::ScoreboardIdHandle^ _0)
 {
     bool __opNull = ReferenceEquals(__op, nullptr);
     bool _0Null = ReferenceEquals(_0, nullptr);
@@ -71,24 +71,24 @@ bool BedrockServer::Extension::ScoreboardId::operator==(BedrockServer::Extension
     return __ret;
 }
 
-bool BedrockServer::Extension::ScoreboardId::Equals(::System::Object^ obj)
+bool BedrockServer::Extension::Handle::ScoreboardIdHandle::Equals(::System::Object^ obj)
 {
-    return this == safe_cast<BedrockServer::Extension::ScoreboardId^>(obj);
+    return this == safe_cast<BedrockServer::Extension::Handle::ScoreboardIdHandle^>(obj);
 }
 
-BedrockServer::Extension::ScoreboardId::operator BedrockServer::Extension::ScoreboardId ^ (long long _0) {
+BedrockServer::Extension::Handle::ScoreboardIdHandle::operator BedrockServer::Extension::Handle::ScoreboardIdHandle ^ (long long _0) {
     auto __ret = (::ScoreboardId)_0;
     auto ____ret = new struct ::ScoreboardId(__ret);
-    return (____ret == nullptr) ? nullptr : gcnew ::BedrockServer::Extension::ScoreboardId((struct ::ScoreboardId*)____ret, true);
+    return (____ret == nullptr) ? nullptr : gcnew ::BedrockServer::Extension::Handle::ScoreboardIdHandle((struct ::ScoreboardId*)____ret, true);
 }
 
-unsigned long long BedrockServer::Extension::ScoreboardId::Hash::get()
+unsigned long long BedrockServer::Extension::Handle::ScoreboardIdHandle::Hash::get()
 {
     auto __ret = NativePtr->getHash();
     return __ret;
 }
 
-bool BedrockServer::Extension::ScoreboardId::IsValid::get()
+bool BedrockServer::Extension::Handle::ScoreboardIdHandle::IsValid::get()
 {
     auto __ret = NativePtr->isValid();
     return __ret;

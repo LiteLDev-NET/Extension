@@ -5,12 +5,12 @@
 #pragma make_public(::MobEffect)
 
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
     public
-    ref class MobEffect : SafeHandle, ICppClass
+    ref class MobEffectHandle : SafeHandle, ICppClass
     {
-        DEFAULT_DEF(MobEffect, ::MobEffect)
+        DEFAULT_DEF(MobEffectHandle, ::MobEffect)
     public:
         enum class EffectType : short
         {
@@ -46,10 +46,10 @@ namespace BedrockServer::Extension
             VillageHero = 29,
         };
 
-        ref class FactorCalculationData : SafeHandle, ICppClass
+        ref class FactorCalculationDataHandle : SafeHandle, ICppClass
         {
-            DEFAULT_DEF(FactorCalculationData, ::MobEffect::FactorCalculationData)
+            DEFAULT_DEF(FactorCalculationDataHandle, ::MobEffect::FactorCalculationData)
         public:
         };
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

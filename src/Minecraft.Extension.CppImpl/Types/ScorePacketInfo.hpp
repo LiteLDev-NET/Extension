@@ -3,16 +3,16 @@
 #include "Types.hpp"
 #include "IdentityDefinition.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class ScoreboardId;
+    ref class ScoreboardIdHandle;
 }
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref struct ScorePacketInfo : SafeHandle, ICppClass
+    public ref struct ScorePacketInfoHandle : SafeHandle, ICppClass
     {
-        DEFAULT_DEF(ScorePacketInfo, ::ScorePacketInfo)
+        DEFAULT_DEF(ScorePacketInfoHandle, ::ScorePacketInfo)
     public:
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

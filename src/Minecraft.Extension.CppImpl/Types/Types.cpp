@@ -55,4 +55,4 @@ namespace BedrockServer
     {
         return _this->id;
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

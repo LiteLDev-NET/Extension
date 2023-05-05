@@ -1,7 +1,8 @@
 #include "BoundingBox.hpp"
 
 
-namespace BedrockServer::Extension {
+namespace BedrockServer
+{
 
     inline BedrockServer::AABB BoundingBox::ToAABB()
     {

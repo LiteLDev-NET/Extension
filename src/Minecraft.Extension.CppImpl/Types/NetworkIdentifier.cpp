@@ -1,8 +1,8 @@
 #include "NetworkIdentifier.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    inline String^ NetworkIdentifier::IP::get()
+    inline String^ NetworkIdentifierHandle::IP::get()
     {
         return marshalString(NativePtr->getIP());
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

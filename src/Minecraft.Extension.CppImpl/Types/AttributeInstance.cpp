@@ -1,95 +1,95 @@
 ﻿#include "AttributeInstance.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    AttributeInstance::AttributeInstance(AttributeInstance^ attr)
+    AttributeInstanceHandle::AttributeInstanceHandle(AttributeInstanceHandle^ attr)
         :SafeHandle(nint_t::Zero, true)
     {
         OwnsNativeInstance = true;
         NativePtr = new ::AttributeInstance(*attr->NativePtr);
     }
 
-    AttributeInstance::AttributeInstance()
+    AttributeInstanceHandle::AttributeInstanceHandle()
         :SafeHandle(nint_t::Zero, true)
     {
         OwnsNativeInstance = true;
         NativePtr = new ::AttributeInstance();
     }
 
-    Attribute^ AttributeInstance::Attribute::get()
+    AttributeHandle^ AttributeInstanceHandle::AttributeHandle::get()
     {
-        return gcnew BedrockServer::Extension::Attribute(const_cast<::Attribute*>(NativePtr->getAttribute()));
+        return gcnew BedrockServer::Extension::Handle::AttributeHandle(const_cast<::Attribute*>(NativePtr->getAttribute()));
     }
 
-    float AttributeInstance::CurrentValue::get()
+    float AttributeInstanceHandle::CurrentValue::get()
     {
         return NativePtr->getCurrentValue();
     }
 
-    void AttributeInstance::CurrentValue::set(float value)
+    void AttributeInstanceHandle::CurrentValue::set(float value)
     {
         NativePtr->setCurrentValue(value);
     }
 
-    float AttributeInstance::MaxValue::get()
+    float AttributeInstanceHandle::MaxValue::get()
     {
         return NativePtr->getMaxValue();
     }
 
-    void AttributeInstance::MaxValue::set(float value)
+    void AttributeInstanceHandle::MaxValue::set(float value)
     {
         NativePtr->setMaxValue(value);
     }
 
-    float AttributeInstance::MinValue::get()
+    float AttributeInstanceHandle::MinValue::get()
     {
         return NativePtr->getMinValue();
     }
 
-    bool AttributeInstance::IsValid::get()
+    bool AttributeInstanceHandle::IsValid::get()
     {
         return NativePtr->isValid();
     }
 
-    bool AttributeInstance::HasModifiers::get()
+    bool AttributeInstanceHandle::HasModifiers::get()
     {
         return NativePtr->hasModifiers();
     }
 
-    bool AttributeInstance::HasTemporalBuffs::get()
+    bool AttributeInstanceHandle::HasTemporalBuffs::get()
     {
         return NativePtr->hasTemporalBuffs();
     }
 
-    void AttributeInstance::AddModifier(AttributeModifier^ modifier)
+    void AttributeInstanceHandle::AddModifier(AttributeModifierHandle^ modifier)
     {
         NativePtr->addModifier(*modifier->NativePtr);
     }
 
-    float AttributeInstance::GetDefaultValue(AttributeValueType type)
+    float AttributeInstanceHandle::GetDefaultValue(AttributeValueType type)
     {
         return NativePtr->getDefaultValue(static_cast<int>(type));
     }
 
-    AttributeModifier^ AttributeInstance::GetModifier(Mce::UUID id)
+    AttributeModifierHandle^ AttributeInstanceHandle::GetModifier(Mce::UUID id)
     {
-        return gcnew AttributeModifier(&NativePtr->getModifier(*(::mce::UUID*)&id));
+        return gcnew AttributeModifierHandle(&NativePtr->getModifier(*(::mce::UUID*)&id));
     }
 
-    array<AttributeModifier^>^ AttributeInstance::GetModifiers()
+    array<AttributeModifierHandle^>^ AttributeInstanceHandle::GetModifiers()
     {
         auto modifiers = NativePtr->getModifiers();
-        auto result = gcnew array<AttributeModifier^>(static_cast<int>(modifiers.size()));
+        auto result = gcnew array<AttributeModifierHandle^>(static_cast<int>(modifiers.size()));
 
         for (int i = 0; i < modifiers.size(); ++i)
         {
-            result[i] = gcnew AttributeModifier(&modifiers[i]);
+            result[i] = gcnew AttributeModifierHandle(&modifiers[i]);
         }
 
         return result;
     }
 
-    bool AttributeInstance::HasModifier(AttributeModifier^ modifier)
+    bool AttributeInstanceHandle::HasModifier(AttributeModifierHandle^ modifier)
     {
         for (auto& temp : NativePtr->getModifiers())
         {
@@ -100,99 +100,99 @@ namespace BedrockServer::Extension
         return false;
     }
 
-    bool AttributeInstance::HasModifier(Mce::UUID id)
+    bool AttributeInstanceHandle::HasModifier(Mce::UUID id)
     {
         return NativePtr->hasModifier(*(::mce::UUID*)&id);
     }
 
-    void AttributeInstance::Notify(long long _0)
+    void AttributeInstanceHandle::Notify(long long _0)
     {
         NativePtr->notify(_0);
     }
 
-    void AttributeInstance::RecalculateModifiers()
+    void AttributeInstanceHandle::RecalculateModifiers()
     {
         NativePtr->recalculateModifiers();
     }
 
-    void AttributeInstance::RegisterListener(AttributeInstance^ attr)
+    void AttributeInstanceHandle::RegisterListener(AttributeInstanceHandle^ attr)
     {
         NativePtr->registerListener(*attr->NativePtr);
     }
 
-    void AttributeInstance::RemoveBuffs()
+    void AttributeInstanceHandle::RemoveBuffs()
     {
         NativePtr->removeBuffs();
     }
 
-    void AttributeInstance::RemoveModifier(AttributeModifier^ modifier)
+    void AttributeInstanceHandle::RemoveModifier(AttributeModifierHandle^ modifier)
     {
         NativePtr->removeModifier(*modifier->NativePtr);
     }
 
-    bool AttributeInstance::RemoveModifier(Mce::UUID id)
+    bool AttributeInstanceHandle::RemoveModifier(Mce::UUID id)
     {
         return NativePtr->removeModifier(*(::mce::UUID*)&id);
     }
 
-    void AttributeInstance::RemoveModifiers()
+    void AttributeInstanceHandle::RemoveModifiers()
     {
         NativePtr->removeModifiers();
     }
 
-    void AttributeInstance::ResetToDefaultValue()
+    void AttributeInstanceHandle::ResetToDefaultValue()
     {
         NativePtr->resetToDefaultValue();
     }
 
-    void AttributeInstance::ResetToMaxValue()
+    void AttributeInstanceHandle::ResetToMaxValue()
     {
         NativePtr->resetToMaxValue();
     }
 
-    void AttributeInstance::ResetToMinValue()
+    void AttributeInstanceHandle::ResetToMinValue()
     {
         NativePtr->resetToMinValue();
     }
 
-    void AttributeInstance::SerializationSetRange(float min, float defaultCurrent, float max)
+    void AttributeInstanceHandle::SerializationSetRange(float min, float defaultCurrent, float max)
     {
         NativePtr->serializationSetRange(min, defaultCurrent, max);
     }
 
-    void AttributeInstance::SerializationSetValue(float value, AttributeValueType type, float limit)
+    void AttributeInstanceHandle::SerializationSetValue(float value, AttributeValueType type, float limit)
     {
         NativePtr->serializationSetValue(value, static_cast<int>(type), limit);
     }
 
-    void AttributeInstance::SetDefaultValue(float value, AttributeValueType type)
+    void AttributeInstanceHandle::SetDefaultValue(float value, AttributeValueType type)
     {
         NativePtr->setDefaultValue(value, static_cast<int>(type));
     }
 
-    void AttributeInstance::SetDefaultValueOnly(float value)
+    void AttributeInstanceHandle::SetDefaultValueOnly(float value)
     {
         NativePtr->setDefaultValueOnly(value);
     }
 
-    void AttributeInstance::SetRange(float min, float current, float max)
+    void AttributeInstanceHandle::SetRange(float min, float current, float max)
     {
         NativePtr->setRange(min, current, max);
     }
 
-    void AttributeInstance::UpdateModifier(AttributeModifier^ modifier)
+    void AttributeInstanceHandle::UpdateModifier(AttributeModifierHandle^ modifier)
     {
         NativePtr->updateModifier(*modifier->NativePtr);
     }
 
-    bool AttributeInstance::Equals(AttributeInstance^ other)
+    bool AttributeInstanceHandle::Equals(AttributeInstanceHandle^ other)
     {
         return NativePtr == other->NativePtr;
     }
 
-    bool AttributeInstance::Equals(Object^ other)
+    bool AttributeInstanceHandle::Equals(Object^ other)
     {
-        AttributeInstance^ otherModifier = dynamic_cast<AttributeInstance^>(other);
+        AttributeInstanceHandle^ otherModifier = dynamic_cast<AttributeInstanceHandle^>(other);
         return otherModifier != nullptr && Equals(otherModifier);
     }
 }

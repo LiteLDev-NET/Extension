@@ -2,34 +2,34 @@
 #include <mc/HitResult.hpp>
 #include "Types.hpp"
 
-namespace BedrockServer::Extension {
+namespace BedrockServer::Extension::Handle {
     public enum class HitResultType :int {
         TILE = 0,
         ENTITY,
         ENTITY_OUT_OF_RANGE,
         NO_HIT,
     };
-    ref class Actor;
+    ref class ActorHandle;
 }
 
-namespace BedrockServer::Extension {
-    public ref class HitResult :SafeHandle, ICppClass
+namespace BedrockServer::Extension::Handle {
+    public ref class HitResultHandle :SafeHandle, ICppClass
     {
-    internal: HitResult(::HitResult* ptr) :SafeHandle(nint_t::Zero, true) {
+    internal: HitResultHandle(::HitResult* ptr) :SafeHandle(nint_t::Zero, true) {
         NativePointer = nint_t(ptr); OwnsNativeInstance = false;
-    } HitResult(::HitResult* ptr, bool ownsinstance) :SafeHandle(nint_t::Zero, true) {
+    } HitResultHandle(::HitResult* ptr, bool ownsinstance) :SafeHandle(nint_t::Zero, true) {
         NativePointer = nint_t(ptr); OwnsNativeInstance = ownsinstance;
     } operator ::HitResult* () {
         return reinterpret_cast<::HitResult*>((void*)NativePointer);
-    } static operator HitResult ^ (::HitResult* ptr) {
-        return gcnew HitResult(ptr);
+    } static operator HitResultHandle ^ (::HitResult* ptr) {
+        return gcnew HitResultHandle(ptr);
     } property ::HitResult* NativePtr { ::HitResult* get() {
         return reinterpret_cast<::HitResult*>((void*)NativePointer);
     } void set(::HitResult* value) {
         NativePointer = static_cast<nint_t>((void*)value);
     } } static size_t classSize = 0; public: static void SetClassSize(size_t size) {
         classSize = size;
-    } HitResult(nint_t ptr, bool ownInstance) :SafeHandle(nint_t::Zero, true) {
+    } HitResultHandle(nint_t ptr, bool ownInstance) :SafeHandle(nint_t::Zero, true) {
         NativePointer = ptr; OwnsNativeInstance = OwnsNativeInstance;
     } virtual property nint_t NativePointer { nint_t get() {
         return handle;
@@ -53,20 +53,20 @@ namespace BedrockServer::Extension {
         property BedrockServer::BlockPos BlockPos { BedrockServer::BlockPos get(); }
         property BedrockServer::BlockPos LiquidPos { BedrockServer::BlockPos get(); }
         property FaceID LiquidFacing { FaceID get(); }
-        //property BedrockServer::Extension::HitResultType HitResultType { BedrockServer::Extension::HitResultType get(); }
+        //property BedrockServer::Extension::Handle::HitResultType HitResultType { BedrockServer::Extension::Handle::HitResultType get(); }
     public:
-        HitResult(HitResult% obj);
-        HitResult(Vec3 v1, Vec3 v2, Vec3 v3);
-        HitResult(Vec3 v1, Vec3 v2, Actor^ ac, Vec3 v3);
-        HitResult(Vec3 v1, Vec3 v2, Actor^ ac);
-        HitResult(Vec3 v1, Vec3 v2, BedrockServer::BlockPos pos, unsigned char b, Vec3 v3);
-        HitResult();
+        HitResultHandle(HitResultHandle% obj);
+        HitResultHandle(Vec3 v1, Vec3 v2, Vec3 v3);
+        HitResultHandle(Vec3 v1, Vec3 v2, ActorHandle^ ac, Vec3 v3);
+        HitResultHandle(Vec3 v1, Vec3 v2, ActorHandle^ ac);
+        HitResultHandle(Vec3 v1, Vec3 v2, BedrockServer::BlockPos pos, unsigned char b, Vec3 v3);
+        HitResultHandle();
     public:
         //void __AutoClassInit2(unsigned __int64 a1);
-        float DistanceTo(Actor^ ac);
-        Actor^ GetEntity();
+        float DistanceTo(ActorHandle^ ac);
+        ActorHandle^ GetEntity();
         property bool IsHit { bool get(); };
     public:
-        HitResult^ operator=(HitResult^ obj);
+        HitResultHandle^ operator=(HitResultHandle^ obj);
     };
 }

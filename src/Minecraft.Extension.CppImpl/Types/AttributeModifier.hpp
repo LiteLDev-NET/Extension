@@ -2,7 +2,7 @@
 #include <mc/AttributeModifier.hpp>
 #include "Types.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
     public enum class AttributeModifierOperation
     {
@@ -21,23 +21,23 @@ namespace BedrockServer::Extension
         Invalid
     };
 
-    public ref class AttributeModifier :SafeHandle, ICppClass
+    public ref class AttributeModifierHandle :SafeHandle, ICppClass
     {
-    internal: AttributeModifier(::AttributeModifier* ptr) :SafeHandle(nint_t::Zero, true) {
+    internal: AttributeModifierHandle(::AttributeModifier* ptr) :SafeHandle(nint_t::Zero, true) {
         NativePointer = nint_t(ptr); OwnsNativeInstance = false;
-    } AttributeModifier(::AttributeModifier* ptr, bool ownsinstance) :SafeHandle(nint_t::Zero, true) {
+    } AttributeModifierHandle(::AttributeModifier* ptr, bool ownsinstance) :SafeHandle(nint_t::Zero, true) {
         NativePointer = nint_t(ptr); OwnsNativeInstance = ownsinstance;
     } operator ::AttributeModifier* () {
         return reinterpret_cast<::AttributeModifier*>((void*)NativePointer);
-    } static operator AttributeModifier ^ (::AttributeModifier* ptr) {
-        return gcnew AttributeModifier(ptr);
+    } static operator AttributeModifierHandle ^ (::AttributeModifier* ptr) {
+        return gcnew AttributeModifierHandle(ptr);
     } property ::AttributeModifier* NativePtr { ::AttributeModifier* get() {
         return reinterpret_cast<::AttributeModifier*>((void*)NativePointer);
     } void set(::AttributeModifier* value) {
         NativePointer = static_cast<nint_t>((void*)value);
     } } static size_t classSize = 0; public: static void SetClassSize(size_t size) {
         classSize = size;
-    } AttributeModifier(nint_t ptr, bool ownInstance) :SafeHandle(nint_t::Zero, true) {
+    } AttributeModifierHandle(nint_t ptr, bool ownInstance) :SafeHandle(nint_t::Zero, true) {
         NativePointer = ptr; OwnsNativeInstance = OwnsNativeInstance;
     } virtual property nint_t NativePointer { nint_t get() {
         return handle;
@@ -54,8 +54,8 @@ namespace BedrockServer::Extension
     } }
     public:
 
-        AttributeModifier();
-        AttributeModifier(Mce::UUID id, String^ name, float amount, AttributeModifierOperation operation,
+        AttributeModifierHandle();
+        AttributeModifierHandle(Mce::UUID id, String^ name, float amount, AttributeModifierOperation operation,
             AttributeOperands operand, bool isSerializable);
 
         property Mce::UUID Id { Mce::UUID get(); void set(Mce::UUID value); }
@@ -68,7 +68,7 @@ namespace BedrockServer::Extension
         property AttributeOperands Operand { AttributeOperands get(); void set(AttributeOperands value); }
         property bool IsSerializable { bool get(); void set(bool value); }
 
-        virtual bool Equals(AttributeModifier^ other);
+        virtual bool Equals(AttributeModifierHandle^ other);
         bool Equals(Object^ other) override;
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

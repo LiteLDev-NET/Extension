@@ -1,34 +1,34 @@
 #include "IntTag.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    inline int^ IntTag::Value()
+    inline int^ IntTagHandle::Value()
     {
         return NativePtr->value();
     }
 
-    inline IntTag^ IntTag::operator=(int val)
+    inline IntTagHandle^ IntTagHandle::operator=(int val)
     {
         *NativePtr = val;
         return this;
     }
 
-    inline IntTag^ IntTag::Create()
+    inline IntTagHandle^ IntTagHandle::Create()
     {
-        return gcnew IntTag(::IntTag::create().release(), true);
+        return gcnew IntTagHandle(::IntTag::create().release(), true);
     }
 
-    inline IntTag^ IntTag::Create(int val)
+    inline IntTagHandle^ IntTagHandle::Create(int val)
     {
-        return gcnew IntTag(::IntTag::create(val).release(), true);
+        return gcnew IntTagHandle(::IntTag::create(val).release(), true);
     }
 
-    inline bool IntTag::Set(int val)
+    inline bool IntTagHandle::Set(int val)
     {
         return NativePtr->set(val);
     }
 
-    inline short IntTag::Get()
+    inline short IntTagHandle::Get()
     {
         return NativePtr->get();
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

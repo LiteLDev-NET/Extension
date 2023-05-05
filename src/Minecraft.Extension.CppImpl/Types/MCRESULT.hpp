@@ -2,11 +2,11 @@
 #include <mc/MCRESULT.hpp>
 #include "Types.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref struct MCRESULT : SafeHandle , ICppClass
+    public ref struct MCRESULTHandle : SafeHandle , ICppClass
     {
-        DEFAULT_DEF(MCRESULT, ::MCRESULT)
+        DEFAULT_DEF(MCRESULTHandle, ::MCRESULT)
     public:
         property array<unsigned char>^ Filler {
             inline array<unsigned char>^ get();
@@ -16,4 +16,4 @@ namespace BedrockServer::Extension
         inline int GetFullCode();
         inline bool IsSuccess();
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

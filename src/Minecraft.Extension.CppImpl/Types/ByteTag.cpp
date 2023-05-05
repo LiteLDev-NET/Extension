@@ -1,29 +1,29 @@
 #include "ByteTag.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-inline unsigned char ByteTag::Value()
+inline unsigned char ByteTagHandle::Value()
 {
     return NativePtr->value();
 }
 
-inline ByteTag ^ ByteTag::operator=(unsigned char val)
+inline ByteTagHandle ^ ByteTagHandle::operator=(unsigned char val)
 {
     *NativePtr = val;
     return this;
 }
 
-inline ByteTag ^ ByteTag::Create()
+inline ByteTagHandle ^ ByteTagHandle::Create()
 {
-    return gcnew ByteTag(::ByteTag::create().release(), true);
+    return gcnew ByteTagHandle(::ByteTag::create().release(), true);
 }
 
-inline bool ByteTag::Set(unsigned char val)
+inline bool ByteTagHandle::Set(unsigned char val)
 {
     return NativePtr->set(val);
 }
 
-inline unsigned char ByteTag::Get()
+inline unsigned char ByteTagHandle::Get()
 {
     return NativePtr->get();
 }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

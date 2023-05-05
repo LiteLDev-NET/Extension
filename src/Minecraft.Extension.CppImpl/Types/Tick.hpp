@@ -2,13 +2,13 @@
 #include <mc/Tick.hpp>
 #include "Types.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
 
     public
-    ref struct Tick : SafeHandle, ICppClass
+    ref struct TickHandle : SafeHandle, ICppClass
     {
-        DEFAULT_DEF(Tick, ::Tick)
+        DEFAULT_DEF(TickHandle, ::Tick)
 
             property unsigned long long T
         {
@@ -19,4 +19,4 @@ namespace BedrockServer::Extension
         }
     };
 
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

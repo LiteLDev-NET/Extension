@@ -7,30 +7,30 @@ namespace BedrockServer
     value class BlockInstance;
 }
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class MapItemSavedData;
-    ref class BlockPalette;
-    ref class ActorDamageSource;
-    ref class Packet;
-    ref class ItemStack;
-    ref class Block;
-    ref class BlockSource;
-    ref class BlockActor;
-    ref class CompoundTag;
-    ref class Container;
-    ref class Dimension;
-    ref class Player;
-    ref class Actor;
-} // namespace BedrockServer::Extension
+    ref class MapItemSavedDataHandle;
+    ref class BlockPaletteHandle;
+    ref class ActorDamageSourceHandle;
+    ref class PacketHandle;
+    ref class ItemStackHandle;
+    ref class BlockHandle;
+    ref class BlockSourceHandle;
+    ref class BlockActorHandle;
+    ref class CompoundTagHandle;
+    ref class ContainerHandle;
+    ref class DimensionHandle;
+    ref class PlayerHandle;
+    ref class ActorHandle;
+} // namespace BedrockServer::Extension::Handle
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class Level : SafeHandle , ICppClass
+    public ref class LevelHandle : SafeHandle , ICppClass
     {
-        DEFAULT_DEF(Level, ::Level)
+        DEFAULT_DEF(LevelHandle, ::Level)
     public:
-        delegate bool Callback(Player^);
+        delegate bool Callback(PlayerHandle^);
 
     private:
         // inline static void forEachPlayer(Callback^ callback);
@@ -42,61 +42,61 @@ namespace BedrockServer::Extension
 
     public:
         inline /*static*/ void ForEachPlayer(Callback^ callback);
-        inline static array<Player^>^ GetAllPlayers();
+        inline static array<PlayerHandle^>^ GetAllPlayers();
         inline static void* __GetAllPlayers();
         /// name or xuid
-        inline /*static*/ Player^ GetPlayer(String^ info);
+        inline /*static*/ PlayerHandle^ GetPlayer(String^ info);
         /// UniqueID
-        inline /*static*/ Player^ GetPlayer(ActorUniqueID id);
-        inline static Actor^ GetEntity(ActorUniqueID id);
-        inline Actor^ GetRuntimeEntity(ActorRuntimeID id, bool _);
-        inline Player^ GetRuntimePlayer(ActorRuntimeID id);
-        inline static array<Actor^>^ GetAllEntities(int dimId);
-        inline static array<Actor^>^ GetAllEntities();
-        inline static Actor^ SpawnMob(Vec3 pos, int dimId, String^ typeName);
-        inline static Actor^ SpawnItem(Vec3 pos, int dimId, ItemStack^ item);
-        inline static bool CreateExplosion(Vec3 pos, int dimId, Actor^ source, float radius, bool createFire, bool canBreak, float maxResistance);
-        inline static bool CreateExplosion(Vec3 pos, int dimId, Actor^ source, float radius, bool createFire, bool canBreak);
-        inline /*static*/ BedrockServer::Extension::MapItemSavedData^ GetMapSavedData(ActorUniqueID^ a0);
-        inline static Actor^ CloneMob(Vec3 pos, int dimid, Actor^ ac);
+        inline /*static*/ PlayerHandle^ GetPlayer(ActorUniqueID id);
+        inline static ActorHandle^ GetEntity(ActorUniqueID id);
+        inline ActorHandle^ GetRuntimeEntity(ActorRuntimeID id, bool _);
+        inline PlayerHandle^ GetRuntimePlayer(ActorRuntimeID id);
+        inline static array<ActorHandle^>^ GetAllEntities(int dimId);
+        inline static array<ActorHandle^>^ GetAllEntities();
+        inline static ActorHandle^ SpawnMob(Vec3 pos, int dimId, String^ typeName);
+        inline static ActorHandle^ SpawnItem(Vec3 pos, int dimId, ItemStackHandle^ item);
+        inline static bool CreateExplosion(Vec3 pos, int dimId, ActorHandle^ source, float radius, bool createFire, bool canBreak, float maxResistance);
+        inline static bool CreateExplosion(Vec3 pos, int dimId, ActorHandle^ source, float radius, bool createFire, bool canBreak);
+        inline /*static*/ BedrockServer::Extension::Handle::MapItemSavedDataHandle^ GetMapSavedData(ActorUniqueID^ a0);
+        inline static ActorHandle^ CloneMob(Vec3 pos, int dimid, ActorHandle^ ac);
 
         // Block
-        inline static Block^ GetBlock(BlockPos pos, int dimId);
-        inline static Block^ GetBlock(BlockPos pos, BlockSource^ blockSource);
-        inline static Block^ GetBlockEx(BlockPos pos, int dimId);
+        inline static BlockHandle^ GetBlock(BlockPos pos, int dimId);
+        inline static BlockHandle^ GetBlock(BlockPos pos, BlockSourceHandle^ blockSource);
+        inline static BlockHandle^ GetBlockEx(BlockPos pos, int dimId);
         inline static BedrockServer::BlockInstance GetBlockInstance(BedrockServer::BlockPos pos, int dimId);
-        inline static BedrockServer::BlockInstance GetBlockInstance(BedrockServer::BlockPos pos, BlockSource^ blockSource);
-        inline static BlockActor^ GetBlockEntity(BlockPos pos, int dimId);
-        inline static BlockActor^ GetBlockEntity(BlockPos pos, BlockSource^ blockSource);
-        inline static bool SetBlock(BlockPos pos, int dim, Block^ block);
+        inline static BedrockServer::BlockInstance GetBlockInstance(BedrockServer::BlockPos pos, BlockSourceHandle^ blockSource);
+        inline static BlockActorHandle^ GetBlockEntity(BlockPos pos, int dimId);
+        inline static BlockActorHandle^ GetBlockEntity(BlockPos pos, BlockSourceHandle^ blockSource);
+        inline static bool SetBlock(BlockPos pos, int dim, BlockHandle^ block);
         inline static bool SetBlock(BlockPos pos, int dim, String^ name, unsigned short tileData);
-        inline static bool SetBlock(BlockPos pos, int dim, CompoundTag^ nbt);
-        inline static bool BreakBlockNaturally(BlockSource^ bs, BlockPos pos);
-        inline static bool BreakBlockNaturally(BlockSource^ bs, BlockPos pos, ItemStack^ tool);
-        inline /*static*/ bool DestroyBlock(BlockSource^ bs, BlockPos pos, bool a2);
-        inline /*static*/ void SpawnParticleEffect(String^ type, Vec3 pos, Dimension^ a2);
+        inline static bool SetBlock(BlockPos pos, int dim, CompoundTagHandle^ nbt);
+        inline static bool BreakBlockNaturally(BlockSourceHandle^ bs, BlockPos pos);
+        inline static bool BreakBlockNaturally(BlockSourceHandle^ bs, BlockPos pos, ItemStackHandle^ tool);
+        inline /*static*/ bool DestroyBlock(BlockSourceHandle^ bs, BlockPos pos, bool a2);
+        inline /*static*/ void SpawnParticleEffect(String^ type, Vec3 pos, DimensionHandle^ a2);
         //inline static void SpawnParticleEffect(String ^ type, Actor ^ a1, Vec3 a2);
         inline static bool HasContainer(Vec3 pos, int dim);
-        inline static Container^ GetContainer(Vec3 pos, int dim);
+        inline static ContainerHandle^ GetContainer(Vec3 pos, int dim);
 
         // Item
-        inline static ItemStack^ GetItemStackFromId(short itemId, int aux);
-        inline static ItemStack^ GetItemStackFromId(short a2);
+        inline static ItemStackHandle^ GetItemStackFromId(short itemId, int aux);
+        inline static ItemStackHandle^ GetItemStackFromId(short a2);
 
         // Helper
-        inline static BlockSource^ GetBlockSource(int dimid);
-        inline static BlockSource^ GetBlockSource(Actor^ actor);
-        inline /*static*/ BlockPalette^ GetBlockPalette();
+        inline static BlockSourceHandle^ GetBlockSource(int dimid);
+        inline static BlockSourceHandle^ GetBlockSource(ActorHandle^ actor);
+        inline /*static*/ BlockPaletteHandle^ GetBlockPalette();
         //inline /*static*/ Dimension ^ GetDimension(AutomaticID<Dimension ^, int> ^ a0);
-        inline static Actor^ GetDamageSourceEntity(ActorDamageSource^ ads);
+        inline static ActorHandle^ GetDamageSourceEntity(ActorDamageSourceHandle^ ads);
         inline static void BroadcastText(String^ text, TextType type);
         inline static void BroadcastTitle(String^ text, TitleType Type, int FadeInDuration, int RemainDuration, int FadeOutDuration);
-        inline static void SendPacketForAllPlayers(Packet^ pkt);
+        inline static void SendPacketForAllPlayers(PacketHandle^ pkt);
 
 
-        ref class ServerCommandOrigin : SafeHandle , ICppClass
+        ref class ServerCommandOriginHandle : SafeHandle , ICppClass
         {
-            DEFAULT_DEF(ServerCommandOrigin, ::Level::ServerCommandOrigin)
+            DEFAULT_DEF(ServerCommandOriginHandle, ::Level::ServerCommandOrigin)
         public:
             property nint_t MyVTBL
             {
@@ -159,8 +159,8 @@ namespace BedrockServer::Extension
 
 
         // For compatibility
-        inline static bool RuncmdAs(Player^ pl, String^ cmd);
+        inline static bool RuncmdAs(PlayerHandle^ pl, String^ cmd);
         inline static System::ValueTuple<bool, String^> RuncmdEx(String^ cmd);
         inline static bool Runcmd(String^ cmd);
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

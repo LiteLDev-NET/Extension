@@ -1,34 +1,34 @@
 #include "DoubleTag.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    inline double^ DoubleTag::Value()
+    inline double^ DoubleTagHandle::Value()
     {
         return NativePtr->value();
     }
 
-    inline DoubleTag^ DoubleTag::operator=(double val)
+    inline DoubleTagHandle^ DoubleTagHandle::operator=(double val)
     {
         *NativePtr = val;
         return this;
     }
 
-    inline DoubleTag^ DoubleTag::Create()
+    inline DoubleTagHandle^ DoubleTagHandle::Create()
     {
-        return gcnew DoubleTag(::DoubleTag::create().release(), true);
+        return gcnew DoubleTagHandle(::DoubleTag::create().release(), true);
     }
 
-    inline DoubleTag^ DoubleTag::Create(double val)
+    inline DoubleTagHandle^ DoubleTagHandle::Create(double val)
     {
-        return gcnew DoubleTag(::DoubleTag::create(val).release(), true);
+        return gcnew DoubleTagHandle(::DoubleTag::create(val).release(), true);
     }
 
-    inline bool DoubleTag::Set(double val)
+    inline bool DoubleTagHandle::Set(double val)
     {
         return NativePtr->set(val);
     }
 
-    inline double DoubleTag::Get()
+    inline double DoubleTagHandle::Get()
     {
         return NativePtr->get();
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

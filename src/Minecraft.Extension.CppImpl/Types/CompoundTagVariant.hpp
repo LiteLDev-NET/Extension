@@ -16,30 +16,30 @@
 
 #include <mc/CompoundTagVariant.hpp>
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class CompoundTagVariant :SafeHandle, ICppClass
+    public ref class CompoundTagVariantHandle :SafeHandle, ICppClass
     {
-        DEFAULT_DEF(CompoundTagVariant, ::CompoundTagVariant)
+        DEFAULT_DEF(CompoundTagVariantHandle, ::CompoundTagVariant)
     public:
 
-        inline Tag^ AsTag();
-        inline ByteTag^ AsByteTag();
-        inline ShortTag^ AsShortTag();
-        inline IntTag^ AsIntTag();
-        inline Int64Tag^ AsInt64Tag();
-        inline FloatTag^ AsFloatTag();
-        inline DoubleTag^ AsDoubleTag();
-        inline StringTag^ AsStringTag();
-        inline ListTag^ AsListTag();
-        inline EndTag^ AsEndTag();
-        inline CompoundTag^ AsCompoundTag();
-        inline ByteArrayTag^ AsByteArrayTag();
-        inline IntArrayTag^ AsIntArrayTag();
+        inline TagHandle^ AsTag();
+        inline ByteTagHandle^ AsByteTag();
+        inline ShortTagHandle^ AsShortTag();
+        inline IntTagHandle^ AsIntTag();
+        inline Int64TagHandle^ AsInt64Tag();
+        inline FloatTagHandle^ AsFloatTag();
+        inline DoubleTagHandle^ AsDoubleTag();
+        inline StringTagHandle^ AsStringTag();
+        inline ListTagHandle^ AsListTag();
+        inline EndTagHandle^ AsEndTag();
+        inline CompoundTagHandle^ AsCompoundTag();
+        inline ByteArrayTagHandle^ AsByteArrayTag();
+        inline IntArrayTagHandle^ AsIntArrayTag();
 
-        property Tag::Type TagType
+        property TagHandle::Type TagType
         {
-            Tag::Type get();
+            TagHandle::Type get();
         };
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

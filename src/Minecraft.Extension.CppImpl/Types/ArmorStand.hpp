@@ -3,17 +3,17 @@
 #include "Types.hpp"
 #include "Mob.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
     public
-    ref class ArmorStand : public Mob
+    ref class ArmorStandHandle : public MobHandle
     {
-        DEFAULT_DEF_OVERRIDE(ArmorStand, ::ArmorStand, Mob)
+        DEFAULT_DEF_OVERRIDE(ArmorStandHandle, ::ArmorStand, MobHandle)
     public:
 
-        ref class Pose : SafeHandle, ICppClass
+        ref class PoseHandle : SafeHandle, ICppClass
         {
-            DEFAULT_DEF(Pose, ::ArmorStand::Pose)
+            DEFAULT_DEF(PoseHandle, ::ArmorStand::Pose)
         };
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

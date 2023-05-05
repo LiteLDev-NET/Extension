@@ -2,25 +2,25 @@
 #include "Tag.hpp"
 #include <mc/ByteArrayTag.hpp>
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref struct TagMemoryChunk;
+    ref struct TagMemoryChunkHandle;
 }
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class ByteArrayTag : public Tag
+    public ref class ByteArrayTagHandle : public TagHandle
     {
-        DEFAULT_DEF_OVERRIDE(ByteArrayTag, ::ByteArrayTag, Tag)
+        DEFAULT_DEF_OVERRIDE(ByteArrayTagHandle, ::ByteArrayTag, TagHandle)
     public:
 
-        inline static ByteArrayTag^ Create();
-        inline static ByteArrayTag^ Create(TagMemoryChunk^ val);
-        inline static ByteArrayTag^ Create(array<char>^ data /*, size_t size*/);
+        inline static ByteArrayTagHandle^ Create();
+        inline static ByteArrayTagHandle^ Create(TagMemoryChunkHandle^ val);
+        inline static ByteArrayTagHandle^ Create(array<char>^ data /*, size_t size*/);
 
-        inline TagMemoryChunk^ Value();
-        inline bool Set(TagMemoryChunk^ val);
-        inline TagMemoryChunk^ Get();
-        inline ByteArrayTag^ operator=(TagMemoryChunk^ val);
+        inline TagMemoryChunkHandle^ Value();
+        inline bool Set(TagMemoryChunkHandle^ val);
+        inline TagMemoryChunkHandle^ Get();
+        inline ByteArrayTagHandle^ operator=(TagMemoryChunkHandle^ val);
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

@@ -21,8 +21,4 @@
     </Reference>
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy /Y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)x64\&quot;" />
-  </Target>
-
 </Project>

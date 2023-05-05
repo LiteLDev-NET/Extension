@@ -4,40 +4,40 @@
 #include "Block.hpp"
 #include "HashedString.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    inline Block^ Block::Create(const String^ str, unsigned short tileData)
+    inline BlockHandle^ BlockHandle::Create(const String^ str, unsigned short tileData)
     {
-        return gcnew Block(::Block::create(marshalString((String^)str), tileData));
+        return gcnew BlockHandle(::Block::create(marshalString((String^)str), tileData));
     }
 
-    inline Block^ Block::Create(CompoundTag^ nbt)
+    inline BlockHandle^ BlockHandle::Create(CompoundTagHandle^ nbt)
     {
-        return gcnew Block(::Block::create(nbt->NativePtr));
+        return gcnew BlockHandle(::Block::create(nbt->NativePtr));
     }
 
-    inline HashedString^ Block::Name::get()
+    inline HashedStringHandle^ BlockHandle::Name::get()
     {
-        return gcnew HashedString(const_cast<::HashedString*>(&NativePtr->getName()));
+        return gcnew HashedStringHandle(const_cast<::HashedString*>(&NativePtr->getName()));
     }
 
-    inline int Block::Id::get()
+    inline int BlockHandle::Id::get()
     {
         return NativePtr->getId();
     }
 
-    inline unsigned short Block::TileData::get()
+    inline unsigned short BlockHandle::TileData::get()
     {
         return NativePtr->getTileData();
     }
 
-    inline CompoundTag^ Block::Nbt::get()
+    inline CompoundTagHandle^ BlockHandle::Nbt::get()
     {
-        return gcnew CompoundTag(NativePtr->getNbt().release(), true);
+        return gcnew CompoundTagHandle(NativePtr->getNbt().release(), true);
     }
 
-    inline void Block::Nbt::set(CompoundTag^ nbt)
+    inline void BlockHandle::Nbt::set(CompoundTagHandle^ nbt)
     {
         NativePtr->setNbt(nbt->NativePtr);
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

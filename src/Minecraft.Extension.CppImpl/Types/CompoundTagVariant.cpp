@@ -15,65 +15,65 @@
 #include "StringTag.hpp"
 #include "Tag.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
 
-    inline Tag::Type CompoundTagVariant::TagType::get()
+    inline TagHandle::Type CompoundTagVariantHandle::TagType::get()
     {
-        return Tag::Type(NativePtr->getTagType());
+        return TagHandle::Type(NativePtr->getTagType());
     }
-    inline Tag^ CompoundTagVariant::AsTag()
+    inline TagHandle^ CompoundTagVariantHandle::AsTag()
     {
-        return gcnew Tag(NativePtr->asTag());
+        return gcnew TagHandle(NativePtr->asTag());
     }
-    inline ByteTag^ CompoundTagVariant::AsByteTag()
+    inline ByteTagHandle^ CompoundTagVariantHandle::AsByteTag()
     {
-        return gcnew ByteTag(NativePtr->asByteTag());
+        return gcnew ByteTagHandle(NativePtr->asByteTag());
     }
-    inline ShortTag^ CompoundTagVariant::AsShortTag()
+    inline ShortTagHandle^ CompoundTagVariantHandle::AsShortTag()
     {
-        return gcnew ShortTag(NativePtr->asShortTag());
+        return gcnew ShortTagHandle(NativePtr->asShortTag());
     }
-    inline IntTag^ CompoundTagVariant::AsIntTag()
+    inline IntTagHandle^ CompoundTagVariantHandle::AsIntTag()
     {
-        return gcnew IntTag(NativePtr->asIntTag());
+        return gcnew IntTagHandle(NativePtr->asIntTag());
     }
-    inline Int64Tag^ CompoundTagVariant::AsInt64Tag()
+    inline Int64TagHandle^ CompoundTagVariantHandle::AsInt64Tag()
     {
-        return gcnew Int64Tag(NativePtr->asInt64Tag());
+        return gcnew Int64TagHandle(NativePtr->asInt64Tag());
     }
-    inline FloatTag^ CompoundTagVariant::AsFloatTag()
+    inline FloatTagHandle^ CompoundTagVariantHandle::AsFloatTag()
     {
-        return gcnew FloatTag(NativePtr->asFloatTag());
+        return gcnew FloatTagHandle(NativePtr->asFloatTag());
     }
-    inline DoubleTag^ CompoundTagVariant::AsDoubleTag()
+    inline DoubleTagHandle^ CompoundTagVariantHandle::AsDoubleTag()
     {
-        return gcnew DoubleTag(NativePtr->asDoubleTag());
+        return gcnew DoubleTagHandle(NativePtr->asDoubleTag());
     }
-    inline StringTag^ CompoundTagVariant::AsStringTag()
+    inline StringTagHandle^ CompoundTagVariantHandle::AsStringTag()
     {
-        return gcnew StringTag(NativePtr->asStringTag());
+        return gcnew StringTagHandle(NativePtr->asStringTag());
     }
-    inline ListTag^ CompoundTagVariant::AsListTag()
+    inline ListTagHandle^ CompoundTagVariantHandle::AsListTag()
     {
-        return gcnew ListTag(NativePtr->asListTag());
+        return gcnew ListTagHandle(NativePtr->asListTag());
     }
-    inline EndTag^ CompoundTagVariant::AsEndTag()
+    inline EndTagHandle^ CompoundTagVariantHandle::AsEndTag()
     {
-        return gcnew EndTag(NativePtr->asEndTag());
-    }
-
-    inline CompoundTag^ CompoundTagVariant::AsCompoundTag()
-    {
-        return gcnew CompoundTag(NativePtr->asCompoundTag());
+        return gcnew EndTagHandle(NativePtr->asEndTag());
     }
 
-    inline ByteArrayTag^ CompoundTagVariant::AsByteArrayTag()
+    inline CompoundTagHandle^ CompoundTagVariantHandle::AsCompoundTag()
     {
-        return gcnew ByteArrayTag(NativePtr->asByteArrayTag());
+        return gcnew CompoundTagHandle(NativePtr->asCompoundTag());
     }
-    inline IntArrayTag^ CompoundTagVariant::AsIntArrayTag()
+
+    inline ByteArrayTagHandle^ CompoundTagVariantHandle::AsByteArrayTag()
     {
-        return gcnew IntArrayTag(NativePtr->asIntArrayTag());
+        return gcnew ByteArrayTagHandle(NativePtr->asByteArrayTag());
     }
-} // namespace BedrockServer::Extension
+    inline IntArrayTagHandle^ CompoundTagVariantHandle::AsIntArrayTag()
+    {
+        return gcnew IntArrayTagHandle(NativePtr->asIntArrayTag());
+    }
+} // namespace BedrockServer::Extension::Handle

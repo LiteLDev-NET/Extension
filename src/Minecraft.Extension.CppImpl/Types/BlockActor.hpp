@@ -2,23 +2,23 @@
 #include <mc/BlockActor.hpp>
 #include "Types.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    ref class Block;
-    ref class CompoundTag;
+    ref class BlockHandle;
+    ref class CompoundTagHandle;
 }
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class BlockActor :SafeHandle, ICppClass
+    public ref class BlockActorHandle :SafeHandle, ICppClass
     {
-        DEFAULT_DEF(BlockActor, ::BlockActor)
+        DEFAULT_DEF(BlockActorHandle, ::BlockActor)
     public:
 
-        inline static int getBlockEntityType(Block^ block);
+        inline static int getBlockEntityType(BlockHandle^ block);
 
         inline bool RefreshData();
-        inline CompoundTag^ GetNbt();
-        inline bool SetNbt(CompoundTag^ nbt);
+        inline CompoundTagHandle^ GetNbt();
+        inline bool SetNbt(CompoundTagHandle^ nbt);
     };
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

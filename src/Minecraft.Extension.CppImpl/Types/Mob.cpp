@@ -1,8 +1,8 @@
 #include "Mob.hpp"
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    inline bool Mob::RefreshInventory()
+    inline bool MobHandle::RefreshInventory()
     {
         return NativePtr->refreshInventory();
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

@@ -16,49 +16,49 @@
 
 #include <mc/Minecraft.hpp>
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    String^ Actor::TypeName::get()
+    String^ ActorHandle::TypeName::get()
     {
         return marshalString(NativePtr->getTypeName());
     }
 
-    inline Vec3 Actor::Position::get()
+    inline Vec3 ActorHandle::Position::get()
     {
         return *(Vec3*)&NativePtr->getPosition();
     }
 
-    inline BlockSource^ Actor::Blocksource::get()
+    inline BlockSourceHandle^ ActorHandle::Blocksource::get()
     {
-        return gcnew BedrockServer::Extension::BlockSource(NativePtr->getBlockSource());
+        return gcnew BedrockServer::Extension::Handle::BlockSourceHandle(NativePtr->getBlockSource());
     }
 
-    inline Vec2% Actor::Direction::get()
+    inline Vec2% ActorHandle::Direction::get()
     {
         return *(Vec2*)NativePtr->getDirection();
     }
 
-    inline ActorUniqueID Actor::ActorUniqueId::get()
+    inline ActorUniqueID ActorHandle::ActorUniqueId::get()
     {
         return NativePtr->getActorUniqueId();
     }
 
-    inline Vec3 Actor::CameraPos::get()
+    inline Vec3 ActorHandle::CameraPos::get()
     {
         return *(Vec3*)&NativePtr->getCameraPos();
     }
 
-    inline Tick^ Actor::LastTick::get()
+    inline TickHandle^ ActorHandle::LastTick::get()
     {
-        return gcnew Tick(NativePtr->getLastTick());
+        return gcnew TickHandle(NativePtr->getLastTick());
     }
 
-    inline BedrockServer::Extension::Level^ Actor::Level::get()
+    inline BedrockServer::Extension::Handle::LevelHandle^ ActorHandle::LevelHandle::get()
     {
-        return gcnew BedrockServer::Extension::Level(&NativePtr->getLevel());
+        return gcnew BedrockServer::Extension::Handle::LevelHandle(&NativePtr->getLevel());
     }
 
-    inline array<String^>^ Actor::GetAllTags()
+    inline array<String^>^ ActorHandle::GetAllTags()
     {
         std::vector<std::string>& stdTags = NativePtr->getAllTags();
         auto len = stdTags.size();
@@ -70,128 +70,128 @@ namespace BedrockServer::Extension
         return Tags;
     }
 
-    inline BlockInstance Actor::GetBlockFromViewVector(bool includeLiquid, bool solidOnly, float maxDistance, bool ignoreBorderBlocks, bool fullOnly)
+    inline BlockInstance ActorHandle::GetBlockFromViewVector(bool includeLiquid, bool solidOnly, float maxDistance, bool ignoreBorderBlocks, bool fullOnly)
     {
         return *(BlockInstance*)&NativePtr->getBlockFromViewVector(includeLiquid, solidOnly, maxDistance, ignoreBorderBlocks, fullOnly);
     }
-    BlockInstance Actor::GetBlockFromViewVector(FaceID face, bool includeLiquid, bool solidOnly, float maxDistance, bool ignoreBorderBlocks, bool fullOnly)
+    BlockInstance ActorHandle::GetBlockFromViewVector(FaceID face, bool includeLiquid, bool solidOnly, float maxDistance, bool ignoreBorderBlocks, bool fullOnly)
     {
         return *(BlockInstance*)&NativePtr->getBlockFromViewVector((::FaceID&)face, includeLiquid, solidOnly, maxDistance, ignoreBorderBlocks, fullOnly);
     }
 
-    inline UserEntityIdentifierComponent^ Actor::UserEntityIdentifierComponent::get()
+    inline UserEntityIdentifierComponentHandle^ ActorHandle::UserEntityIdentifierComponentHandle::get()
     {
-        return gcnew BedrockServer::Extension::UserEntityIdentifierComponent(
+        return gcnew BedrockServer::Extension::Handle::UserEntityIdentifierComponentHandle(
             NativePtr->getUserEntityIdentifierComponent());
     }
 
-    inline Actor^ Actor::GetActorFromViewVector(float maxDistance)
+    inline ActorHandle^ ActorHandle::GetActorFromViewVector(float maxDistance)
     {
-        return gcnew Actor(NativePtr->getActorFromViewVector(maxDistance));
+        return gcnew ActorHandle(NativePtr->getActorFromViewVector(maxDistance));
     }
 
-    inline BlockPos Actor::BlockPos::get()
+    inline BlockPos ActorHandle::BlockPos::get()
     {
         return *(BedrockServer::BlockPos*)&NativePtr->getBlockPos();
     }
 
-    inline BlockInstance Actor::BlockStandingOn::get()
+    inline BlockInstance ActorHandle::BlockStandingOn::get()
     {
         return *(BlockInstance*)&NativePtr->getBlockStandingOn();
     }
 
-    inline bool Actor::IsSimulatedPlayer::get()
+    inline bool ActorHandle::IsSimulatedPlayer::get()
     {
         return NativePtr->isSimulatedPlayer();
     }
-    inline bool Actor::IsPlayer::get()
+    inline bool ActorHandle::IsPlayer::get()
     {
         return NativePtr->isPlayer();
     }
-    inline bool Actor::IsItemActor::get()
+    inline bool ActorHandle::IsItemActor::get()
     {
         return NativePtr->isItemActor();
     }
-    inline bool Actor::IsOnGround::get()
+    inline bool ActorHandle::IsOnGround::get()
     {
         return NativePtr->isOnGround();
     }
-    inline int Actor::DimensionId::get()
+    inline int ActorHandle::DimensionId::get()
     {
         return (int)NativePtr->getDimensionId();
     }
-    inline bool Actor::SetOnFire(int time, bool isEffect)
+    inline bool ActorHandle::SetOnFire(int time, bool isEffect)
     {
         return NativePtr->setOnFire(time, isEffect);
     }
-    inline bool Actor::StopFire()
+    inline bool ActorHandle::StopFire()
     {
         return NativePtr->stopFire();
     }
-    inline bool Actor::HasTag(String^ tag)
+    inline bool ActorHandle::HasTag(String^ tag)
     {
         return NativePtr->hasTag(marshalString(tag));
     }
-    inline bool Actor::HurtEntity(float damage)
+    inline bool ActorHandle::HurtEntity(float damage)
     {
         return NativePtr->hurtEntity(damage);
     }
-    inline bool Actor::Teleport(Vec3 pos, int dimid)
+    inline bool ActorHandle::Teleport(Vec3 pos, int dimid)
     {
         return NativePtr->teleport(*(::Vec3*)&pos, dimid);
     }
-    inline ItemStack^ Actor::HandSlot::get()
+    inline ItemStackHandle^ ActorHandle::HandSlot::get()
     {
-        return gcnew ItemStack(NativePtr->getHandSlot());
+        return gcnew ItemStackHandle(NativePtr->getHandSlot());
     }
-    inline void Actor::HandSlot::set(ItemStack^ item)
+    inline void ActorHandle::HandSlot::set(ItemStackHandle^ item)
     {
         if (!NativePtr->getHandSlot()->setItem(item->NativePtr))
             throw gcnew Exception();
     }
-    inline ItemStack^ Actor::OffhandSlot::get()
+    inline ItemStackHandle^ ActorHandle::OffhandSlot::get()
     {
-        return gcnew ItemStack((::ItemStack*)&NativePtr->getOffhandSlot());
+        return gcnew ItemStackHandle((::ItemStack*)&NativePtr->getOffhandSlot());
     }
-    inline void Actor::OffhandSlot::set(ItemStack^ item)
+    inline void ActorHandle::OffhandSlot::set(ItemStackHandle^ item)
     {
         NativePtr->setOffhandSlot(*item->NativePtr);
     }
-    inline bool Actor::Rename(String^ name)
+    inline bool ActorHandle::Rename(String^ name)
     {
         return NativePtr->rename(marshalString(name));
     }
-    inline float Actor::QuickEvalMolangScript(String^ expression)
+    inline float ActorHandle::QuickEvalMolangScript(String^ expression)
     {
         return NativePtr->quickEvalMolangScript(marshalString(expression));
     }
 
-    inline CompoundTag^ Actor::Nbt::get()
+    inline CompoundTagHandle^ ActorHandle::Nbt::get()
     {
-        return gcnew CompoundTag(NativePtr->getNbt().release(), true);
+        return gcnew CompoundTagHandle(NativePtr->getNbt().release(), true);
     }
-    inline void Actor::Nbt::set(CompoundTag^ nbt)
+    inline void ActorHandle::Nbt::set(CompoundTagHandle^ nbt)
     {
         NativePtr->setNbt(nbt->NativePtr);
     }
-    inline bool Actor::RefreshActorData()
+    inline bool ActorHandle::RefreshActorData()
     {
         return NativePtr->refreshActorData();
     }
-    inline bool Actor::AddEffect(MobEffect::EffectType type, int tick, int level, bool ambient, bool showParticles, bool showAnimation)
+    inline bool ActorHandle::AddEffect(MobEffectHandle::EffectType type, int tick, int level, bool ambient, bool showParticles, bool showAnimation)
     {
         return NativePtr->addEffect(::MobEffect::EffectType(type), tick, level, ambient, showParticles, showAnimation);
     }
-    inline bool Actor::AddEffect(MobEffect::EffectType type, int tick, int level, bool ambient, bool showParticles)
+    inline bool ActorHandle::AddEffect(MobEffectHandle::EffectType type, int tick, int level, bool ambient, bool showParticles)
     {
         return NativePtr->addEffect(::MobEffect::EffectType(type), tick, level, ambient, showParticles);
     }
-    inline bool Actor::AddEffect(MobEffect::EffectType type, int tick, int level, bool ambient)
+    inline bool ActorHandle::AddEffect(MobEffectHandle::EffectType type, int tick, int level, bool ambient)
     {
         return NativePtr->addEffect(::MobEffect::EffectType(type), tick, level, ambient);
     }
-    inline bool Actor::AddEffect(MobEffect::EffectType type, int tick, int level)
+    inline bool ActorHandle::AddEffect(MobEffectHandle::EffectType type, int tick, int level)
     {
         return NativePtr->addEffect(::MobEffect::EffectType(type), tick, level);
     }
-} // namespace BedrockServer::Extension
+} // namespace BedrockServer::Extension::Handle

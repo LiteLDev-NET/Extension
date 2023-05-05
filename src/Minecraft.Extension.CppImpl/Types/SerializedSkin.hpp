@@ -4,25 +4,25 @@
 #include "ReadOnlyBinaryStream.hpp"
 #include "BinaryStream.hpp"
 
-namespace BedrockServer::Extension
+namespace BedrockServer::Extension::Handle
 {
-    public ref class SerializedSkin : SafeHandle, ICppClass
+    public ref class SerializedSkinHandle : SafeHandle, ICppClass
     {
-    internal: SerializedSkin(::SerializedSkin* ptr) :SafeHandle(nint_t::Zero, true) {
+    internal: SerializedSkinHandle(::SerializedSkin* ptr) :SafeHandle(nint_t::Zero, true) {
         NativePointer = nint_t(ptr); OwnsNativeInstance = false;
-    } SerializedSkin(::SerializedSkin* ptr, bool ownsinstance) :SafeHandle(nint_t::Zero, true) {
+    } SerializedSkinHandle(::SerializedSkin* ptr, bool ownsinstance) :SafeHandle(nint_t::Zero, true) {
         NativePointer = nint_t(ptr); OwnsNativeInstance = ownsinstance;
     } operator ::SerializedSkin* () {
         return reinterpret_cast<::SerializedSkin*>((void*)NativePointer);
-    } static operator SerializedSkin ^ (::SerializedSkin* ptr) {
-        return gcnew SerializedSkin(ptr);
+    } static operator SerializedSkinHandle ^ (::SerializedSkin* ptr) {
+        return gcnew SerializedSkinHandle(ptr);
     } property ::SerializedSkin* NativePtr { ::SerializedSkin* get() {
         return reinterpret_cast<::SerializedSkin*>((void*)NativePointer);
     } void set(::SerializedSkin* value) {
         NativePointer = static_cast<nint_t>((void*)value);
     } } static size_t classSize = 0; public: static void SetClassSize(size_t size) {
         classSize = size;
-    } SerializedSkin(nint_t ptr, bool ownInstance) :SafeHandle(nint_t::Zero, true) {
+    } SerializedSkinHandle(nint_t ptr, bool ownInstance) :SafeHandle(nint_t::Zero, true) {
         NativePointer = ptr; OwnsNativeInstance = OwnsNativeInstance;
     } virtual property nint_t NativePointer { nint_t get() {
         return handle;
@@ -38,15 +38,15 @@ namespace BedrockServer::Extension
         return false;
     } }
     public:
-        SerializedSkin();
-        SerializedSkin(SerializedSkin^ skin);
+        SerializedSkinHandle();
+        SerializedSkinHandle(SerializedSkinHandle^ skin);
 
         property String^ Name { String^ get(); }
         property bool IsTrustedSkin { bool get(); void set(bool value); }
         property bool UseBlinkingAnimation { bool get(); }
 
         void UpdateGeometryName();
-        bool Read(ReadOnlyBinaryStream^ stream);
-        void Write(BinaryStream^ stream);
+        bool Read(ReadOnlyBinaryStreamHandle^ stream);
+        void Write(BinaryStreamHandle^ stream);
     };
 }
