@@ -8,13 +8,17 @@ namespace BedrockServer;
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct BlockPos
 {
-    public int X;
-    public int Y;
-    public int Z;
+    internal int x;
+    internal int y;
+    internal int z;
+
+    public int X { get => x; set => x = value; }
+    public int Y { get => y; set => y = value; }
+    public int Z { get => z; set => z = value; }
 
     public BlockPos(int x, int y, int z)
     {
-        X = x; Y = y; Z = z;
+        this.x = x; this.y = y; this.z = z;
     }
 
 
@@ -84,9 +88,9 @@ public unsafe struct BlockPos
     {
         get
         {
-            int z = Z;
-            int y = Y;
-            int x = X;
+            int z = this.z;
+            int y = this.y;
+            int x = this.x;
             return Math.Sqrt(x * x + y * y + z * z);
         }
     }
@@ -114,12 +118,12 @@ public unsafe struct BlockPos
         {
             return new BlockPos[6]
             {
-                new(X,Y-1,Z),
-                new(X,Y+1,Z),
-                new(X,Y,Z-1),
-                new(X,Y,Z+1),
-                new(X-1,Y,Z),
-                new(X+1,Y,Z),
+                new(x,y-1,z),
+                new(x,y+1,z),
+                new(x,y,z-1),
+                new(x,y,z+1),
+                new(x-1,y,z),
+                new(x+1,y,z),
             };
         }
     }
@@ -161,89 +165,89 @@ public unsafe struct BlockPos
     }
 
     public BlockPos Add(int dx, int dy = 0, int dz = 0)
-        => new(X + dx, Y + dy, Z + dz);
+        => new(x + dx, y + dy, z + dz);
 
     public static bool operator ==(BlockPos obj, BlockPos b)
     {
-        int num = obj.X == b.X && obj.Y == b.Y && obj.Z == b.Z ? 1 : 0;
+        int num = obj.x == b.x && obj.y == b.y && obj.z == b.z ? 1 : 0;
         return (byte)num != 0;
     }
 
     public static bool operator !=(BlockPos obj, BlockPos b)
     {
-        int num = obj.X != b.X || obj.Y != b.Y || obj.Z != b.Z ? 1 : 0;
+        int num = obj.x != b.x || obj.y != b.y || obj.z != b.z ? 1 : 0;
         return (byte)num != 0;
     }
 
     public static BlockPos operator +(BlockPos obj, int b)
     {
         Unsafe.SkipInit(out BlockPos result);
-        result.X = obj.X + b;
-        result.Y = obj.Y + b;
-        result.Z = obj.Z + b;
+        result.x = obj.x + b;
+        result.y = obj.y + b;
+        result.z = obj.z + b;
         return result;
     }
 
     public static BlockPos operator +(BlockPos obj, BlockPos b)
     {
         Unsafe.SkipInit(out BlockPos result);
-        result.X = obj.X + b.X;
-        result.Y = obj.Y + b.Y;
-        result.Z = obj.Z + b.Z;
+        result.x = obj.x + b.x;
+        result.y = obj.y + b.y;
+        result.z = obj.z + b.z;
         return result;
     }
 
     public static BlockPos operator *(BlockPos obj, int b)
     {
         Unsafe.SkipInit(out BlockPos result);
-        result.X = obj.X * b;
-        result.Y = obj.Y * b;
-        result.Z = obj.Z * b;
+        result.x = obj.x * b;
+        result.y = obj.y * b;
+        result.z = obj.z * b;
         return result;
     }
 
     public static BlockPos operator *(BlockPos obj, BlockPos b)
     {
         Unsafe.SkipInit(out BlockPos result);
-        result.X = obj.X * b.X;
-        result.Y = obj.Y * b.Y;
-        result.Z = obj.Z * b.Z;
+        result.x = obj.x * b.x;
+        result.y = obj.y * b.y;
+        result.z = obj.z * b.z;
         return result;
     }
 
     public static BlockPos operator /(BlockPos obj, int b)
     {
         Unsafe.SkipInit(out BlockPos result);
-        result.X = obj.X / b;
-        result.Y = obj.Y / b;
-        result.Z = obj.Z / b;
+        result.x = obj.x / b;
+        result.y = obj.y / b;
+        result.z = obj.z / b;
         return result;
     }
 
     public static BlockPos operator /(BlockPos obj, BlockPos b)
     {
         Unsafe.SkipInit(out BlockPos result);
-        result.X = obj.X / b.X;
-        result.Y = obj.Y / b.Y;
-        result.Z = obj.Z / b.Z;
+        result.x = obj.x / b.x;
+        result.y = obj.y / b.y;
+        result.z = obj.z / b.z;
         return result;
     }
 
     public static BlockPos operator -(BlockPos obj, int b)
     {
         Unsafe.SkipInit(out BlockPos result);
-        result.X = obj.X - b;
-        result.Y = obj.Y - b;
-        result.Z = obj.Z - b;
+        result.x = obj.x - b;
+        result.y = obj.y - b;
+        result.z = obj.z - b;
         return result;
     }
 
     public static BlockPos operator -(BlockPos obj, BlockPos b)
     {
         Unsafe.SkipInit(out BlockPos result);
-        result.X = obj.X - b.X;
-        result.Y = obj.Y - b.Y;
-        result.Z = obj.Z - b.Z;
+        result.x = obj.x - b.x;
+        result.y = obj.y - b.y;
+        result.z = obj.z - b.z;
         return result;
     }
 

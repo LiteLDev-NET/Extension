@@ -6,39 +6,42 @@ namespace BedrockServer;
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct Vec2
 {
-    public float X;
-    public float Y;
+    internal float x;
+    internal float y;
+
+    public float X { get => x; set => x = value; }
+    public float Y { get => y; set => y = value; }
 
 
     public Vec2(Vector2 v)
     {
-        X = v.X;
-        Y = v.Y;
+        x = v.X;
+        y = v.Y;
     }
 
     public Vec2(float a, float b)
     {
-        X = a;
-        Y = b;
+        x = a;
+        y = b;
     }
 
     public override string ToString()
     {
-        return $"{X},{Y}";
+        return $"{x},{y}";
     }
 
     public static Vec2 operator *(Vec2 v, float num)
-        => new(v.X * num, v.Y * num);
+        => new(v.x * num, v.y * num);
 
 
     public static Vec2 operator +(Vec2 v1, Vec2 v2)
-        => new(v1.X + v2.X, v1.Y + v2.Y);
+        => new(v1.x + v2.x, v1.y + v2.y);
 
     public static Vec2 operator -(Vec2 v1, Vec2 v2)
-        => new(v1.X - v2.X, v1.Y - v2.Y);
+        => new(v1.x - v2.x, v1.y - v2.y);
 
     public static implicit operator Vector2(Vec2 vec)
-        => new(vec.X, vec.Y);
+        => new(vec.x, vec.y);
 
     public static implicit operator Vec2(Vector2 vec)
         => new(vec);

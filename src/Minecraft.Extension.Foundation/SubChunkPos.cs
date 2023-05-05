@@ -10,14 +10,18 @@ namespace BedrockServer;
 [StructLayout(LayoutKind.Sequential)]
 public struct SubChunkPos
 {
-    public int X;
-    public int Y;
-    public int Z;
+    internal int x;
+    internal int y;
+    internal int z;
+
+    public int X { get => x; set => x = value; }
+    public int Y { get => y; set => y = value; }
+    public int Z { get => z; set => z = value; }
 
     public SubChunkPos(int x, int y, int z)
     {
-        X = x;
-        Y = y;
-        Z = z;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 }

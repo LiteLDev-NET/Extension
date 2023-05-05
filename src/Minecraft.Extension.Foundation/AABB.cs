@@ -5,16 +5,17 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BedrockServer;
 
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct AABB
 {
-    public Vec3 Min;
-    public Vec3 Max;
+    internal Vec3 min;
+    internal Vec3 max;
+
+    public Vec3 Min { get => min; set => min = value; }
+    public Vec3 Max { get => max; set => max = value; }
 
     private static readonly AABB* BLOCK_SHAPE_ptr;
     private static readonly AABB* BOX_AT_ORIGIN_WITH_NO_VOLUME_ptr;

@@ -11,7 +11,9 @@ namespace BedrockServer;
 [StructLayout(LayoutKind.Sequential)]
 public struct ChunkLocalHeight
 {
-    public short val;
+    internal short val;
+
+    public short Val { get => val; set => val = value; }
 
     public ChunkLocalHeight(short v)
     {
@@ -24,19 +26,23 @@ public struct ChunkLocalHeight
 [StructLayout(LayoutKind.Sequential)]
 public struct ChunkBlockPos
 {
-    public byte X;
-    public byte Z;
-    ChunkLocalHeight Y;
+    internal byte x;
+    internal byte z;
+    ChunkLocalHeight y;
+
+    public byte X { get => x; set => x = value; }
+    public byte Z { get => z; set => z = value; }
+    public ChunkLocalHeight Y { get => y; set => y = value; }
 
     public ChunkBlockPos(byte x, short y, byte z)
     {
-        X = x;
-        Z = z;
-        Y = new(y);
+        this.x = x;
+        this.z = z;
+        this.y = new(y);
     }
 
     public ushort ToLegacyIndex()
-        => (ushort)((Y.val & 0xF) + 16 * (Z + 16 * X));
+        => (ushort)((y.val & 0xF) + 16 * (z + 16 * x));
 
     public ChunkBlockPos(byte x, ChunkLocalHeight y, byte z)
     {

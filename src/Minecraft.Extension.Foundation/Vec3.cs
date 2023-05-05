@@ -7,35 +7,39 @@ namespace BedrockServer;
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct Vec3
 {
-    public float X;
-    public float Y;
-    public float Z;
+    internal float x;
+    internal float y;
+    internal float z;
+
+    public float X { get => x; set => x = value; }
+    public float Y { get => y; set => y = value; }
+    public float Z { get => z; set => z = value; }
 
     public Vec3(Vector3 v)
     {
-        X = v.X; Y = v.Y; Z = v.Z;
+        x = v.X; y = v.Y; z = v.Z;
     }
 
     public Vec3(int x, int y, int z)
     {
-        X = x; Y = y; Z = z;
+        this.x = x; this.y = y; this.z = z;
     }
 
     public Vec3(float x, float y, float z)
     {
-        X = x; Y = y; Z = z;
+        this.x = x; this.y = y; this.z = z;
     }
 
     public Vec3(double x, double y, double z)
     {
-        X = (float)x; Y = (float)y; Z = (float)z;
+        this.x = (float)x; this.y = (float)y; this.z = (float)z;
     }
 
     public unsafe double Length
         => Math.Sqrt(Dot(this, this));
 
     public static float Dot(Vec3 a, Vec3 b)
-        => a.Y * b.Y + a.X * b.X + a.Z * b.Z;
+        => a.y * b.y + a.x * b.x + a.z * b.z;
 
     public Vec3 Abs()
     {
@@ -213,31 +217,31 @@ public unsafe struct Vec3
     }
 
     public static Vec3 operator *(Vec3 lhs, Vec3 rhs)
-        => new(lhs.X * rhs.X, lhs.Y * rhs.Y, lhs.Z * rhs.Z);
+        => new(lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z);
 
     public static Vec3 operator *(Vec3 vec, float num)
-        => new(vec.X * num, vec.Y * num, vec.Z * num);
+        => new(vec.x * num, vec.y * num, vec.z * num);
 
     public static Vec3 operator /(Vec3 lhs, Vec3 rhs)
-        => new(lhs.X / rhs.X, lhs.Y / rhs.Y, lhs.Z / rhs.Z);
+        => new(lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z);
 
     public static Vec3 operator /(Vec3 vec, float num)
-        => new(vec.X / num, vec.Y / num, vec.Z / num);
+        => new(vec.x / num, vec.y / num, vec.z / num);
 
     public static Vec3 operator +(Vec3 lhs, Vec3 rhs)
-        => new(lhs.X + rhs.X, lhs.Y + rhs.Y, lhs.Z + rhs.Z);
+        => new(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z);
 
     public static Vec3 operator +(Vec3 vec, float num)
-        => new(vec.X + num, vec.Y + num, vec.Z + num);
+        => new(vec.x + num, vec.y + num, vec.z + num);
 
     public static Vec3 operator -(Vec3 lhs, Vec3 rhs)
-        => new(lhs.X - rhs.X, lhs.Y - rhs.Y, lhs.Z - rhs.Z);
+        => new(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z);
 
     public static Vec3 operator -(Vec3 vec, float num)
-        => new(vec.X - num, vec.Y - num, vec.Z - num);
+        => new(vec.x - num, vec.y - num, vec.z - num);
 
     public static implicit operator Vector3(Vec3 vec)
-        => new(vec.X, vec.Y, vec.Z);
+        => new(vec.x, vec.y, vec.z);
 
     public static implicit operator Vec3(Vector3 vec)
         => new(vec);

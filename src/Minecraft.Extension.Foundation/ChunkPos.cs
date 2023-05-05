@@ -11,17 +11,20 @@ namespace BedrockServer;
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct ChunkPos
 {
-    public int X;
-    public int Z;
+    internal int x;
+    internal int z;
+
+    public int X { get => x; set => x = value; }
+    public int Z { get => z; set => z = value; }
 
     public ChunkPos(int ix, int iz)
     {
-        X = ix;
-        Z = iz;
+        x = ix;
+        z = iz;
     }
 
     public int this[ulong index]
-        => index switch { 1 => Z, _ => X };
+        => index switch { 1 => z, _ => x };
 
     public ChunkPos(in Vec3 pos)
     {
