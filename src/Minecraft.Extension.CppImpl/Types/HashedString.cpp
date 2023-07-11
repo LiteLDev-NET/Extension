@@ -115,11 +115,11 @@ namespace BedrockServer::Extension::Handle
         return (&::HashedString::defaultErrorValue == nullptr) ? nullptr : gcnew ::BedrockServer::Extension::Handle::HashedStringHandle((class ::HashedString*) & ::HashedString::defaultErrorValue);
     }
 
-    void BedrockServer::Extension::Handle::HashedStringHandle::DefaultErrorValue::set(BedrockServer::Extension::Handle::HashedStringHandle^ value)
+    /*void BedrockServer::Extension::Handle::HashedStringHandle::DefaultErrorValue::set(BedrockServer::Extension::Handle::HashedStringHandle^ value)
     {
         if (ReferenceEquals(value, nullptr))
             throw gcnew ::System::ArgumentNullException("value", "Cannot be null because it is passed by value.");
         ::HashedString::defaultErrorValue = *(class ::HashedString*)value->NativePtr;
-    }
+    }*/
 
 }

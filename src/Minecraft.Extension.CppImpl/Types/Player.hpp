@@ -32,6 +32,14 @@ namespace BedrockServer::Extension::Handle
             HEAD_ROTATION,
         };
 
+        enum class NbtDataType :int
+        {
+            Snbt,
+            Binary,
+            Json,
+            Unknown,
+        };
+
         property String^ Name { String^ get(); };
         property String^ RealName { String^ get(); };
         property String^ Uuid { String^ get(); };
@@ -106,14 +114,20 @@ namespace BedrockServer::Extension::Handle
         inline bool SendText(String^ text);
 
         inline bool TalkAs(String^ msg);
+
         inline bool GiveItem(ItemStackHandle^ item);
+        inline bool GiveItem(String^ typeName, int amount);
+        inline bool GiveItem(ItemStackHandle^ item, int amount);
+
         inline int ClearItem(String^ typeName, unsigned int clearCount);
         inline bool Runcmd(String^ cmd);
         inline bool TransferServer(String^ address, unsigned short port);
         inline bool SetSidebar(String^ title, System::Collections::Generic::IList<System::ValueTuple<String^, int>>^ data, ObjectiveSortOrder sortOrder);
         inline bool RemoveSidebar();
+
         inline CompoundTagHandle^ GetNbt();
         inline bool SetNbt(CompoundTagHandle^ nbt);
+
         inline bool RefreshAttribute(BedrockServer::Extension::Handle::AttributeHandle^ attribute);
         inline bool RefreshAttributes(System::Collections::Generic::IList<BedrockServer::Extension::Handle::AttributeHandle^>^ attributes);
 
@@ -147,45 +161,21 @@ namespace BedrockServer::Extension::Handle
 
         inline bool SendRawFormPacket(unsigned formId, String^ data);
         inline bool SendToastPacket(String^ title, String^ msg);
-        delegate void callBackFunc_int(int);
-        inline bool SendSimpleFormPacket(String^ title, String^ content, System::Collections::Generic::IList<String^>^ buttons, System::Collections::Generic::IList<String^>^ images,
-            callBackFunc_int^ callback);
-        delegate void callBackFunc_bool(bool);
-        inline bool SendModalFormPacket(String^ title, String^ content, String^ button1, String^ button2,
-            callBackFunc_bool^ callback);
-        delegate void callBackFunc_String(std::string);
-        inline bool SendCustomFormPacket(
+
+
+    protected:
+
+        inline bool __SendSimpleForm(String^ title, String^ content, System::Collections::Generic::IList<String^>^ buttons, System::Collections::Generic::IList<String^>^ images,
+            void* pStdFunction);
+        inline bool __SendModalForm(String^ title, String^ content, String^ button1, String^ button2,
+            void* pStdFunction);
+        inline bool __SendCustomForm(
             String^ data,
-            callBackFunc_String^ callback);
+            void* pStdFunction);
 
         inline static bool IsValid(PlayerHandle^ player);
-        delegate void ModalForm_callback(bool);
-        delegate void SimpleForm_callback(int);
-        delegate void CustomForm_callback(String^);
-
-
-    private:
-    public:
-        bool SendModalForm(String^ title,
-            String^ content,
-            String^ button1,
-            String^ button2,
-            ModalForm_callback^ callback);
-
-        bool SendSimpleForm(String^ title,
-            String^ content,
-            System::Collections::Generic::IList<String^>^ buttons,
-            System::Collections::Generic::IList<String^>^ images,
-            SimpleForm_callback^ callback);
-
-    private:
-        inline void CustomForm_Func(std::string str);
-        delegate void dgCustomForm_Func(std::string);
-        CustomForm_callback^ __func;
 
     public:
-        bool SendCustomForm(String^ json, CustomForm_callback^ callback);
-
         enum class GameType
         {
             Survival = 0,

@@ -147,6 +147,7 @@
     <ClInclude Include="Types\WitherBoss.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Types\Actor.cpp" />
     <ClCompile Include="Types\ActorDamageSource.cpp" />

@@ -15,35 +15,10 @@ namespace BedrockServer::Extension::Handle
 
     public ref class AttributeInstanceHandle :SafeHandle, ICppClass
     {
-    internal: AttributeInstanceHandle(::AttributeInstance* ptr) :SafeHandle(nint_t::Zero, true) {
-        NativePointer = nint_t(ptr); OwnsNativeInstance = false;
-    } AttributeInstanceHandle(::AttributeInstance* ptr, bool ownsinstance) :SafeHandle(nint_t::Zero, true) {
-        NativePointer = nint_t(ptr); OwnsNativeInstance = ownsinstance;
-    } operator ::AttributeInstance* () {
-        return reinterpret_cast<::AttributeInstance*>((void*)NativePointer);
-    } static operator AttributeInstanceHandle ^ (::AttributeInstance* ptr) {
-        return gcnew AttributeInstanceHandle(ptr);
-    } property ::AttributeInstance* NativePtr { ::AttributeInstance* get() {
-        return reinterpret_cast<::AttributeInstance*>((void*)NativePointer);
-    } void set(::AttributeInstance* value) {
-        NativePointer = static_cast<nint_t>((void*)value);
-    } } static size_t classSize = 0; public: static void SetClassSize(size_t size) {
-        classSize = size;
-    } AttributeInstanceHandle(nint_t ptr, bool ownInstance) :SafeHandle(nint_t::Zero, true) {
-        NativePointer = ptr; OwnsNativeInstance = OwnsNativeInstance;
-    } virtual property nint_t NativePointer { nint_t get() { return handle; } void set(nint_t value) { handle = value; } }; virtual property bool OwnsNativeInstance; virtual void Destruct() {
-        ReleaseHandle();
-    } virtual size_t GetClassSize() {
-        return classSize;
-    } virtual bool ReleaseHandle() override {
-        if (OwnsNativeInstance) __dtor<::AttributeInstance>::destruct(NativePtr); return true;
-    } property bool IsInvalid { virtual bool get() override {
-        return false;
-    } }
+        DEFAULT_DEF(AttributeInstanceHandle, ::AttributeInstance)
     public:
 
         AttributeInstanceHandle(AttributeInstanceHandle^ attr);
-        AttributeInstanceHandle();
 
         property AttributeHandle^ AttributeHandle { BedrockServer::Extension::Handle::AttributeHandle^ get(); }
         property float CurrentValue { float get(); void set(float value); }
@@ -64,7 +39,7 @@ namespace BedrockServer::Extension::Handle
         bool HasModifier(AttributeModifierHandle^ modifier);
         bool HasModifier(Mce::UUID id);
         //void InheritFrom(AttributeInstance^, BaseAttributeMap^);
-        void Notify(long long _0);
+        //void Notify(long long _0);
         void RecalculateModifiers();
         void RegisterListener(AttributeInstanceHandle^ attr);
         //void RemoveBuff(AttributeBuff^);

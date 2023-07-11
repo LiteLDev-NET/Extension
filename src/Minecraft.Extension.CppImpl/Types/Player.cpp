@@ -12,6 +12,11 @@
 #include "Packet.hpp"
 #include "SerializedSkin.hpp"
 
+#include <Tools/CallbackConverter.hpp>
+
+#pragma unmanaged
+#pragma managed
+
 
 enum class GameType;
 
@@ -181,6 +186,16 @@ namespace BedrockServer::Extension::Handle
     inline bool PlayerHandle::GiveItem(ItemStackHandle^ item)
     {
         return NativePtr->giveItem(item->NativePtr);
+    }
+
+    inline bool PlayerHandle::GiveItem(String^ typeName, int amount)
+    {
+        return NativePtr->giveItem(marshalString(typeName), amount);
+    }
+
+    inline bool PlayerHandle::GiveItem(ItemStackHandle^ item, int amount)
+    {
+        return NativePtr->giveItem(item->NativePtr, amount);
     }
 
     inline int PlayerHandle::ClearItem(String^ typeName, unsigned int clearCount)
@@ -373,12 +388,12 @@ namespace BedrockServer::Extension::Handle
         return NativePtr->sendToastPacket(marshalString(title), marshalString(msg));
     }
 
-    inline bool PlayerHandle::SendSimpleFormPacket(
+    inline bool PlayerHandle::__SendSimpleForm(
         String^ title,
         String^ content,
         System::Collections::Generic::IList<String^>^ buttons,
         System::Collections::Generic::IList<String^>^ images,
-        callBackFunc_int^ callback)
+        void* pStdFunction)
     {
         auto len1 = buttons->Count;
         vector<string> stdvector1(len1);
@@ -388,119 +403,42 @@ namespace BedrockServer::Extension::Handle
         vector<string> stdvector2(len2);
         for (int j = 0; j < len2; j++)
             stdvector2.emplace_back(marshalString(images[j]));
-        GCHandle gch = GCHandle::Alloc(callback);
-        auto __ptr = Marshal::GetFunctionPointerForDelegate(callback);
-        auto __funcptr = static_cast<void (*)(int)>(__ptr.ToPointer());
-        return NativePtr->sendSimpleFormPacket(
-            marshalString(title),
-            marshalString(content),
-            stdvector1,
-            stdvector2,
-            __funcptr);
+        return
+            NativePtr->sendSimpleForm(
+                marshalString(title),
+                marshalString(content),
+                stdvector1,
+                stdvector2,
+                *reinterpret_cast<std::function<void __clrcall(::Player*, int)>*>(pStdFunction));
     }
 
-    inline bool PlayerHandle::SendModalFormPacket(
+    inline bool PlayerHandle::__SendModalForm(
         String^ title,
         String^ content,
         String^ button1,
         String^ button2,
-        callBackFunc_bool^ callback)
+        void* pStdFunction)
     {
-        GCHandle gch = GCHandle::Alloc(callback);
-        auto __ptr = Marshal::GetFunctionPointerForDelegate(callback);
-        auto __funcptr = static_cast<void (*)(bool)>(__ptr.ToPointer());
-        return NativePtr->sendModalFormPacket(
-            marshalString(title),
-            marshalString(content),
-            marshalString(button1),
-            marshalString(button2),
-            __funcptr);
+        return
+            NativePtr->sendModalForm(
+                marshalString(title),
+                marshalString(content),
+                marshalString(button1),
+                marshalString(button2),
+                *reinterpret_cast<std::function<void __clrcall(::Player*, bool)>*>(pStdFunction));
     }
 
-    delegate void callBackFunc_String(std::string);
-    /// <summary>
-    /// QAQ
-    /// </summary>
-    /// <param name="data"></param>
-    /// <param name="callback"></param>
-    /// <returns></returns>
-    inline bool PlayerHandle::SendCustomFormPacket(
+    inline bool PlayerHandle::__SendCustomForm(
         String^ data,
-        callBackFunc_String^ callback)
+        void* pStdFunction)
     {
-        GCHandle gch = GCHandle::Alloc(callback);
-        auto __ptr = Marshal::GetFunctionPointerForDelegate(callback);
-        auto __funcptr = static_cast<void (*)(std::string)>(__ptr.ToPointer());
-        return NativePtr->sendCustomFormPacket(marshalString(data), __funcptr);
+        return NativePtr->sendCustomForm(marshalString(data),
+            *reinterpret_cast<std::function<void __clrcall(::Player*, std::string)>*>(pStdFunction));
     }
 
     inline bool PlayerHandle::IsValid(PlayerHandle^ player)
     {
         return ::Player::isValid(player->NativePtr);
-    }
-
-    bool PlayerHandle::SendModalForm(String^ title,
-        String^ content,
-        String^ button1,
-        String^ button2,
-        ModalForm_callback^ func)
-    {
-        GCHandle gch = GCHandle::Alloc(func);
-        auto pfunc = static_cast<void (*)(bool)>(Marshal::GetFunctionPointerForDelegate(func).ToPointer());
-        return NativePtr->sendModalFormPacket(
-            marshalString(title),
-            marshalString(content),
-            marshalString(button1),
-            marshalString(button2),
-            pfunc);
-    }
-
-    bool PlayerHandle::SendSimpleForm(String^ title,
-        String^ content,
-        System::Collections::Generic::IList<String^>^ buttons,
-        System::Collections::Generic::IList<String^>^ images,
-        SimpleForm_callback^ callback)
-    {
-        GCHandle gch = GCHandle::Alloc(callback);
-        auto pfunc = static_cast<void (*)(int)>(Marshal::GetFunctionPointerForDelegate(callback).ToPointer());
-        auto len = buttons->Count;
-        std::vector<std::string> buttonsvector(len);
-        for (int i = 0; i < len; ++i)
-            buttonsvector.emplace_back(marshalString(buttons[i]));
-        len = images->Count;
-        std::vector<std::string> imagesvector(len);
-        for (int i = 0; i < len; ++i)
-            imagesvector.emplace_back(marshalString(images[i]));
-        return NativePtr->sendSimpleFormPacket(
-            marshalString(title),
-            marshalString(content),
-            buttonsvector,
-            imagesvector,
-            pfunc);
-    }
-
-    inline void PlayerHandle::CustomForm_Func(std::string str)
-    {
-        try
-        {
-            __func(marshalString(str));
-        }
-        catch (Exception^)
-        {
-        }
-    }
-
-    bool PlayerHandle::SendCustomForm(String^ json,
-        CustomForm_callback^ callback)
-    {
-        __func = callback;
-        auto dgfunc = gcnew dgCustomForm_Func(this, &PlayerHandle::CustomForm_Func);
-        GCHandle gch = GCHandle::Alloc(dgfunc);
-        auto pfunc = static_cast<void (*)(std::string)>(
-            Marshal::GetFunctionPointerForDelegate(dgfunc).ToPointer());
-        return NativePtr->sendCustomFormPacket(
-            marshalString(json),
-            pfunc);
     }
 
 

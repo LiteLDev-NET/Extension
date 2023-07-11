@@ -40,7 +40,7 @@ using nint_t = IntPtr;
 
 #include "clix.hpp"
 #include "type_traits.hpp"
-#include "mutex.hpp"
+#include <mutex>
 
 #define __static abstract sealed
 #define _in [In]

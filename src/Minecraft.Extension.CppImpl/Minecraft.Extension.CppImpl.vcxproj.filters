@@ -408,5 +408,6 @@
       <Filter>Types</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="AssemblyInfo.cpp" />
   </ItemGroup>
 </Project>

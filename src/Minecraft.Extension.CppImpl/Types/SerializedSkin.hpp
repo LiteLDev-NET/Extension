@@ -43,7 +43,7 @@ namespace BedrockServer::Extension::Handle
 
         property String^ Name { String^ get(); }
         property bool IsTrustedSkin { bool get(); void set(bool value); }
-        property bool UseBlinkingAnimation { bool get(); }
+        //property bool UseBlinkingAnimation { bool get(); }
 
         void UpdateGeometryName();
         bool Read(ReadOnlyBinaryStreamHandle^ stream);

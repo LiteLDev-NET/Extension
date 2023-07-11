@@ -9,13 +9,6 @@ namespace BedrockServer::Extension::Handle
         NativePtr = new ::AttributeInstance(*attr->NativePtr);
     }
 
-    AttributeInstanceHandle::AttributeInstanceHandle()
-        :SafeHandle(nint_t::Zero, true)
-    {
-        OwnsNativeInstance = true;
-        NativePtr = new ::AttributeInstance();
-    }
-
     AttributeHandle^ AttributeInstanceHandle::AttributeHandle::get()
     {
         return gcnew BedrockServer::Extension::Handle::AttributeHandle(const_cast<::Attribute*>(NativePtr->getAttribute()));
@@ -105,10 +98,10 @@ namespace BedrockServer::Extension::Handle
         return NativePtr->hasModifier(*(::mce::UUID*)&id);
     }
 
-    void AttributeInstanceHandle::Notify(long long _0)
-    {
-        NativePtr->notify(_0);
-    }
+    //void AttributeInstanceHandle::Notify(long long _0)
+    //{
+    //    NativePtr->notify(_0);
+    //}
 
     void AttributeInstanceHandle::RecalculateModifiers()
     {

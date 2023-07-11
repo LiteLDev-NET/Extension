@@ -53,7 +53,7 @@ namespace BedrockServer::Extension::Handle
 
         static property HashedStringHandle^ DefaultErrorValue {
             HashedStringHandle^ get();
-            void set(HashedStringHandle^);
+            /*void set(HashedStringHandle^);*/
         }
 
         //#endif // INCLUDE_MCAPI

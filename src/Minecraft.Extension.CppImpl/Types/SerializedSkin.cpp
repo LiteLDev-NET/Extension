@@ -31,10 +31,10 @@ namespace BedrockServer::Extension::Handle
         NativePtr->setIsTrustedSkin(value);
     }
 
-    bool SerializedSkinHandle::UseBlinkingAnimation::get()
-    {
-        return NativePtr->useBlinkingAnimation();
-    }
+    //bool SerializedSkinHandle::UseBlinkingAnimation::get()
+    //{
+    //    return NativePtr->useBlinkingAnimation();
+    //}
 
     void SerializedSkinHandle::UpdateGeometryName()
     {

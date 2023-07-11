@@ -1,4 +1,4 @@
-#include <src/Main/DotNETGlobal.hpp>
+#include <Tools/Global.hpp>
 #include <llapi/utils/Hash.h>
 #include <functional>
 #include <variant>
